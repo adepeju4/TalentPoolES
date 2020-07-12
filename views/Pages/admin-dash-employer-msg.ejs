@@ -1,51 +1,57 @@
 <!doctype html>
 <html lang="en">
-  <head>
 
-    <%- include('../Templates/head') %>
+<head>
 
-    <link href="styles/custom-css/top-nav-admin.css" rel="stylesheet" />
-    <link rel="stylesheet" href="styles/custom-css/admin-dash-employer-msg.css">
-    <link href="styles/custom-css/side-nav.css" rel="stylesheet" />
-		<link rel="shortcut icon" href="img/favicon.svg" type="image/x-icon">
+  <%- include('../Templates/head') %>
+
+  <link href="styles/custom-css/top-nav-admin.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/custom-css/admin-dash-employer-msg.css">
+  <link href="styles/custom-css/side-nav.css" rel="stylesheet" />
+  <link rel="shortcut icon" href="img/favicon.svg" type="image/x-icon">
 </head>
-  
+
 <body>
 
 
   <div class="container-fluid w-100 top__nav__wrapper sticky-top">
-          <div class="top__nav__contents py-4">
-              <div class="d-flex justify-content-between justify-content-lg-end align-items-center top__nav">
+    <div class="top__nav__contents py-4">
+      <div class="d-flex justify-content-between justify-content-lg-end align-items-center top__nav">
 
-                  <div class="d-lg-none mr-3" id="top__nav__toggle">
-                      <svg width="35" height="25" viewBox="0 0 35 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M0 15.2571H35V10.4571H0V15.2571ZM0 24.8571H35V20.0571H0V24.8571ZM0 5.65712H35V0.857117H0V5.65712Z" fill="#084482" fill-opacity="0.87"/>
-                      </svg>
-                  </div>
-                  
-                  <div class="d-flex align-items-center top__nav__links">
-                      <div class="top__nav__icon d-none d-md-flex">
-                          <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M19.6211 4.95313C19.7734 4.83203 20 4.94531 20 5.13672V13.125C20 14.1602 19.1602 15 18.125 15H1.875C0.839844 15 0 14.1602 0 13.125V5.14062C0 4.94531 0.222656 4.83594 0.378906 4.95703C1.25391 5.63672 2.41406 6.5 6.39844 9.39453C7.22266 9.99609 8.61328 11.2617 10 11.2539C11.3945 11.2656 12.8125 9.97266 13.6055 9.39453C17.5898 6.5 18.7461 5.63281 19.6211 4.95313ZM10 10C10.9063 10.0156 12.2109 8.85938 12.8672 8.38281C18.0508 4.62109 18.4453 4.29297 19.6406 3.35547C19.8672 3.17969 20 2.90625 20 2.61719V1.875C20 0.839845 19.1602 0 18.125 0H1.875C0.839844 -5.33333e-07 0 0.839842 0 1.875V2.61719C0 2.90625 0.132813 3.17578 0.359375 3.35547C1.55469 4.28906 1.94922 4.62109 7.13281 8.38281C7.78906 8.85938 9.09375 10.0156 10 10Z" fill="black"/>
-                          </svg>
-                      </div>
-  
-                      <div class="top__nav__icon d-none d-md-flex">
-                          <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M16.9486 14.2992C16.0795 13.43 15 12.3484 15 8.125C15 5.02367 12.741 2.45043 9.77879 1.95977C9.92315 1.75126 10.0003 1.50361 10 1.25C10 0.559648 9.44035 0 8.75 0C8.05964 0 7.5 0.559648 7.5 1.25C7.5 1.51367 7.58183 1.75813 7.72121 1.95977C4.75902 2.45043 2.5 5.02367 2.5 8.125C2.5 12.3484 1.42019 13.43 0.55105 14.2992C-0.626645 15.4769 0.208003 17.5 1.87687 17.5H6.25C6.25 18.8807 7.36929 20 8.75 20C10.1307 20 11.25 18.8807 11.25 17.5H15.6228C17.2883 17.5 18.1287 15.4793 16.9486 14.2992Z" fill="black"/>
-                          </svg>
-                      </div>
-  
-                      <div class="d-flex align-items-center top__nav__user">
-                          <div class="img-fluid mr-2"><img src="img/Employer Dashboard/user2.png" alt=""></div>
-                          <div class="top__nav__user__name">
-                              <h6 class="text-primary m-0">Adelanke Adelanke</h6>
-                              <p class="m-0 mr-0">Employer</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+        <div class="d-lg-none mr-3" id="top__nav__toggle">
+          <svg width="35" height="25" viewBox="0 0 35 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 15.2571H35V10.4571H0V15.2571ZM0 24.8571H35V20.0571H0V24.8571ZM0 5.65712H35V0.857117H0V5.65712Z"
+              fill="#084482" fill-opacity="0.87" />
+          </svg>
+        </div>
+
+        <div class="d-flex align-items-center top__nav__links">
+          <div class="top__nav__icon d-none d-md-flex">
+            <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M19.6211 4.95313C19.7734 4.83203 20 4.94531 20 5.13672V13.125C20 14.1602 19.1602 15 18.125 15H1.875C0.839844 15 0 14.1602 0 13.125V5.14062C0 4.94531 0.222656 4.83594 0.378906 4.95703C1.25391 5.63672 2.41406 6.5 6.39844 9.39453C7.22266 9.99609 8.61328 11.2617 10 11.2539C11.3945 11.2656 12.8125 9.97266 13.6055 9.39453C17.5898 6.5 18.7461 5.63281 19.6211 4.95313ZM10 10C10.9063 10.0156 12.2109 8.85938 12.8672 8.38281C18.0508 4.62109 18.4453 4.29297 19.6406 3.35547C19.8672 3.17969 20 2.90625 20 2.61719V1.875C20 0.839845 19.1602 0 18.125 0H1.875C0.839844 -5.33333e-07 0 0.839842 0 1.875V2.61719C0 2.90625 0.132813 3.17578 0.359375 3.35547C1.55469 4.28906 1.94922 4.62109 7.13281 8.38281C7.78906 8.85938 9.09375 10.0156 10 10Z"
+                fill="black" />
+            </svg>
           </div>
+
+          <div class="top__nav__icon d-none d-md-flex">
+            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.9486 14.2992C16.0795 13.43 15 12.3484 15 8.125C15 5.02367 12.741 2.45043 9.77879 1.95977C9.92315 1.75126 10.0003 1.50361 10 1.25C10 0.559648 9.44035 0 8.75 0C8.05964 0 7.5 0.559648 7.5 1.25C7.5 1.51367 7.58183 1.75813 7.72121 1.95977C4.75902 2.45043 2.5 5.02367 2.5 8.125C2.5 12.3484 1.42019 13.43 0.55105 14.2992C-0.626645 15.4769 0.208003 17.5 1.87687 17.5H6.25C6.25 18.8807 7.36929 20 8.75 20C10.1307 20 11.25 18.8807 11.25 17.5H15.6228C17.2883 17.5 18.1287 15.4793 16.9486 14.2992Z"
+                fill="black" />
+            </svg>
+          </div>
+
+          <div class="d-flex align-items-center top__nav__user">
+            <div class="img-fluid mr-2"><img src="img/Employer Dashboard/user2.png" alt=""></div>
+            <div class="top__nav__user__name">
+              <h6 class="text-primary m-0">Adelanke Adelanke</h6>
+              <p class="m-0 mr-0">Employer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="container-fluid mt-4">
@@ -60,7 +66,7 @@
               <img src="img/navLogo.svg" alt="" />
             </div>
           </div>
-               ​
+          ​
           <ul class="sidenav_links d-sm">
             <li><a href="#">Dashboard</a></li>
             <li><a href="#" class="active">Messages</a></li>
@@ -71,7 +77,7 @@
           </ul>
         </div>
 
-            ​
+        ​
         <div id="body__click"></div>
       </div>
 
@@ -81,139 +87,144 @@
   <div class="col-lg-9 ml-sm-auto col-xl-10 pl-lg-0 pr-lg-5 px-xl-3">
 
     <div class="row ">
-          <div class="col-lg-4 " id="chat--list">
-            <div class="d-flex flex-column justify-content-between align-items-center">
-              <div class=" d-flex justify-content-between w-100">
-                <h6 class="chat-list__title">Messages</h6>
-                <div class="d-flex align-items-center">
-                  <img class="mr-2" src="img/chat-icon-sm.svg" />
-                  <h6 class="chat-list__new-msg">New Messages</h6>
+      <div class="col-lg-4 " id="chat--list">
+        <div class="d-flex flex-column justify-content-between align-items-center">
+          <div class=" d-flex justify-content-between w-100">
+            <h6 class="chat-list__title">Messages</h6>
+            <div class="d-flex align-items-center">
+              <img class="mr-2" src="img/chat-icon-sm.svg" />
+              <h6 class="chat-list__new-msg">New Messages</h6>
+            </div>
+          </div>
+
+          <form class="w-100">
+            <img class="chat-search--icon" src="img/search-icon-sm.svg" />
+            <input class="py-4 pl-5 form-control chat-search-input" type="text"
+              placeholder="Search or start a new message" aria-label="Search" />
+          </form>
+          <div class="breakline my-3"></div>
+
+          <div class="w-100">
+            <div class="align-items-center py-2 bg-white d-flex my-3 px-3 chat-item" id="chat-item">
+              <img class="img-fluid " src="img/chat-img-1.png" alt="">
+              <div class="sub-text d-flex flex-column ml-3 w-100">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <h6 class="my-0 chat-item--name">Tomisin Lalude</h6>
+                  <h6 class="my-0 chat-item--time">4:50PM</h6>
                 </div>
-              </div>
-          
-              <form class="w-100">
-                <img class="chat-search--icon" src="img/search-icon-sm.svg" />
-               <input class="py-4 pl-5 form-control chat-search-input" type="text" placeholder="Search or start a new message"
-                  aria-label="Search" />
-              </form>
-              <div class="breakline my-3"></div>
-      
-              <div class="w-100">
-                <div class="align-items-center py-2 bg-white d-flex my-3 px-3 chat-item" id="chat-item">
-                  <img class="img-fluid " src="img/chat-img-1.png" alt="">
-                  <div class="sub-text d-flex flex-column ml-3 w-100">
-                      <div class="d-flex align-items-center justify-content-between mb-2">
-                        <h6 class="my-0 chat-item--name">Tomisin Lalude</h6>
-                        <h6 class="my-0 chat-item--time">4:50PM</h6>
-                      </div>
-                      <p class="text-selected mb-0 mr-3 chat-item--msg"><span class="msg-check"></span>Will you be at the conference?</p>
-                    </div>
-                  </div>
-                  <div class="align-items-center py-2 bg-white d-flex my-3 px-3 chat-item" id="chat-item-2">
-                    <img class="img-fluid " src="img/chat-img-2.png" alt="">
-                    <div class="sub-text d-flex flex-column ml-3 w-100">
-                      <div class="d-flex align-items-center justify-content-between mb-2">
-                        <h6 class="my-0 chat-item--name">Nifemi Ajayi</h6>
-                        <h6 class="my-0 chat-item--time">4:50PM</h6>
-                      </div>
-                      <p class="text-selected mb-0 mr-3 chat-item--msg"><span class="msg-check"></span>I hope you are ready for the internship?</p>
-                    </div>
-                  </div>
-                  <div class="align-items-center py-2 bg-white d-flex my-3 px-3 chat-item" id="chat-item-3">
-                    <img class="img-fluid " src="img/chat-img-3.png" alt="">
-                    <div class="sub-text d-flex flex-column ml-3 w-100">
-                      <div class="d-flex align-items-center justify-content-between mb-2">
-                        <h6 class="my-0 chat-item--name">Julia Orji</h6>
-                        <h6 class="my-0 chat-item--time">Yesterday</h6>
-                      </div>
-                      <p class="text-selected mb-0 mr-3 chat-item--msg"><span class="msg-check"></span>Designing a mind blowing product is what i expect from you.</p>
-                    </div>
-                  </div>
-                  <div class="align-items-center py-2 bg-white d-flex my-3 px-3 chat-item" id="chat-item-4">
-                    <img class="img-fluid " src="img/chat-img-4.png" alt="">
-                    <div class="sub-text d-flex flex-column ml-3 w-100">
-                      <div class="d-flex align-items-center justify-content-between mb-2">
-                        <h6 class="my-0 chat-item--name">Ayo Shittu</h6>
-                        <h6 class="my-0 chat-item--time">Yesterday</h6>
-                      </div>
-                      <p class="text-selected mb-0 mr-3 chat-item--msg"><span class="msg-check"></span>I just went through your portfolio.</p>
-                    </div>
-                  </div>
-                  <div class="align-items-center py-2 bg-white d-flex my-3 px-3 chat-item" id="chat-item-5">
-                    <img class="img-fluid " src="img/chat-img-5.png" alt="">
-                    <div class="sub-text d-flex flex-column ml-3 w-100">
-                      <div class="d-flex align-items-center justify-content-between mb-2" >
-                        <h6 class="my-0 chat-item--name">Abiodun Popoola</h6>
-                        <h6 class="my-0 chat-item--time">2d ago</h6>
-                      </div>
-                      <p class="text-selected mb-0 mr-3 chat-item--msg"><span class="msg-check"></span>Lorem ipsum dolor is not good enough for mockup text.</p>
-                    </div>
-                  </div>
+                <p class="text-selected mb-0 mr-3 chat-item--msg"><span class="msg-check"></span>Will you be at the
+                  conference?</p>
               </div>
             </div>
-            
-          </div> 
-          <div class="col msg--wrap" id="msg--wrap">
-            <p class="chat--list-back" id="chat--list-back">Back</p>
-            <div class="d-flex justify-content-between">
-              <div class="w-100 d-flex align-items-center">
-                <div>
-                  <img class="img-fluid msg-pic" src="img/chat-img-1.png" alt="Adeleke">
+            <div class="align-items-center py-2 bg-white d-flex my-3 px-3 chat-item" id="chat-item-2">
+              <img class="img-fluid " src="img/chat-img-2.png" alt="">
+              <div class="sub-text d-flex flex-column ml-3 w-100">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <h6 class="my-0 chat-item--name">Nifemi Ajayi</h6>
+                  <h6 class="my-0 chat-item--time">4:50PM</h6>
                 </div>
-                <span class="ml-4 msg-name">Tomisin Lalude</span>
-              </div>
-              <div class="d-flex">
-                <img class="mr-1" src="img/mdi_attach_file.svg" />
-                <img class="ml-1" src="img/mdi_more_vert.svg" />
+                <p class="text-selected mb-0 mr-3 chat-item--msg"><span class="msg-check"></span>I hope you are ready
+                  for the internship?</p>
               </div>
             </div>
-            <div class="msg--body bg-white mt-2">
-              <div class="m-3">
-                <div class="msgs-wrap">
-                  <div class=" msg-item">
-                    <p  class="msg-item--text chat-bubble-1">If you intend to seek financial support from an investor,
-                         a traditional business plan is a must.</p>
-                    <p class="msg-item--time">11:46 AM</p>
-                  </div>
-                  <div style="clear: both;"></div>
-                  <div class="msg-item--right">
-                    <p  class="msg-item--text-right chat-bubble-2">Very correct.</p>
-                    <p class="msg-item--time-right">11:46 AM</p>
-                  </div>
-                  <div style="clear: both;"></div>
-                  <div class=" msg-item">
-                    <p  class="msg-item--text chat-bubble-3">Thank you.</p>
-                    <p class="msg-item--time">11:52 AM</p>
-                  </div>
-                  <div style="clear: both;"></div>
-                  <div class="msg-item--right">
-                    <p  class="msg-item--text-right chat-bubble-4">Will you be at the conference?</p>
-                    <p class="msg-item--time-right">11:57 AM</p>
-                  </div>
-                  <div style="clear: both;"></div>
+            <div class="align-items-center py-2 bg-white d-flex my-3 px-3 chat-item" id="chat-item-3">
+              <img class="img-fluid " src="img/chat-img-3.png" alt="">
+              <div class="sub-text d-flex flex-column ml-3 w-100">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <h6 class="my-0 chat-item--name">Julia Orji</h6>
+                  <h6 class="my-0 chat-item--time">Yesterday</h6>
                 </div>
-               <div class="msg--input d-flex">
-                 <img class="" src="img/mdi_insert_emoticon.svg" />
-                 <input class="msg--input-text" type="text" placeholder="Type something..." />
-                 <img class="msg--input-send" src="img/Send Icon.svg" />
-               </div>
-              <div>
+                <p class="text-selected mb-0 mr-3 chat-item--msg"><span class="msg-check"></span>Designing a mind
+                  blowing product is what i expect from you.</p>
+              </div>
+            </div>
+            <div class="align-items-center py-2 bg-white d-flex my-3 px-3 chat-item" id="chat-item-4">
+              <img class="img-fluid " src="img/chat-img-4.png" alt="">
+              <div class="sub-text d-flex flex-column ml-3 w-100">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <h6 class="my-0 chat-item--name">Ayo Shittu</h6>
+                  <h6 class="my-0 chat-item--time">Yesterday</h6>
+                </div>
+                <p class="text-selected mb-0 mr-3 chat-item--msg"><span class="msg-check"></span>I just went through
+                  your portfolio.</p>
+              </div>
+            </div>
+            <div class="align-items-center py-2 bg-white d-flex my-3 px-3 chat-item" id="chat-item-5">
+              <img class="img-fluid " src="img/chat-img-5.png" alt="">
+              <div class="sub-text d-flex flex-column ml-3 w-100">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <h6 class="my-0 chat-item--name">Abiodun Popoola</h6>
+                  <h6 class="my-0 chat-item--time">2d ago</h6>
+                </div>
+                <p class="text-selected mb-0 mr-3 chat-item--msg"><span class="msg-check"></span>Lorem ipsum dolor is
+                  not good enough for mockup text.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col msg--wrap" id="msg--wrap">
+        <p class="chat--list-back" id="chat--list-back">Back</p>
+        <div class="d-flex justify-content-between">
+          <div class="w-100 d-flex align-items-center">
+            <div>
+              <img class="img-fluid msg-pic" src="img/chat-img-1.png" alt="Adeleke">
+            </div>
+            <span class="ml-4 msg-name">Tomisin Lalude</span>
+          </div>
+          <div class="d-flex">
+            <img class="mr-1" src="img/mdi_attach_file.svg" />
+            <img class="ml-1" src="img/mdi_more_vert.svg" />
+          </div>
+        </div>
+        <div class="msg--body bg-white mt-2">
+          <div class="m-3">
+            <div class="msgs-wrap">
+              <div class=" msg-item">
+                <p class="msg-item--text chat-bubble-1">If you intend to seek financial support from an investor,
+                  a traditional business plan is a must.</p>
+                <p class="msg-item--time">11:46 AM</p>
+              </div>
+              <div style="clear: both;"></div>
+              <div class="msg-item--right">
+                <p class="msg-item--text-right chat-bubble-2">Very correct.</p>
+                <p class="msg-item--time-right">11:46 AM</p>
+              </div>
+              <div style="clear: both;"></div>
+              <div class=" msg-item">
+                <p class="msg-item--text chat-bubble-3">Thank you.</p>
+                <p class="msg-item--time">11:52 AM</p>
+              </div>
+              <div style="clear: both;"></div>
+              <div class="msg-item--right">
+                <p class="msg-item--text-right chat-bubble-4">Will you be at the conference?</p>
+                <p class="msg-item--time-right">11:57 AM</p>
+              </div>
+              <div style="clear: both;"></div>
+            </div>
+            <div class="msg--input d-flex">
+              <img class="" src="img/mdi_insert_emoticon.svg" />
+              <input class="msg--input-text" type="text" placeholder="Type something..." />
+              <img class="msg--input-send" src="img/Send Icon.svg" />
+            </div>
+            <div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  </div>
 
-     
-      <!-- Optional JavaScript -->
-    <script src="../js/custom-js/side-nav.js"></script>
-    <script src="../js/custom-js/admin-dash-employer-msg.js"></script>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="../js/bootstrap-js/popper.js"></script>
-    <script src="../js/bootstrap-js/jquery.js"></script>
-    <script src="../js/bootstrap-js/bootstrap.js"></script>
+
+  <!-- Optional JavaScript -->
+  <script src="../js/custom-js/side-nav.js"></script>
+  <script src="../js/custom-js/admin-dash-employer-msg.js"></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../js/bootstrap-js/popper.js"></script>
+  <script src="../js/bootstrap-js/jquery.js"></script>
+  <script src="../js/bootstrap-js/bootstrap.js"></script>
 </body>
 
 </html>

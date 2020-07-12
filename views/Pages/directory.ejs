@@ -3,6 +3,9 @@
 <html lang="en">
 
 <head>
+    <script>
+        const employees = <%- JSON.stringify(employees) %>;
+    </script>
     <%- include('../Templates/head') %>
 
     <link rel="stylesheet" href="styles/custom-css/directory.css">
@@ -43,58 +46,6 @@
                                 <i class="fa fa-angle-down rotate-icon "></i>
                             </span>
                             <div id="skillsContent" class="content collapse">
-
-                                <div class="form-check">
-                                    <input type="checkbox" id="checkbox-UI" value="UI" class="form-check-input">
-                                    <label for="checkbox-UI" class="form-check-label"><span></span>UI</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" id="checkbox-UX" value="UX" class="form-check-input">
-                                    <label for="checkbox-UX" class="form-check-label"><span></span>UX</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" id="checkbox-Figma" value="Figma" class="form-check-input">
-                                    <label for="checkbox-Figma" class="form-check-label"><span></span>Figma</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" id="checkbox-Sketch" value="Sketch" class="form-check-input">
-                                    <label for="checkbox-Sketch" class="form-check-label"><span></span>Sketch</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" id="checkbox-JavaScript" value="JavaScript"
-                                        class="form-check-input">
-                                    <label for="checkbox-JavaScript"
-                                        class="form-check-label"><span></span>JavaScript</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" id="checkbox-Mobile" value="Mobile" class="form-check-input">
-                                    <label for="checkbox-Mobile" class="form-check-label"><span></span>Mobile</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" id="checkbox-FrontEnd" value="FrontEnd"
-                                        class="form-check-input">
-                                    <label for="checkbox-FrontEnd"
-                                        class="form-check-label"><span></span>FrontEnd</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" id="checkbox-Backend" value="Backend"
-                                        class="form-check-input">
-                                    <label for="checkbox-Backend" class="form-check-label"><span></span>Backend</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab">
-                            <span>
-                                Years of Experience
-                            </span>
-                            <div>
-                                <select class="form-control">
-                                    <option>0</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                </select>
                             </div>
                         </div>
                         <div class="tab">
@@ -102,13 +53,11 @@
                                 Age
                             </span>
                             <div>
-                                <select class="form-control">
-                                    <option>0</option>
-                                    <option>20</option>
-                                    <option>21</option>
-                                    <option>22</option>
-                                    <option>23</option>
-                                    <option>24</option>
+                                <select class="form-control" onchange="filterEmployees()" id="age">
+                                    <option value="0">none</option>
+                                    <% for (let i = 1; i <= 100; i++) { %>
+                                        <option value="<%= i %>"><%= i %></option>
+                                   <% }%>
                                 </select>
                             </div>
                         </div>
@@ -148,22 +97,22 @@
                     <div class="search-bar">
                         <div class="search-box form-group">
                             <span class="fa fa-search form-control-icon" aria-hidden="true"></span>
-                            <input class="form-control" type="text" placeholder="Search Directory with keywords">
+                            <input id="search" onchange="filterEmployees()" class="form-control" type="text" placeholder="Search Directory with keywords">
                         </div>
 
                         <div class="top-links">
                             <div class="row align-items-center">
                                 <div class="col-sm-8">
-                                    <ul class="nav nav-pills flex-column flex-sm-row">
-                                        <li class="nav-link flex-sm-fill text-center active"><a href="#">All</a></li>
-                                        <li class="nav-link flex-sm-fill text-center"><a href="#">Design</a></li>
-                                        <li class="nav-link flex-sm-fill text-center"><a href="#">Mobile</a></li>
-                                        <li class="nav-link flex-sm-fill text-center"><a href="#">Frontend</a></li>
-                                        <li class="nav-link flex-sm-fill text-center"><a href="#">Backend</a></li>
+                                    <ul class="nav nav-pills flex-column flex-sm-row" id="roles-filter">
+                                        <li class="nav-link flex-sm-fill text-center active"><a onclick="filterRoles(0)" href="#">All</a></li>
+                                        <li class="nav-link flex-sm-fill text-center"><a onclick="filterRoles(1)" href="#">Design</a></li>
+                                        <li class="nav-link flex-sm-fill text-center"><a onclick="filterRoles(2)" href="#">Mobile</a></li>
+                                        <li class="nav-link flex-sm-fill text-center"><a onclick="filterRoles(3)" href="#">Frontend</a></li>
+                                        <li class="nav-link flex-sm-fill text-center"><a onclick="filterRoles(4)" href="#">Backend</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-4 d-flex justify-content-around right-filter">
-                                    <span class="align-self-center interns">750 interns</span>
+                                    <span class="align-self-center interns" id="number-interns"><%= employees.length %> interns</span>
                                     <div class="sort">
                                         <select class="form-control">
 
@@ -176,222 +125,56 @@
                             </div>
                         </div>
                     </div>
-                    <div class="user-cards">
-                        <div class="user-card frontend">
+                    <div class="user-cards" id="user-cards">
+                        <% for(const employee of employees) { %>
+                        <div class="user-card <%= employee.role %>">
                             <div class="user-card-inner">
 
                                 <div class="title">
 
                                     <div class="user-card-image-container">
                                         <div class="user-card-image"
-                                            style="background-image: url(img/directories/obinna.jpg);">
+                                            style="background-image: url(<%= employee.picture_url %>);">
                                         </div>
                                     </div>
 
                                     <div class="user-texts">
-                                        <h4>Obinna Nneji</h4>
-                                        <h6>Frontend Developer</h6>
+                                        <h4>
+                                            <%= employee.first_name + ' ' + employee.last_name %>
+                                        </h4>
+                                        <h6> <%= employee.roleDescription %> </h6>
                                     </div>
                                 </div>
                                 <div class="profile">
-                                    <a href="/employee-profile">View profile</a>
+                                    <a href="/employee-profile/<%= employee.employee_id %>">View profile</a>
                                     <div class="skills">
 
                                         <ul>
+                                            <% if(employee.skills.length < 1) { %>
                                             <li>
-                                                JavaScript
-                                            </li>
+                                                None
+                                            </li> 
+                                            <% } %>
+                                            <% for( const skill of employee.skills ){ %>
                                             <li>
-                                                Figma
+                                                <%= skill.skill_description %>
                                             </li>
-                                            <li>
-                                                Sketch
-                                            </li>
+                                            <% } %>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="user-card designer">
-                            <div class="user-card-inner">
-
-                                <div class="title">
-
-                                    <div class="user-card-image-container">
-                                        <div class="user-card-image"
-                                            style="background-image: url( img/directories/jaden_tomi.jpg);">
-                                        </div>
-                                    </div>
-
-                                    <div class="user-texts">
-                                        <h4>Jaden Tega</h4>
-                                        <h6>Designer</h6>
-                                    </div>
-                                </div>
-                                <div class="profile">
-                                    <a href="/employee-profile">View profile</a>
-                                    <div class="skills">
-
-                                        <ul>
-                                            <li>
-                                                UI
-                                            </li>
-                                            <li>
-                                                UX
-                                            </li>
-                                            <li>
-                                                Figma
-                                            </li>
-                                            <li>
-                                                Sketch
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-card backend">
-                            <div class="user-card-inner">
-
-                                <div class="title">
-
-                                    <div class="user-card-image-container">
-                                        <div class="user-card-image"
-                                            style="background-image: url( img/directories/julia.jpg);">
-                                        </div>
-                                    </div>
-                                    <div class="user-texts">
-                                        <h4>Julia Orji</h4>
-                                        <h6>Backend Developer</h6>
-                                    </div>
-                                </div>
-                                <div class="profile">
-                                    <a href="/employee-profile">View profile</a>
-                                    <div class="skills">
-
-                                        <ul>
-                                            <li>
-                                                JavaScript
-                                            </li>
-                                            <li>
-                                                Figma
-                                            </li>
-                                            <li>
-                                                Sketch
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-card backend">
-                            <div class="user-card-inner">
-
-                                <div class="title">
-
-                                    <div class="user-card-image-container">
-                                        <div class="user-card-image"
-                                            style="background-image: url( img/directories/martha.jpg);">
-                                        </div>
-                                    </div>
-
-                                    <div class="user-texts">
-                                        <h4>Martha Bello</h4>
-                                        <h6>Backend Developer</h6>
-                                    </div>
-                                </div>
-                                <div class="profile">
-                                    <a href="/employee-profile">View profile</a>
-                                    <div class="skills">
-
-                                        <ul>
-                                            <li>
-                                                JavaScript
-                                            </li>
-                                            <li>
-                                                Figma
-                                            </li>
-                                            <li>
-                                                Sketch
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-card mobile">
-                            <div class="user-card-inner">
-
-                                <div class="title">
-
-                                    <div class="user-card-image-container">
-                                        <div class="user-card-image"
-                                            style="background-image: url( img/directories/jaden_tomi.jpg);">
-                                        </div>
-                                    </div>
-
-                                    <div class="user-texts">
-                                        <h4>Tomi Ade</h4>
-                                        <h6>Mobile</h6>
-                                    </div>
-                                </div>
-                                <div class="profile">
-                                    <a href="/employee-profile">View profile</a>
-                                    <div class="skills">
-
-                                        <ul>
-                                            <li>
-                                                JavaScript
-                                            </li>
-                                            <li>
-                                                Sketch
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-card designer">
-                            <div class="user-card-inner">
-
-                                <div class="title">
-
-                                    <div class="user-card-image-container">
-                                        <div class="user-card-image"
-                                            style="background-image: url( img/directories/Nelson.png);">
-                                        </div>
-                                    </div>
-
-                                    <div class="user-texts">
-                                        <h4>Nelson Fideli</h4>
-                                        <h6>Designer</h6>
-                                    </div>
-                                </div>
-                                <div class="profile">
-                                    <a href="employee-profile">View profile</a>
-                                    <div class="skills">
-
-                                        <ul>
-                                            <li>
-                                                UX
-                                            </li>
-                                            <li>
-                                                Figma
-                                            </li>
-                                            <li>
-                                                Sketch
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <% } %>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
+<script src="/js/custom-js/directories.js"></script>
+<script>
+    loadAllSkills();
+</script>
 
     <%- include('../Templates/footer') %>
     <%- include('../Templates/script') %>

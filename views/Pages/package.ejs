@@ -1,88 +1,53 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
-<head>
+  <head>
     <%- include('../Templates/head') %>
     <link rel="stylesheet" href="../styles/custom-css/payment-method.css" />
-</head>
+  </head>
 
-<body style="background-color: #fafafa;">
+  <body style="background-color: #fafafa;">
     <%- include('../Templates/header') %>
-
-    <div class="container-fluid">
-        <div class="container">
-            <h1 class="text-center text-uppercase">
-                Payment Method
-            </h1>
-            <form class="mx-auto my-5 pb-5" novalidate method="POST" action="">
-                <div class="form-group">
-                    <label class="form__label" for="companyName">Company Name</label>
-                    <input type="text" class="form-control form__input" name="companyName" id="companyName" required
-                        placeholder="Enter Company Name" />
-                    <div></div>
-                </div>
-                <div class="form-group">
-                    <label class="form__label" for="email">E-mail</label>
-                    <input type="email" class="form-control form__input" name="email" id="email" required
-                        placeholder="Enter Company E-mail" />
-                    <div></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        <label class="form__label" for="country">Country</label>
-                        <select class="form-control form__select" id="country" required>
-                            <option selected disabled value="">Select Country</option>
-                        </select>
-                        <div></div>
-                    </div>
-                    <div class="col-md-6 form-group">
-                        <label class="form__label" for="state">State</label>
-                        <select class="form-control form__select" id="state" required>
-                            <option selected disabled value="">Select Country First</option>
-                        </select>
-                        <div></div>
-                    </div>
-                </div>
-                <h4 style="color: #084482; font-weight: 600; margin: 1.5rem auto 1rem;">
-                    Credit Card Details
-                </h4>
-                <div class="form-group">
-                    <label class="form__label" for="cardNumber">Card Number</label>
-                    <input type="number" name="cardNumber" id="cardNumber" required class="form-control form__input"
-                        placeholder="Enter Card Number" />
-                    <div></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8 form-group">
-                        <label class="form__label" for="expirationDate">Expiration Date</label>
-                        <input class="form-control form__input" name="expirationDate" id="expirationDate" type="text"
-                            maxlength="7" required placeholder="Expiration date (MM/YYYY)" />
-                        <div></div>
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <label class="form__label" for="cvv">CVV</label>
-                        <input type="text" required minlength="3" maxlength="3" class="form-control form__input"
-                            id="cvv" placeholder="Enter CVV" />
-                        <div></div>
-                    </div>
-                </div>
-                <div class="row">
-                    <button class="btn mx-auto form__button" type="submit">
-                        Subscribe!
-                    </button>
-                </div>
-            </form>
-        </div>
+    <div
+      class="packages-header mt-4 px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center"
+    >
+      <h1 class="h2">Packages</h1>
+      <p>
+        Premium packages to help you hire talents faster.
+      </p>
     </div>
-
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+        <% packages.forEach(function(package) { %>
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">
+              <%- package.package.split(' ') .map(w => w[0].toUpperCase() +
+              w.substr(1).toLowerCase()) .join(' ') %>
+            </h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title packages-card-title">
+              <%= package.price %> <small class="text-muted">/ mo</small>
+            </h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <p>
+                <%= package.description %>
+              </p>
+            </ul>
+            <a href="/price-payment?id=<%= package.id %>" class="text-white">
+              <button
+                type="button"
+                class="btn hire-btn btn-lg btn-block text-white"
+              >
+                Get started
+              </button>
+            </a>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+    </div>
     <%- include('../Templates/footer') %>
-
-
-    <script src="../js/bootstrap-js/jquery.js"></script>
-    <script src="../js/bootstrap-js/popper.js"></script>
-    <script src="../js/bootstrap-js/bootstrap.js"></script>
-    <script src="../js/custom-js/payment-method.js"></script>
-</body>
-
+  </body>
 </html>

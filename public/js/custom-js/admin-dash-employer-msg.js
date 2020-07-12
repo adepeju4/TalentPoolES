@@ -1,4 +1,3 @@
-
 const getMessage = document.getElementById('msg--wrap')
 const chatList = document.getElementById('chat--list')
 const chatItem = document.getElementById('chat-item')

@@ -9,6 +9,7 @@
 		<%- include('../Templates/employerhead') %>
 
 		<main>
+			<form id="employerCompany">
 			<div class="mt-5">
 				<div class="container text-center">
 					<h5 class="heading-color">
@@ -69,11 +70,9 @@
 
 									<div class="col-md margt">
 										<div class="row">
-											<div class="col-sm-8 left-div">
-												<input type="text" class="form-control em-input" id="logo" placeholder="Upload file" readonly />
-											</div>
+											<div><span  id="logoname"></span></div>
 											<div class="col-sm right-div">
-												<div class="btn new-btn m"><input id="input" type="file" name="file" />Browse</div>
+												<div class="btn new-btn m"><input id="input" id="logo" type="file" name="file" />Browse</div>
 											</div>
 											<!-- <div style='clear:both;'>&nbsp;</div> -->
 										</div>
@@ -115,21 +114,18 @@
 							<input type="text" class="form-control em-input" id="" placeholder="Nigeria" />
 						</div>
 						<div class="col-sm-6 col-lg-6 form-group">
-							<label for="companyname">Phone Number</label>
+							<label for="companyphone">Phone Number</label>
 							<div class="row">
 								<div class="col-sm-4 left-div">
 									<input type="text" class="form-control wid em-input" id="companyname" placeholder="+234" />
 								</div>
-								<div class="col-sm-8 right-div1">
-									<input type="text" class="form-control em-input" id="companyname" placeholder="" />
-								</div>
 							</div>
 						</div>
 						<div class="mt-5 form-group col-sm-12 col-lg-12 mobile-margin-fix2">
-							<label for="exampleFormControlTextarea1">About you</label>
+							<label for="desc">About you</label>
 							<textarea
 								class="form-control"
-								id="exampleFormControlTextarea1"
+								id="desc"
 								rows="8"
 								placeholder="Enter short description about you"
 							></textarea>
@@ -146,8 +142,8 @@
 							</select>
 						</div>
 						<div class="col-sm-6 col-lg-6 form-group mobile-margin-zero">
-							<label for="companyname">Website</label>
-							<input type="text" class="form-control em-input" id="companyname" placeholder="Enter website url" />
+							<label for="website">Website</label>
+							<input type="text" class="form-control em-input" id="website" placeholder="Enter website url" />
 						</div>
 					</div>
 					<div class="container mb-5 form-group">
@@ -204,18 +200,18 @@
 					<h5 class="pt-3 heading-color">Social Information</h5>
 					<div class="row mt-5 mobile-margin-fix4">
 						<div class="col-sm-6 col-lg-6 form-group">
-							<label for="linkedin">Facebook</label>
-							<input type="text" class="form-control em-input" id="linkedin" placeholder="Enter Facebook url" />
+							<label for="linkedin">LinkedIn</label>
+							<input type="text" class="form-control em-input" id="linkedin" placeholder="Enter LinkedIn url" />
 						</div>
 						<div class="col-sm-6 col-lg-6 form-group">
-							<label for="facebook">Twitter</label>
-							<input type="text" class="form-control em-input" id="facebook" placeholder="Enter Twitter url" />
+							<label for="facebook">Facebook</label>
+							<input type="text" class="form-control em-input" id="facebook" placeholder="Enter Facebook url" />
 						</div>
 					</div>
 					<div class="row mt-5 mobile-margin-fix2">
 						<div class="col-sm-6 col-lg-6 form-group">
-							<label for="linkedin">LinkedIn</label>
-							<input type="text" class="form-control em-input" id="linkedin" placeholder="Enter LinkedIn url" />
+							<label for="twitter">Twitter</label>
+							<input type="text" class="form-control em-input" id="Twitterr" placeholder="Enter Twitter url" />
 						</div>
 						<div class="col-sm-6 col-lg-6 form-group">
 							<label for="instagram">Instagram</label>
@@ -225,13 +221,20 @@
 				</div>
 			</div>
 
+			<div class=" container alert alert-danger d-none" style="padding: 0.5rem 1rem;" id="alert" role="alert">
+				<p class="my-0" id="alertMessage"></p>
+			  </div>
+
 			<div class="mt-5 mb-5 pb-5 mobile-margin-pixel">
 				<div class="container text-right center">
-					<button class="btn new-btn2 mb-5">Create</button>
+					<button class="btn new-btn2 mb-5" type="submit">Create</button>
 				</div>
 			</div>
+			</form>
 		</main>
 
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="../js/custom-js/employer-company.js"></script>
 		<!-- <script type="module" src="js/custom-js/employer-profile-creation.js"></script> -->
 		<%- include('../Templates/footer') %>
 	</body>

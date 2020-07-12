@@ -24,7 +24,7 @@
            </div>
         </div>
     </div> -->
-
+       <form id="employerCompany">
 			<div class="mt-5">
 				<div class="container text-center">
 					<h5 class="heading-color">
@@ -72,7 +72,8 @@
 						<div class="col-sm-6 col-lg-6 form-group">
 							<label for="company category">Company category</label>
 							<select class="form-control em-input select" name="company-category" id="company-category">
-								<!-- <option value="blank">Select Industry</option> -->
+								<option disabled selected value="empty">Select Category</option>
+								<!-- content goes here -->
 							</select>
 						</div>
 						<!-- <div class="col-sm-4 col-lg-4 form-group">
@@ -96,6 +97,7 @@
                  </select>
              </div> -->
 					</div>
+
 					<div class="row mt-5">
 						<div class="col-sm-4 col-lg-4 form-group">
 							<label for="companyaddress">Company's Address</label>
@@ -133,11 +135,10 @@
 
 					<div class="row mt-5">
 						<div class="col-sm-6 col-md-7 col-lg-7">
-							<label for="logo">Logo</label>
+							<label for="logo">Logo <span  id="logoname"></span></label>
 							<div class="d-flex">
-								<input type="text" class="form-control em-input" id="logo" placeholder="Upload file" />
-								<div class="btn new-btn ml-2">
-									<input id="input" type="file" name="file" />
+								<div class="btn new-btn ml-2 btn-block">
+									<input type="file" name="logo" id="logo" accept="image/png, image/jpg, image/jpeg" onchange="showFile()"/>
 									Browse
 								</div>
 							</div>
@@ -170,25 +171,28 @@
 							<label for="twitter">Twitter</label>
 							<input type="text" class="form-control em-input" id="twitter" placeholder="Enter twitter url" />
 						</div>
-						<div class="col-sm-4 col-lg-4 form-group">
-							<label for="google">Google+</label>
-							<input type="text" class="form-control em-input" id="google" placeholder="Enter google+ url" />
-						</div>
-						<div class="col-sm-4 col-lg-4 form-group">
-							<label for="github">Github</label>
-							<input type="text" class="form-control em-input" id="github" placeholder="Enter github url" />
+						<div class="col-sm-8 col-lg-8 form-group">
+							<label for="instagram">Instagram</label>
+							<input type="text" class="form-control em-input" id="instagram" placeholder="Enter instagram url" />
 						</div>
 					</div>
 				</div>
 			</div>
 
+			<div class=" container alert alert-danger d-none" style="padding: 0.5rem 1rem;" id="alert" role="alert">
+				<p class="my-0" id="alertMessage"></p>
+			  </div>
+
 			<div class="mt-5 mb-5 pb-5">
 				<div class="container text-right">
-					<button class="btn new-btn mb-5">Next</button>
+					<button class="btn new-btn mb-5"  type="submit">Create</button>
 				</div>
 			</div>
+			</form>
 		</main>
 
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="../js/custom-js/employer-company.js"></script>
 		<!-- <script type="module" src="js/custom-js/employer-profile-creation.js"></script> -->
 		<%- include('../Templates/footer') %>
 	</body>

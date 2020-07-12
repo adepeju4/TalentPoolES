@@ -5,6 +5,13 @@
     <link rel="stylesheet" href="../styles/custom-css/employer-top-nav.css">
     <link rel="stylesheet" href="../styles/custom-css/side-nav.css">
     <link rel="stylesheet" href="../styles/custom-css/employer-profile-page.css">
+
+    <style>
+      .mr-2 img {
+        max-width: 60px;
+        max-height: 60px;
+      }
+    </style>
     <script src="../js/custom-js/employer-authUP.js"></script>
   </head>
   <body>
@@ -90,19 +97,19 @@
               </div>
   
               <div class="d-flex justify-content-around mobileContainer">
-                <div>
+                <!-- <div>
                   <label for="" class="industryTypeLabel">Industry Type</label>
                   <div class="content-div" >
                     <span class="myAdditionSign">&#x2b;</span>
-              <div class="btn-flex">
-                   <button class="btn1">E-commerce <a href="#"></a><span class="myTimesSign1">&#xd7;</span></button>
-                   <button class="btn2">Banking <a href="#"><span class="myTimesSign1">&#xd7;</span></a></button>
-                   <button class="btn3">Finance & Tech <a href="#"><span class="myTimesSign1">&#xd7;</span></a></button>
-                   <button class="btn4">Business <a href="#"><span class="myTimesSign1">&#xd7;</span></a></button>
-                   <input type="search" placeholder="Search">
-                 </div>
-              </div>
-                </div>
+                    <div class="btn-flex">
+                      <button class="btn1">E-commerce <a href="#"></a><span class="myTimesSign1">&#xd7;</span></button>
+                      <button class="btn2">Banking <a href="#"><span class="myTimesSign1">&#xd7;</span></a></button>
+                      <button class="btn3">Finance & Tech <a href="#"><span class="myTimesSign1">&#xd7;</span></a></button>
+                      <button class="btn4">Business <a href="#"><span class="myTimesSign1">&#xd7;</span></a></button>
+                      <input type="search" placeholder="Search">
+                    </div>
+                  </div>
+                </div> -->
   
                 <div class="browseCheck">
                   <label for="" class="companyLogoLabel">Company Logo</label>
@@ -130,7 +137,7 @@
         </div>
         <div class="modal-footer  d-flex justify-content-around mobileFooter">
           
-          <button  type="button" class="btn mx-auto " >Save Profile</button>
+          <button  type="button" class="btn mx-auto " onclick="saveProfile()">Save Profile</button>
         </div>
       </div>
     </div>
@@ -242,10 +249,12 @@
       </div>
      
     </main>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./js/bootstrap-js/popper.js"></script>
     <script src="./js/bootstrap-js/jquery.js"></script>
     <script src="./js/bootstrap-js/bootstrap.js"></script>
     <script src="https://kit.fontawesome.com/5f006efe51.js" crossorigin="anonymous"></script>
     <script src="../js/custom-js/side-nav.js"></script>
+    <script src="../js/custom-js/employer-profile.js"></script>
   </body>
 </html>

@@ -40,7 +40,7 @@ button:focus {
 .chat-messages,
 .chat-scroll-view {
   position: relative;
-  max-height: 430px;
+  height: 430px;
   overflow-y: scroll;
 }
 
@@ -113,9 +113,12 @@ button:focus {
   margin: 5px 10px;
   border-radius: 55px;
   animation: fadein 2s;
-  -moz-animation: fadein 2s; /* Firefox */
-  -webkit-animation: fadein 2s; /* Safari and Chrome */
-  -o-animation: fadein 2s; /* Opera */
+  -moz-animation: fadein 2s;
+  /* Firefox */
+  -webkit-animation: fadein 2s;
+  /* Safari and Chrome */
+  -o-animation: fadein 2s;
+  /* Opera */
 }
 
 .sender {
@@ -185,26 +188,32 @@ button:focus {
     -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
   }
+
   to {
     opacity: 1;
     -webkit-transform: none;
     transform: none;
   }
 }
+
 @-moz-keyframes fadein {
+
   /* Firefox */
   from {
     opacity: 0;
     -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
   }
+
   to {
     opacity: 1;
     -webkit-transform: none;
     transform: none;
   }
 }
+
 @-webkit-keyframes fadein {
+
   /* Safari and Chrome */
   from {
     opacity: 0;
@@ -218,13 +227,16 @@ button:focus {
     transform: none;
   }
 }
+
 @-o-keyframes fadein {
+
   /* Opera */
   from {
     opacity: 0;
     -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
   }
+
   to {
     opacity: 1;
     -webkit-transform: none;
@@ -248,6 +260,7 @@ button:focus {
 
 .msg-input {
   width: calc(100% - 100px);
+
 }
 
 .emojipack {
@@ -263,6 +276,7 @@ button:focus {
 #search-box::placeholder {
   opacity: 0.5;
 }
+
 .img-class {
   margin-right: 20px;
 }
@@ -298,6 +312,7 @@ button:focus {
 .chat-info {
   width: 100%;
 }
+
 .blue-circle {
   background: #337ab7;
   width: 25px;
@@ -308,6 +323,7 @@ button:focus {
   align-items: center;
   border-radius: 50%;
 }
+
 .noOfChats {
   color: #ffffff;
 }
@@ -317,7 +333,8 @@ button:focus {
   font-weight: 500;
 }
 
-#talent-offers-img-size, .check-mark {
+#talent-offers-img-size,
+.check-mark {
   width: 17px;
   height: 17px;
 }

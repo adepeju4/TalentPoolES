@@ -18,6 +18,9 @@ axios({
 .then((res) => {
   if(res.data.status === 'success') {
     verifySuccess.style.display = 'block'
+    setTimeout(() => {
+      redirect()
+    }, 5000);
   }
 })
 .catch((err) => {

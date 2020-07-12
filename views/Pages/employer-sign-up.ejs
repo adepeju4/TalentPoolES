@@ -4,6 +4,13 @@
 
 <head>
     <%- include('../Templates/head') %>
+     <!-- BEGIN Pre-requisites -->
+     <script src="https://apis.google.com/js/platform.js" async defer></script>
+     <meta name="google-signin-client_id"
+         content="1044934768285-u3jh3gs8dv4u21uie9o32cbu0gv2erh4.apps.googleusercontent.com">
+         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+     <!-- END Pre-requisites -->
+
     <!-- Employer sign up additional styles -->
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
@@ -143,20 +150,18 @@
                           <div class="form-group my-4 text-center">
                             <span class="text-muted wor">OR</span>
                           </div>
-                          <div class="form-row  text-center ">
-                            <div class="col-md my-2">
-                              <button type="button" id="githubID" class="btn btn-social btn-block btn-github text-center py-3">
-                                <i class="fa fa-github pr-2"></i>Sign up
-                                with GitHub
-                              </button>
-                            </div>
-                            <div class="col-md my-2 ">
-                              <button type="button" id="googleID" class="btn btn-block btn-social btn-google text-center  py-3">
-                                <i class="fa fa-google pr-2"></i>Sign up
-                                using Google
-                              </button>
-                            </div>
-                          </div>
+                          
+                          <div class="row mt-2 justify-content-center">
+                            <!-- <div class="col-md">
+                                <button type="button" class="btn  btn-block  github-btn py-3 my-1"><i
+                                        class="fab fa-github pr-2"></i>Login with Github</button>
+                            </div> -->
+                         
+        
+                                <div  class="g-signin2" data-height="50" data-width="300" data-theme="dark" data-user="ROL-EMPLOYER" data-longtitle="true"
+                                    data-onsuccess="onSignIn">
+                                </div>
+                        </div>
                           <div class="text-center acct mt-3 mb-5">Have an account with us? <a
                               href="/employer-sign-in">Sign In</a>
                           </div>
@@ -233,20 +238,18 @@
                           <div class="form-group my-4 text-center">
                             <span class="text-muted wor">OR</span>
                           </div>
-                          <div class="form-row  text-center ">
-                            <div class="col-md my-2">
-                              <button type="button" id="githubIdOrg"  class="btn btn-social btn-block btn-github text-center py-3">
-                                <i class="fa fa-github pr-2"></i>Sign Up
-                                with GitHub
-                              </button>
-    
-                            </div>
-                            <div class="col-md my-2 ">
-                              <button type="button" id="googleIdOrg" class="btn btn-block btn-social btn-google text-center  py-3">
-                                <i class="fa fa-google pr-2"></i>Sign Up
-                                using Google
-                              </button>
-                            </div>
+
+                          <div class="row mt-2 justify-content-center">
+                            <!-- <div class="col-md">
+                                <button type="button" class="btn  btn-block  github-btn py-3 my-1"><i
+                                        class="fab fa-github pr-2"></i>Login with Github</button>
+                            </div> -->
+                         
+                            
+                                <div  class="g-signin2" data-height="50" data-width="300" data-theme="dark" data-user="ROL-EMPLOYER" data-longtitle="true"
+                                    data-onsuccess="onSignIn">
+                                </div>
+
                           </div>
                           <div class="text-center acct mt-3 mb-5">Have an account with us? <a
                               href="/employer-sign-in">Sign In</a>
@@ -289,6 +292,39 @@
           </div>
         </div>
       </section>
+
+      <script>
+        async function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            const role_id = document.querySelector('.g-signin2').dataset.user;
+            var token = googleUser.getAuthResponse().id_token
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.disconnect();
+            const userData = {
+                role_id,
+                token: token
+            }
+            console.log(userData)
+            axios.post('https://api.lancers.app/v1/auth/google', userData)
+                .then(data => {
+                    let decodedData = JSON.parse(atob(data.data.data.token.split('.')[1]))
+                    const userData = {
+                        ...decodedData,
+                        token: data.data.data.token
+                    }
+                    localStorage.setItem("tpAuth", JSON.stringify(userData));
+                    if (decodedData.userTypeId == null) {
+                        window.location.replace('/employer-create-profile')
+                    } else {
+                        window.location.replace('/employer-dashboard')
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                    window.location.replace('/')
+                });
+        }
+        
+      </script>
 
     <%- include('../Templates/footer') %>
     <%- include('../Templates/script') %>

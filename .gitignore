@@ -1,3 +1,5 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Node template
 # Logs
 logs
 *.log
@@ -114,12 +116,19 @@ dist
 .yarn/build-state.yml
 .pnp.*
 
-# IDE hidden folders for configuration
+# IDE watch files
+.idea
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+yarn.lock
 
-.idea/
-.vscode
-nbproject
+# Local History for Visual Studio Code
+.history/
+
 package-lock.json
-log.csv
-.gitignore
-deploy.php
+
+tmp/

@@ -40,19 +40,16 @@
                     <div class="col-md-5">
                         <div class="card px-4 py-5 bio">
                             <img src="" alt="" id="employee-img">
-                            <!-- <%= employeeProfile.picture_url %> -->
                             <div class="intern-main text-center mt-4">
-                                <h3 id="full-name"><%= employeeProfile.first_name %><%= employeeProfile.last_name %></h3>
-                                <p id="skill-category"><%= employeeProfile.skillCategory %></p>
+                                <h3 class="employeeName"></h3>
+                                <p class="employeeSkill"></p>
                             </div>
                             <hr>
                             <div class="intern-other">
-                                <p><span><img src="../img/iprofile/carbon_location.svg" alt=""></span>
-                                   <span id="employee-location"><%= employeeProfile.location %></span>
+                                <p class="employeeLocation"><span><img src="../img/iprofile/carbon_location.svg" alt=""></span>
                                 </p>
-                                <p><span><img src="../img/iprofile/carbon_email.svg" alt=""></span>
+                                <p class="employeeEmail"><span><img src="../img/iprofile/carbon_email.svg" alt=""></span>
 
-                                    <%= employeeProfile.email %>
                                 </p>
                                 <p id="intern-id" class="ml-4"></p>
                                 <p id="availability"  class="ml-4"></p>
@@ -274,7 +271,8 @@
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header text-center">
-                                                                <h4 class="modal-title w-100 font-weight-bold">Upload Portfolio
+                                                                <h4 class="modal-title w-100 font-weight-bold">Upload
+                                                                    Portfolio
                                                                 </h4>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                     aria-label="Close">
@@ -307,7 +305,8 @@
 
                                                             </div>
                                                             <div class="modal-footer d-flex justify-content-center">
-                                                                <button class="btn btn-primary" id="submitPortfolio" onclick="qwerty()">Submit</button>
+                                                                <button class="btn btn-primary" id="submitPortfolio"
+                                                                    onclick="qwerty()">Submit</button>
                                                             </div>
                                                         </div>
                                                     </div>

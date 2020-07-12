@@ -23,6 +23,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./../styles/custom-css/view-employee.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 
 </head>
 
@@ -55,7 +56,7 @@
                             <div class="card-body card-2">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs   text-uppercase mb-1 text-edit">15,000
+                                        <div class="text-xs text-uppercase mb-1 text-edit" id="all_employees">0
                                         </div>
                                         <div class="h5 mb-0  text-gray ">EMPLOYEES</div>
                                     </div>
@@ -70,7 +71,7 @@
                             <div class="card-body card-2">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs  text-edit text-uppercase mb-1">7,000
+                                        <div class="text-xs  text-edit text-uppercase mb-1" id="hired_employees_count">0
                                         </div>
                                         <div class="h5 mb-0  text-gray ">HIRED</div>
                                     </div>
@@ -85,7 +86,7 @@
                             <div class="card-body card-2">
                                 <div class="row no-gutters align-items-center">
                                     <div class="col mr-2">
-                                        <div class="text-xs  text-edit text-uppercase mb-1">5,000
+                                        <div class="text-xs  text-edit text-uppercase mb-1" id="available_employees_count">0
                                         </div>
                                         <div class="h5 mb-0  text-gray ">AVAILABLE</div>
                                     </div>
@@ -146,9 +147,9 @@
                         </thead>
 
                         <!-- Tabe body -->
-                        <tbody class="body-table">
+                        <tbody class="body-table" id="table-body-data">
 
-                            <tr>
+                            <!-- <tr>
                                 <td class="align-middle user-id">HNG02E</td>
                                 <td class="align-middle user-name">
                                     <img src="./../img/user.png" alt="" class="mr-1 table-img" /> Delgo inc
@@ -169,9 +170,9 @@
                                         </svg>
                                     </button>
                                 </td>
-                            </tr>
+                            </tr> -->
 
-                            <tr>
+                            <!-- <tr>
                                 <td class="align-middle user-id">HNG02E</td>
                                 <td class="align-middle user-name">
                                     <img src="./../img/user.png" alt="" class="mr-1 table-img" /> Delgo inc
@@ -330,7 +331,7 @@
                                         </svg>
                                     </button>
                                 </td>
-                            </tr>
+                            </tr> -->
 
                         </tbody>
                     </table>
@@ -340,15 +341,17 @@
         </div>
 
         <!-- Optional JavaScript -->
-        <script src="../js/bootstrap-js/popper.js"></script>
         <script src="../js/bootstrap-js/jquery.js"></script>
         <script src="../js/bootstrap-js/bootstrap.js"></script>
+        <script src="../js/bootstrap-js/popper.js"></script>
         <script>
         $('#myModal').on('shown.bs.modal', function () {
         $('#myInput').trigger('focus')
         })
         </script>
+        <script src="../js/custom-js/admin-viewEmployee.js"></script>
         <script src="../js/custom-js/side-nav.js"></script>
+        
 </body>
 
 </html>

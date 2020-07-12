@@ -95,7 +95,8 @@ employeeProfileCreationForm.addEventListener('submit', (e) => {
             "userId": userId
         })
     })
-        .then(res => res.json())
+        .then(res => res.json()
+        )
         .then(data => 
             console.log(data));
 });
