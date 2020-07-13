@@ -1,49 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <%- include('../Templates/head') %>
-    <link
-      rel="stylesheet"
-      href="styles/custom-css/employee-signUp-signIn.css"
-    />
+    <link rel="stylesheet" href="styles/custom-css/employee-signUp-signIn.css">
     <!-- BEGIN Pre-requisites -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta
-      name="google-signin-client_id"
-      content="1044934768285-u3jh3gs8dv4u21uie9o32cbu0gv2erh4.apps.googleusercontent.com"
-    />
+    <meta name="google-signin-client_id"
+        content="1044934768285-u3jh3gs8dv4u21uie9o32cbu0gv2erh4.apps.googleusercontent.com">
     <!-- END Pre-requisites -->
-  </head>
+</head>
 
-  <body>
+<body>
     <!-- NAV-BAR -->
     <%- include('../Templates/header') %>
 
     <main class="container-fluid content-container">
-      <div class="row">
-        <div class="col-lg-5 d-none d-lg-block signIn-img-div">
-          <!-- <img src="img/employee_signup_image.png" alt="employee sign up image"> -->
-        </div>
-
-        <div class="col-lg-7 px-4">
-          <div class="container pl-lg-5 pr-lg-3 pt-4" id="parent">
-            <div class="pt-5 pb-2">
-              <p class="bigTitle">Welcome Back</p>
-              <p class="smallTitle">Get connected to the right job now.</p>
+        <div class="row">
+            <div class="col-lg-5 d-none d-lg-block signIn-img-div" >
+                <!-- <img src="img/employee_signup_image.png" alt="employee sign up image"> -->
             </div>
 
-            <form class="needs-validation" novalidate id="form">
-              <div class="col-md mb-3 px-0">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  placeholder="example@gmail.com"
-                  required
-                />
-                <div class="invalid-feedback">
-                  Your valid email address is required.
+            <div class=" col-lg-7 px-4">  
+                <div class="container pl-lg-5 pr-lg-3 pt-4" id="parent">
+                <div class="pt-5 pb-2">
+                    <p class="bigTitle">Welcome Back</p>
+                    <p class="smallTitle">Get connected to the right job now.</p>
                 </div>
 
                 <% if (errorMessage) { %>
@@ -121,59 +102,6 @@
                         <hr>
                     </div>
                 </div>
-              </div>
-
-              <div class="row px-3">
-                <div class="col my-1 px-0">
-                  <div class="custom-control custom-checkbox mr-sm-2">
-                    <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="remember-me"
-                    />
-                    <label
-                      class="custom-control-label terms-policy"
-                      for="remember-me"
-                      >Remember me</label
-                    >
-                  </div>
-                </div>
-                <div class="col text-right px-0">
-                  <p>
-                    <a href="/recover-password" class="login-link"
-                      >Forgot Password?</a
-                    >
-                  </p>
-                </div>
-              </div>
-
-              <div class="row">
-                <div
-                  class="col d-flex align-items-center justify-content-center"
-                  id="button-div"
-                >
-                  <button
-                    class="btn btn-primary btn-block btn-color py-3 mt-3 mb-4"
-                    id="signup-btn"
-                    type="submit"
-                  >
-                    Sign In
-                  </button>
-                </div>
-              </div>
-            </form>
-
-            <div class="row">
-              <div class="col-md-5 d-none d-md-block">
-                <hr />
-              </div>
-              <div class="col-md-2">
-                <p class="text-center">OR</p>
-              </div>
-              <div class="col-md-5 d-none d-md-block">
-                <hr />
-              </div>
-            </div>
 
                 <div class="row mt-2 justify-content-center">
                     <div class="col-md">
@@ -195,14 +123,8 @@
 
                 <p class="text-center py-2 mt-3 mb-4">Don't have an account with us? <a href="/employee-sign-up" class="login-link">Sign Up.</a></p>
             </div>
-
-            <p class="text-center py-2 mt-3 mb-4">
-              Don't have an account with us?
-              <a href="/employee-sign-up" class="login-link">Sign Up.</a>
-            </p>
-          </div>
         </div>
-      </div>
+        </div>
     </main>
 
     <%- include('../Templates/footer') %>
@@ -215,14 +137,8 @@
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.disconnect();
             const userData = {
-              ...decodedData,
-              token: data.data.data.token,
-            };
-            localStorage.setItem('tpAuth', JSON.stringify(userData));
-            if (decodedData.userTypeId == null) {
-              window.location.replace('/employee-profileCreation');
-            } else {
-              window.location.replace('/employee-dashboard');
+                role_id,
+                token: token
             }
             axios.post('https://api.lancers.app/v1/auth/google', userData)
                 .then(data => {
