@@ -54,7 +54,10 @@
 						</div>
 
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navMenuLink">
-							<a class="dropdown-item" href="#" onclick="logoutFunction()">Sign Out</a>
+							<form action="/loggedout" method="POST">
+								<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+								<button type="submit">Logout</button>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -63,4 +66,4 @@
 	</div>
 </div>
 
-<%- include('../includes/logout') %>
+<!-- <%- include('../includes/logout') %> -->

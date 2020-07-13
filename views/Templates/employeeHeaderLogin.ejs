@@ -7,16 +7,14 @@
           </a>
           <button
           class="navbar-toggler"
-          href="#" 
-          onclick="logoutFunction();"
+          href="/logout" 
           style="padding: .5em 1em;margin-top: .5em;background: #33BEFF; color: #fff;"
 				>
 					Sign out
 				</button>
               <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav ml-auto">
-                      <a class="dropdown-item" href="#" 
-                      onclick="logoutFunction();"
+                      <a class="dropdown-item" href="/logout" 
                     style="padding: .5em 1em;margin-top: .5em;background: #33BEFF; color: #fff;border-radius: 5px;"
                       
                       >Sign Out</a>
@@ -27,14 +25,14 @@
         </nav>
       </div>
     </div>
-    <script>
+    <!-- <script>
       const logoutFunction = () => {
          localStorage.clear('tpAuth');
          setTimeout(()=>{
           window.location.replace("/");
          }, 3000)
       }
-    </script>
+    </script> -->
   </header>
 
   

@@ -62,13 +62,9 @@ input::placeholder {
   line-height: 50px;
 }
 
-#signup-btn {
-  background: #ffffff;
-  /* width: 572px;
-    height: 68px; */
-  border: 2px solid #00aeff;
-  color: #00aeff;
-  font-weight: bolder;
+#signup-btn{
+  color: #ffffff;
+  border: 1px solid #00AEFF;
   box-sizing: border-box;
   border-radius: 5px;
 }

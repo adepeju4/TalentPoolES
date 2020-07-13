@@ -34,9 +34,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true,
       },
-      picture_url: {
+      image: {
         type: DataTypes.STRING(255),
-        defaultValue: null,
+        allowNull: true,
       },
       gender: {
         type: DataTypes.STRING(100),
@@ -47,18 +47,22 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
         defaultValue: null,
       },
-      age: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-      },
       dob: {
         type: DataTypes.STRING(255),
         defaultValue: null,
       },
-      avaliability: {
+      availability: {
+        type: DataTypes.ENUM,
+        values: ['On-site', 'Remote', 'Not-Available'],
+        allowNull: false,
+      },
+      username: {
         type: DataTypes.STRING(255),
-        defaultValue: null,
+        allowNull: false,
+      },
+      location: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
       },
       employee_access_id: {
         type: DataTypes.STRING(255),
@@ -70,6 +74,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       views: {
         type: DataTypes.STRING(255),
+        allowNull: true,
+      },
+      track: {
+        type: DataTypes.ENUM,
+        values: ['Frontend', 'Backend', 'Design', 'Mobile'],
         allowNull: false,
       },
       employee_id: {

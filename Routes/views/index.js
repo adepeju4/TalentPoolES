@@ -1,5 +1,7 @@
 const express = require('express');
+
 const appRoute = express.Router();
+const authController = require('../../Controllers/auth');
 // const {}
 const {
   about,
@@ -23,4 +25,5 @@ appRoute.get('/coming-soon', comingSoon);
 appRoute.get('/verify-email', verify);
 appRoute.get('/logout', logout);
 
+appRoute.post('/loggedout', authController.postLogout);
 module.exports = appRoute;

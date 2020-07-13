@@ -22,6 +22,8 @@ module.exports = {
     res.render('Pages/coming-soon', { pageName: 'Coming Soon' });
   },
   verify: (req, res) => {
-    res.render('Pages/verify-email', { pageName: 'Verify Email' });
-  }
-}
+    res.render('Pages/verify-email', {
+      pageName: 'Verify Email', error: req.flash('error'), errors: req.flash('errors'), success: req.flash('success'),
+    });
+  },
+};

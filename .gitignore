@@ -124,7 +124,7 @@ dist
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
-yarn.lock
+#yarn.lock
 
 # Local History for Visual Studio Code
 .history/

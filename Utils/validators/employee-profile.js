@@ -10,29 +10,16 @@ class EmployeeProfile {
       {
         firstName: Format.firstName,
         lastName: Format.lastName,
+        userName: Format.text,
         userType: Format.text,
         hngId: Format.text,
         phoneNo: Format.phoneNo,
-        pictureUrl: Format.urlOptional,
-        age: Format.text,
-        avaliability: Format.text,
+        location: Format.text,
+        track: Format.text,
+        availability: Format.text,
         dateOfBirth: Format.text,
         employeeCv: Format.text,
         userId: Format.text,
-      },
-      {},
-    );
-    validator(format, req.body, res, next);
-  }
-
-  static updateProfile(req, res, next) {
-    const format = Joi.object().keys(
-      {
-        age: Format.text,
-        avaliability: Format.text,
-        dob: Format.text,
-        employee_cv: Format.text,
-        views: Format.text,
       },
       {},
     );

@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       skill_description: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING(15),
         allowNull: false,
       },
       employee_id: {

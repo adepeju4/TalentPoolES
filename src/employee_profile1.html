@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Pool | Employee Profile</title>
+    <!-- Bootstrap core CSS -->
+    <!-- Custom styles for this template -->
+    <link href="../styles/bootstrap-css/bootstrap.css" rel="stylesheet">
+    <link href="../styles/custom-css/side-nav.css" rel="stylesheet" />
+    <link href="../styles/custom-css/top-nav-admin.css" rel="stylesheet" />
+    <link href="../styles/custom-css/eprofile.css" rel="stylesheet">
+    <link href="../styles/custom-css/modal.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../img/favicon.svg" type="image/x-icon">
+    <!-- <link href="css/font-awesome.css" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/fc9346f24c.js" crossorigin="anonymous"></script>
+    <style media="screen">
+    .header{
+      background-color: #fff;
+    }
+        .upload-section, #skills, #socials{
+          margin-bottom: 32px!important;
+        }
+       
+        .form-group {
+            position:relative;
+        }
+        .form-group img {
+            position: absolute;
+            top: 53px;
+            color: #eaeaf2;
+        }
+        .modal {
+            color: #000;
+            font-weight: 500px;
+            font-size: 18px;
+        }
+        .modal select {
+            -webkit-appearance: none;
+            width: 100%;
+            background-image: url('../img/select-arrow.svg');
+            background-repeat: no-repeat;
+            background-position: 380px center;
+        }
+        input[type=text] {
+            color:#000;
+            font-size: 18px;
+        }
+        input[type=url] {
+                background: #f2f2f8;
+                outline: none;
+                border: 3px solid #ccc !important;
+                box-sizing: border-box;
+        }
+        button[type=submit] {
+            font-weight: 500px;
+            font-size: 24px;
+            line-height: 36px;
+        }
+        @media (max-width: 525px) {
+            .modal select {
+                background-position: 360px center;
+            }
+        }
+        @media (min-width: 320px) and (max-width: 480px) {
+            .upload-section{
+              margin-bottom: 2px!important;
+            }
+            .modal select {
+                background-position: 240px center;
+            }
+        }
+    #edit_text{
+    display: inline-block;
+    margin-top: 13px;
+    }
+    .form-check input[type="checkbox"]{
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    padding: 10px;
+    background: #FFFFFF;
+    }
+    .form-check-label{
+      margin-left: 12px;
+    }
+    .section-icon, .list-trash{
+      margin-right: 10px;
+    }
+    .list-trash{
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+    }
+    @media (pointer: fine) {
+        /* ... */
+        .list-trash{
+          /* display: none; */
+          opacity: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+            /* transform: scale(0.8); */
+          transition: all 0.5s ease-in-out;
+        }
+        .lists li:hover .list-trash{
+          opacity: 1;
+          /* color: red; */
+          /* transform: scale(1.09); */
+          /* display: inline-block; */
+        }
+        .list-trash:hover{
+          /* width: 32px;
+          height: 32px; */
+          background-color: #0844823d;
+          border-radius: 3px;
+        }
+      }
+      .file-box{
+        position: relative;
+        border: 2px solid #B5B5B5;
+        border-radius: 5px;
+      }
+      #file{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 2;
+        opacity: 0;
+      }
+      #file-btn{
+        width: 120px;
+        height: 31px;
+      background: #00AEFF;
+      border: 1px solid #00AEFF;
+      box-sizing: border-box;
+      border-radius: 5px;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      }
+      #placeholder{
+        position: absolute;
+        left: 16px;
+        top: 12px;
+        width: 118px;
+height: 24px;
+        font-family: Poppins;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 24px;
+          /* identical to box height */
+          color: rgba(178, 178, 178, 0.58);
+      }
+    </style>
+</head>
+<body>
+        <div class="sidenav" id="sideNav">
+            <div class="logo__wrapper">
+                <div class="d-flex justify-content-center align-items-center logo__image">
+                    <img src="../img/navLogo.svg" alt="" />
+                </div>
+            </div>
+            <ul class="sidenav_links">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="/src/employee_profile.html" class="active">Profile</a></li>
+                <li><a href="#">Messages</a></li>
+                <li><a href="#">Employers</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </div>
+        <div id="body__click"></div>
+            <div class="modal fade modal-static" tabindex="-1" role="dialog" id="global_modal">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="container">
+                  <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" onclick="close_modal()" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body"></div>
+                </div>
+                </div>
+              </div>
+            </div>
+    ​
+    <div id="main-section">
+        <div class="container-fluid w-100 top__nav__wrapper sticky-top">
+            <div class="top__nav__contents py-4">
+                <div class="d-flex justify-content-between justify-content-lg-end align-items-center top__nav">
+                    <div class="d-lg-none mr-3" id="top__nav__toggle">
+                        <svg width="35" height="25" viewBox="0 0 35 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 15.2571H35V10.4571H0V15.2571ZM0 24.8571H35V20.0571H0V24.8571ZM0 5.65712H35V0.857117H0V5.65712Z"
+                                fill="#084482" fill-opacity="0.87" />
+                        </svg>
+                    </div>
+                    <div class="d-flex align-items-center top__nav__links">
+                        <div class="top__nav__icon d-none d-md-flex ">
+                            <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M19.6211 4.95313C19.7734 4.83203 20 4.94531 20 5.13672V13.125C20 14.1602 19.1602 15 18.125 15H1.875C0.839844 15 0 14.1602 0 13.125V5.14062C0 4.94531 0.222656 4.83594 0.378906 4.95703C1.25391 5.63672 2.41406 6.5 6.39844 9.39453C7.22266 9.99609 8.61328 11.2617 10 11.2539C11.3945 11.2656 12.8125 9.97266 13.6055 9.39453C17.5898 6.5 18.7461 5.63281 19.6211 4.95313ZM10 10C10.9063 10.0156 12.2109 8.85938 12.8672 8.38281C18.0508 4.62109 18.4453 4.29297 19.6406 3.35547C19.8672 3.17969 20 2.90625 20 2.61719V1.875C20 0.839845 19.1602 0 18.125 0H1.875C0.839844 -5.33333e-07 0 0.839842 0 1.875V2.61719C0 2.90625 0.132813 3.17578 0.359375 3.35547C1.55469 4.28906 1.94922 4.62109 7.13281 8.38281C7.78906 8.85938 9.09375 10.0156 10 10Z"
+                                    fill="black" />
+                            </svg>
+                        </div>
+                        <div class="top__nav__icon d-none d-md-flex ">
+                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.9486 14.2992C16.0795 13.43 15 12.3484 15 8.125C15 5.02367 12.741 2.45043 9.77879 1.95977C9.92315 1.75126 10.0003 1.50361 10 1.25C10 0.559648 9.44035 0 8.75 0C8.05964 0 7.5 0.559648 7.5 1.25C7.5 1.51367 7.58183 1.75813 7.72121 1.95977C4.75902 2.45043 2.5 5.02367 2.5 8.125C2.5 12.3484 1.42019 13.43 0.55105 14.2992C-0.626645 15.4769 0.208003 17.5 1.87687 17.5H6.25C6.25 18.8807 7.36929 20 8.75 20C10.1307 20 11.25 18.8807 11.25 17.5H15.6228C17.2883 17.5 18.1287 15.4793 16.9486 14.2992Z"
+                                    fill="black" />
+                            </svg>
+                        </div>
+                        <div class="d-flex align-items-center top__nav__user">
+                            <div class="img-fluid mr-2"><img src="../img/Employer Dashboard/user2.png" alt=""></div>
+                            <div class="top__nav__user__name">
+                                <h6 class="text-primary m-0">Adelanke Adelanke</h6>
+                                <p class="m-0 mr-0">Admin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="portfolio" class="mt-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="card px-4 py-5 bio">
+                            <img src="../img/iprofile/prof-pic.svg" alt="" class="img-fluid">
+                            <div class="intern-main text-center mt-4">
+                                <h3>Genesis Anosike</h3>
+                                <p>UI/UX Designer</p>
+                            </div>
+                            <hr>
+                            <div class="intern-other">
+                                <p><span><img src="../img/iprofile/carbon_location.svg" alt=""></span> Ibadan, Nigeria
+                                </p>
+                                <p><span><img src="../img/iprofile/carbon_email.svg" alt=""></span>
+                                    anosikegenesis@gmail.com
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="text-center">
+                                <a href="#" type="button" class="btn btn-lg btn-primary call-modal"  title="Edit profile" data-modal-size="lg"><span id="edit_text">Edit Profile</span>
+                                  <div class="hidden-content">
+                                    <!-- <div class="container"> -->
+                                          <form action="" id="edit-profile">
+                                            <p id="error-message"></p>
+                                            <p id="success-message"></p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="first name" class="super-label">First
+                                                            name</label>
+                                                        <input type="text" placeholder="Genesis"
+                                                            class="form-control" id="first-name"
+                                                            aria-describedby="nameHelp">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="lastname" class="super-label">Last
+                                                            name</label>
+                                                        <input type="text" placeholder="Anosike"
+                                                            class="form-control" id="last-name"
+                                                            aria-describedby="nameHelp">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="email" class="super-label">Email</label>
+                                                        <input type="email"
+                                                            placeholder="anosikegenesis@gmail.com"
+                                                            class="form-control" id="email"
+                                                            aria-describedby="emailHelp">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="location"
+                                                            class="super-label">Location</label>
+                                                        <input type="text" placeholder="Ibadan, Nigeria"
+                                                            class="form-control" id="location"
+                                                            aria-describedby="locationHelp">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="skills-choice">
+                                                <div class="row">
+                                                    <div class="col-md-6 tracks">
+                                                        <label class="super-label"
+                                                            for="exampleFormControl">Track(s)</label>
+                                                        <div class="form-group form-check">
+                                                            <input type="checkbox" class="form-check-input noHover"
+                                                                id="Backend" value="Backend Development">
+                                                            <label class="form-check-label"
+                                                                for="exampleCheck1">Backend
+                                                                Development</label>
+                                                        </div>
+                                                        <div class="form-group form-check">
+                                                            <input type="checkbox" class="form-check-input noHover"
+                                                                id="design" value="UI/UX Design">
+                                                            <label class="form-check-label"
+                                                                for="exampleCheck1">UI/UX
+                                                                Design</label>
+                                                        </div>
+                                                        <div class="form-group form-check">
+                                                            <input type="checkbox" class="form-check-input noHover"
+                                                                id="frontend" value="frontend">
+                                                            <label class="form-check-label"
+                                                                for="exampleCheck1">Frontend
+                                                                Development</label>
+                                                        </div>
+                                                        <div class="form-group form-check">
+                                                            <input type="checkbox" class="form-check-input noHover"
+                                                                id="mobile" value="Mobile Development">
+                                                            <label class="form-check-label"
+                                                                for="exampleCheck1">Mobile
+                                                                Development</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlFile1"
+                                                                class="super-label">Profile photo</label>
+                                                            <div class="file-box">
+                                                              <span id="placeholder">profile-pic.png</span>
+                                                                <!-- <label for="file" class="btn btn-primary">Browse</label> -->
+                                                                <input type="file" class=""
+                                                                    placeholder="profile.png" id="file"
+                                                                    onchange="Filevalidation()">
+                                                                    <button type="button" name="button" class="btn" id="file-btn">Browse</button>
+                                                            </div>
+                                                            <p id="size"> </p>
+                                                            <p id="file-message"></p>
+                                                        </div>
+                                                        <p>Recommended dimensions: 200 x 200px
+                                                            Maximum file size: 500kb.
+                                                            Please add only a professional looking headshot</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-center save_profile">
+                                                <button type="submit" class="btn btn-lg btn-primary">Save
+                                                    profile</button>
+                                            </div>
+                                          </form>
+                                    <!-- </div> -->
+                                  </div>
+                                  </a>
+                            </div>
+                            <!-- Button trigger modal -->
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="upload-section mb-3">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="card p-3 curriculum">
+                                        <div class="section-title py-2">
+                                            <div class="section-name">
+                                                <h4>CV</h4>
+                                            </div>
+                                            <div class="section-icon">
+                                                <!-- <img src="../img/iprofile/ant-design_minus-outlined.svg" alt=""> -->
+                                                <svg width="16" height="2" viewBox="0 0 16 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                  <path d="M15.8261 0H0.173913C0.0782609 0 0 0.0947368 0 0.210526V1.78947C0 1.90526 0.0782609 2 0.173913 2H15.8261C15.9217 2 16 1.90526 16 1.78947V0.210526C16 0.0947368 15.9217 0 15.8261 0Z" fill="#084482"/>
+                                                  </svg>
+                                            </div>
+                                        </div>
+                                        <p>File uploaded</p>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <button type="button" class="btn btn-primary">View file</button>
+                                            </div>
+                                            <div class="col-md-4"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card p-3 curriculum">
+                                        <div class="section-title py-2">
+                                            <div class="section-name">
+                                                <h4>Portfolio</h4>
+                                            </div>
+                                            <div class="section-icon">
+                                                <!-- <img src="../img/iprofile/carbon_add.svg" alt=""> -->
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9 7V0H7V7H0V9H7V16H9V9H16V7H9Z" fill="#084482"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <p>Upload file</p>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <button type="button" class="btn btn-light">View file</button>
+                                            </div>
+                                            <div class="col-md-4"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <section id="skills" class="mb-3">
+                            <div class="card p-4">
+                                <div class="section-title py-2">
+                                    <div class="section-name">
+                                        <h4>Skillsets</h4>
+                                    </div>
+                                    <div class="section-icon call-modal" title="Add skill"  data-modal-size="md" id="call_modalx">
+                                        <!-- <img src="../img/iprofile/carbon_add.svg" alt=""> -->
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9 7V0H7V7H0V9H7V16H9V9H16V7H9Z" fill="#084482"/>
+                                            </svg>
+                                        <div class="hidden-content">
+                                          <form class="form skill_form" name="add_skill" id="">
+                                              <div class="form-group row">
+                                                <i class="search-icon" aria-hidden="true">
+                                                  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                  <path d="M20.4998 19.4425L14.8373 13.75C16.191 12.1166 16.8635 10.0246 16.7151 7.90838C16.5667 5.79217 15.6089 3.81446 14.0405 2.38603C12.4721 0.95759 10.4137 0.188221 8.29285 0.237722C6.17203 0.287223 4.15178 1.15179 2.65172 2.65185C1.15167 4.1519 0.287101 6.17215 0.2376 8.29297C0.188099 10.4138 0.957468 12.4722 2.3859 14.0406C3.81434 15.609 5.79205 16.5669 7.90825 16.7153C10.0245 16.8637 12.1165 16.1912 13.7498 14.8375L19.4423 20.5L20.4998 19.4425ZM1.74984 8.49996C1.74984 7.16494 2.14572 5.85989 2.88742 4.74986C3.62912 3.63983 4.68332 2.77467 5.91673 2.26377C7.15013 1.75288 8.50733 1.61921 9.8167 1.87966C11.1261 2.14011 12.3288 2.78299 13.2728 3.72699C14.2168 4.67099 14.8597 5.87373 15.1201 7.1831C15.3806 8.49247 15.2469 9.84967 14.736 11.0831C14.2251 12.3165 13.36 13.3707 12.2499 14.1124C11.1399 14.8541 9.83486 15.25 8.49984 15.25C6.70963 15.25 4.99274 14.5388 3.72687 13.2729C2.461 12.0071 1.74984 10.2902 1.74984 8.49996Z" fill="#4C5059"/>
+                                                  </svg>
+                                                </i>
+                                                <i class="angle-down-icon add_skill_show" aria-hidden="true" role="button" data-showoption="add_skill" data-toggle="collapse" data-target="#collapseOption" aria-expanded="false" aria-controls="collapseOption">
+                                                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M1 1L5 5L9 1" stroke="#337AB7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </i>
+                                              <input type="text" name="skill" value="" data-selected = "add_skill" class="form-control skill" placeholder="User" id="" autocomplete="off">
+                                              </div>
+                                              <div class="skill_options row form-group collapse" id="collapseOption">
+                                              </div>
+                                                <button data-formname="add_skill" data-method="POST" data-url="/mylink" class="btn btn-pry submit_now mx-auto" id="add_skill_btn">Add skill</button>
+                                                <button class="btn btn-pry mx-auto loading hide_button" id="add_skill_loader">
+                                                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                                </button>
+                                          </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <ul class='lists'>
+                                    <li>
+                                        <div class="list-item"><span class="mr-2"><img
+                                                    src="../img/iprofile/ic_sharp-verified.svg" alt="">
+                                            </span>UI/UX Design</div>
+                                        <div class="list-trash">
+                                          <!-- <img src="../img/iprofile/carbon_trash-can.svg" alt=""> -->
+                                          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M13 12.8789H14.5V21.2886H13V12.8789Z" fill="#084482"/>
+                                          <path d="M17.5 12.8789H19V21.2886H17.5V12.8789Z" fill="#084482"/>
+                                          <path d="M7 8.67432V10.0759H8.5V24.0921C8.5 24.4639 8.65804 24.8204 8.93934 25.0832C9.22064 25.3461 9.60218 25.4938 10 25.4938H22C22.3978 25.4938 22.7794 25.3461 23.0607 25.0832C23.342 24.8204 23.5 24.4639 23.5 24.0921V10.0759H25V8.67432H7ZM10 24.0921V10.0759H22V24.0921H10Z" fill="#084482"/>
+                                          <path d="M13 5.87109H19V7.27271H13V5.87109Z" fill="#084482"/>
+                                          </svg>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="list-item"><span class="mr-2"><img
+                                                    src="../img/iprofile/greyverified.svg" alt="">
+                                            </span>JavaScript</div>
+                                        <div class="list-trash">
+                                          <!-- <img src="../img/iprofile/carbon_trash-can.svg" alt=""> -->
+
+                                          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M13 12.8789H14.5V21.2886H13V12.8789Z" fill="#084482"/>
+                                          <path d="M17.5 12.8789H19V21.2886H17.5V12.8789Z" fill="#084482"/>
+                                          <path d="M7 8.67432V10.0759H8.5V24.0921C8.5 24.4639 8.65804 24.8204 8.93934 25.0832C9.22064 25.3461 9.60218 25.4938 10 25.4938H22C22.3978 25.4938 22.7794 25.3461 23.0607 25.0832C23.342 24.8204 23.5 24.4639 23.5 24.0921V10.0759H25V8.67432H7ZM10 24.0921V10.0759H22V24.0921H10Z" fill="#084482"/>
+                                          <path d="M13 5.87109H19V7.27271H13V5.87109Z" fill="#084482"/>
+                                          </svg>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="list-item"><span class="mr-2"><img
+                                                    src="../img/iprofile/ic_sharp-verified.svg" alt="">
+                                            </span>HTML 5</div>
+                                        <div class="list-trash">
+                                          <!-- <img src="../img/iprofile/carbon_trash-can.svg" alt=""> -->
+                                          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M13 12.8789H14.5V21.2886H13V12.8789Z" fill="#084482"/>
+                                          <path d="M17.5 12.8789H19V21.2886H17.5V12.8789Z" fill="#084482"/>
+                                          <path d="M7 8.67432V10.0759H8.5V24.0921C8.5 24.4639 8.65804 24.8204 8.93934 25.0832C9.22064 25.3461 9.60218 25.4938 10 25.4938H22C22.3978 25.4938 22.7794 25.3461 23.0607 25.0832C23.342 24.8204 23.5 24.4639 23.5 24.0921V10.0759H25V8.67432H7ZM10 24.0921V10.0759H22V24.0921H10Z" fill="#084482"/>
+                                          <path d="M13 5.87109H19V7.27271H13V5.87109Z" fill="#084482"/>
+                                          </svg>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="list-item"><span class="mr-2"><img
+                                                    src="../img/iprofile/ic_sharp-verified.svg" alt="">
+                                            </span>CSS 3</div>
+                                        <div class="list-trash">
+                                          <!-- <img src="../img/iprofile/carbon_trash-can.svg" alt=""> -->
+                                          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M13 12.8789H14.5V21.2886H13V12.8789Z" fill="#084482"/>
+                                          <path d="M17.5 12.8789H19V21.2886H17.5V12.8789Z" fill="#084482"/>
+                                          <path d="M7 8.67432V10.0759H8.5V24.0921C8.5 24.4639 8.65804 24.8204 8.93934 25.0832C9.22064 25.3461 9.60218 25.4938 10 25.4938H22C22.3978 25.4938 22.7794 25.3461 23.0607 25.0832C23.342 24.8204 23.5 24.4639 23.5 24.0921V10.0759H25V8.67432H7ZM10 24.0921V10.0759H22V24.0921H10Z" fill="#084482"/>
+                                          <path d="M13 5.87109H19V7.27271H13V5.87109Z" fill="#084482"/>
+                                          </svg>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="list-item"><span class="mr-2"><img
+                                                    src="../img/iprofile/greyverified.svg" alt="">
+                                            </span>Bootstrap</div>
+                                        <div class="list-trash">
+                                          <!-- <img src="../img/iprofile/carbon_trash-can.svg" alt=""> -->
+                                          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M13 12.8789H14.5V21.2886H13V12.8789Z" fill="#084482"/>
+                                          <path d="M17.5 12.8789H19V21.2886H17.5V12.8789Z" fill="#084482"/>
+                                          <path d="M7 8.67432V10.0759H8.5V24.0921C8.5 24.4639 8.65804 24.8204 8.93934 25.0832C9.22064 25.3461 9.60218 25.4938 10 25.4938H22C22.3978 25.4938 22.7794 25.3461 23.0607 25.0832C23.342 24.8204 23.5 24.4639 23.5 24.0921V10.0759H25V8.67432H7ZM10 24.0921V10.0759H22V24.0921H10Z" fill="#084482"/>
+                                          <path d="M13 5.87109H19V7.27271H13V5.87109Z" fill="#084482"/>
+                                          </svg>
+                                        </div>
+                                    </li>
+
+                                    <!-- Dynamic Content Goes Here -->
+                                </ul>
+                            </div>
+                        </section>
+                        <section id="socials">
+                            <div class="card p-4">
+                                <div class="section-title py-2">
+                                    <div class="section-name">
+                                        <h4>Social accounts</h4>
+                                    </div>
+                                    <div class="section-icon">
+                                        <!-- <img src="../img/iprofile/carbon_add.svg" alt=""> -->
+                                <!---////////////////////////////////////////////////////////////////////////////
+                                                         Start of social media popup
+                                ////////////////////////////////////////////////////////////////////////////////--> 
+                                        <button type="button" class="btn" data-toggle="modal" data-target="#socialPopup"> 
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M9 7V0H7V7H0V9H7V16H9V9H16V7H9Z" fill="#084482"/>
+                                            </svg>
+                                        </button>
+                                        <div class="modal fade" id="socialPopup">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Add social media links</h4>
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button> 
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form role="form" action="/action_page.php">
+                                                            <div class="form-group">
+                                                                <label for="sMedia">Select platform</label>
+                                                                <select name="social-media" class="form-control border border-primary px-5" id="sMedia">
+                                                                    <option value="dribble">Dribble</option>
+                                                                    <option value="twitter">Twitter</option>
+                                                                    <option value="behance">Behance</option>
+                                                                    <option value="github">Github</option>
+                                                                    <option value="linkedin">LinkedIn</option>
+                                                                    <option value="hasnode">Hasnode</option>
+                                                                </select>
+                                                                <img src="../img/search-icon.png" class="img-fluid ml-3" alt="">
+                                                                <input type="text" class="form-control px-4 mt-2 mb-4" value="Dribble" placeholder="" required="required"/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="link">Account link</label>
+                                                                <input type="url" class="form-control text-muted" id="link" placeholder="Paste valid profile link here" required="required"/>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer border-0 mx-auto">
+                                                        <button type="submit" class="btn btn-primary btn-lg mb-4" data-dismiss="modal">Add link</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!--- End of Social media popup --> 
+                                    </div>
+                                </div>
+                                <ul class='lists'>
+                                    <li>
+                                        <div class="list-item"><span class="mr-2"><img
+                                                    src="../img/iprofile/ant-design_twitter-outlined.svg" alt="">
+                                            </span>Twitter</div>
+                                        <div class="list-trash">
+                                          <!-- <img src="../img/iprofile/edit.svg" alt=""> -->
+                                          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.5 4.25L17.75 0.5L2.75 15.5L1.25 20.75L6.5 19.25L21.5 4.25ZM14.75 3.5L18.5 7.25L14.75 3.5ZM2.75 15.5L6.5 19.25L2.75 15.5Z" stroke="#084482" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="list-item"><span class="mr-2"><img
+                                                    src="../img/iprofile/topcoat_dribble.svg" alt="">
+                                            </span>Dribble</div>
+                                        <div class="list-trash">
+                                          <!-- <img src="../img/iprofile/edit.svg" alt=""> -->
+                                          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.5 4.25L17.75 0.5L2.75 15.5L1.25 20.75L6.5 19.25L21.5 4.25ZM14.75 3.5L18.5 7.25L14.75 3.5ZM2.75 15.5L6.5 19.25L2.75 15.5Z" stroke="#084482" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="list-item"><span class="mr-2"><img
+                                                    src="../img/iprofile/ant-design_behance-outlined.svg" alt="">
+                                            </span>Behance</div>
+                                        <div class="list-trash">
+                                          <!-- <img src="../img/iprofile/edit.svg" alt=""> -->
+                                          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.5 4.25L17.75 0.5L2.75 15.5L1.25 20.75L6.5 19.25L21.5 4.25ZM14.75 3.5L18.5 7.25L14.75 3.5ZM2.75 15.5L6.5 19.25L2.75 15.5Z" stroke="#084482" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="list-item"><span class="mr-2"><img
+                                                    src="../img/iprofile/ant-design_github-filled.svg" alt="">
+                                            </span>Github</div>
+                                        <div class="list-trash">
+                                          <!-- <img src="../img/iprofile/edit.svg" alt=""> -->
+                                          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.5 4.25L17.75 0.5L2.75 15.5L1.25 20.75L6.5 19.25L21.5 4.25ZM14.75 3.5L18.5 7.25L14.75 3.5ZM2.75 15.5L6.5 19.25L2.75 15.5Z" stroke="#084482" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="list-item"><span class="mr-2"><img
+                                                    src="../img/iprofile/ant-design_linkedin-filled.svg" alt="">
+                                            </span>Linkedin</div>
+                                        <div class="list-trash">
+                                          <!-- <img src="../img/iprofile/edit.svg" alt=""> -->
+                                          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.5 4.25L17.75 0.5L2.75 15.5L1.25 20.75L6.5 19.25L21.5 4.25ZM14.75 3.5L18.5 7.25L14.75 3.5ZM2.75 15.5L6.5 19.25L2.75 15.5Z" stroke="#084482" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="list-item"><span class="mr-2"><img
+                                                    src="../img/iprofile/cib_hashnode.svg" alt="">
+                                            </span>Hashnode</div>
+                                        <div class="list-trash">
+                                          <!-- <img src="../img/iprofile/edit.svg" alt=""> -->
+                                          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M21.5 4.25L17.75 0.5L2.75 15.5L1.25 20.75L6.5 19.25L21.5 4.25ZM14.75 3.5L18.5 7.25L14.75 3.5ZM2.75 15.5L6.5 19.25L2.75 15.5Z" stroke="#084482" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="../js/bootstrap-js/jquery.js"></script>
+    <script src="../js/bootstrap-js/popper.js"></script>
+    <script src="../js/custom-js/modal.js"></script>
+    <script src="../js/bootstrap-js/bootstrap.js"></script>
+    <script src="../js/custom-js/side-nav.js"></script>
+    <script src="../js/custom-js/eprofile.js"></script>
+</body>
+</html>

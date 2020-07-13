@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no">
-
-  <title>Talent Pool | Verify Email</title>
-  <link rel="shortcut icon" href="img/favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="styles/bootstrap-css/bootstrap.css">
-  <link rel="stylesheet" href="../styles/custom-css/verify-email.css" type="text/css">
+  <%- include('../Templates/head') %>
 </head>
-<body class="container-fluid">
+<body>
+  <%- include('../Templates/header') %>
   <div class="container">
-    <div class="card verify-card verify-success" id="verify-success">
+    <!-- <div class="card verify-card verify-success" id="verify-success">
       <div class="card-body d-flex flex-column align-items-center">
         <div class="my-3">
           <img src="../img/logo.svg" alt="logo" />
@@ -26,11 +19,12 @@
           If you are not redirected, click <a href="/employee-sign-in" class="card-link">here</a> to Sign in.
         </p>
       </div>
-    </div>
-    <div class="card verify-card verify-fail" id="verify-fail">
+    </div> -->
+    
+    <!-- <div class="card verify-card verify-fail" id="verify-fail">
       <div class="card-body d-flex flex-column align-items-center">
         <div class="my-3">
-          <img src="../img/logo.svg" alt="logo" />
+          <img src="img/logo.svg" alt="logo" />
         </div>
         <svg class="my-3" width="50" height="49" viewBox="0 0 50 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5 18.4L25 30.9L45 18.4L25 5.9L5 18.4ZM50 18.4V43.4C50 44.7261 49.4732 45.9979 48.5355 46.9355C47.5979 47.8732 46.3261 48.4 45 48.4H5C3.67392 48.4 2.40215 47.8732 1.46447 46.9355C0.526784 45.9979 0 44.7261 0 43.4V18.4C0 16.575 0.975 15 2.425 14.125L25 0L47.575 14.125C49.025 15 50 16.575 50 18.4Z" fill="#337AB7"/>
@@ -39,12 +33,26 @@
           Sorry, this link is either invalid or has expired. Click <a href="#!" class="card-link" id="resend-link">here</a> to get a new verification link.
         </p>
       </div>
-    </div>
+    </div> -->
+
     <div class="card verify-card resend-form-wrap" id="resend-form">
       <div class="card-body d-flex flex-column align-items-center">
         <div class="my-3">
-          <img src="../img/logo.svg" alt="logo" />
+          <img src="img/logo.svg" alt="logo" />
         </div>
+        <!-- dnxbnlrkjfd,cxnm
+        <div class="alert alert-danger" style="padding: 0.5rem 1rem;" id="alert" role="alert">
+          <p class="my-0">Sorry, this link is either invalid or has expired. </p>
+        </div> -->
+        <% if(error && error.length > 0){ %>
+          <div class="alert alert-danger" style="padding: 0.5rem 1rem;" id="alert" role="alert">
+            <p class="my-0"><%- error %> </p>
+          </div>
+          <% } else if(success && success == 'Token sent'){ %>
+            <div class="alert alert-success" style="padding: 0.5rem 1rem;" id="alert" role="alert">
+              <p class="my-0"> Please check your email. Verification link has been sent.</p>
+            </div>
+          <% }  %>
         <svg class="my-3" width="50" height="49" viewBox="0 0 50 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5 18.4L25 30.9L45 18.4L25 5.9L5 18.4ZM50 18.4V43.4C50 44.7261 49.4732 45.9979 48.5355 46.9355C47.5979 47.8732 46.3261 48.4 45 48.4H5C3.67392 48.4 2.40215 47.8732 1.46447 46.9355C0.526784 45.9979 0 44.7261 0 43.4V18.4C0 16.575 0.975 15 2.425 14.125L25 0L47.575 14.125C49.025 15 50 16.575 50 18.4Z" fill="#337AB7"/>
         </svg>
@@ -52,11 +60,12 @@
           <div class="alert alert-danger d-none" style="padding: 0.5rem 1rem;" id="alert" role="alert">
             <p class="my-0" id="alertMessage"></p>
           </div>
-          <form class="resend-form">
+          <form method="POST" action="/v1/auth/email/verify/resend" class="resend-form">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
             <div class="form-group">
               <label for="email" class="">Please input your email to get a new verification link</label>
               <div class="">
-                <input type="email" class="form-control py-4" id="email" placeholder="Email">
+                <input type="email" name="email" class="form-control py-4" id="email" placeholder="Email">
               </div>
               <div id="invalid-email">
               </div>
@@ -70,7 +79,8 @@
         </div>
       </div>
     </div>
-    <div class="card verify-card resent-notify" id="resent-notify">
+   
+    <!-- <div class="card verify-card resent-notify" id="resent-notify">
       <div class="card-body d-flex flex-column align-items-center">
         <div class="my-3">
           <img src="../img/logo.svg" alt="logo" />
@@ -82,8 +92,9 @@
           Please check your email. Verification link has been sent.
         </p>
       </div>
-    </div>
-    <div class="card verify-card existing-email" id="existing-email">
+    </div> -->
+
+    <!-- <div class="card verify-card existing-email" id="existing-email">
       <div class="card-body d-flex flex-column align-items-center">
         <div class="my-3">
           <img src="../img/logo.svg" alt="logo" />
@@ -97,10 +108,11 @@
           If you are not redirected, click <a href="/employee-sign-in" class="card-link">here</a> to Sign in.
         </p>
       </div>
-    </div>
+    </div> -->
   </div>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script> -->
+  <!-- <script type="module" src="js/custom-js/verify.js"></script> -->
+  <%- include('../Templates/footer') %>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-  <script type="module" src="js/custom-js/verify.js"></script>
 </body>
 </html>

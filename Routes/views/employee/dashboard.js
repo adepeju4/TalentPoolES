@@ -1,24 +1,35 @@
 const express = require('express');
-const employeeController = require('../../../Controllers/views/employee/dashboard');
+const employeeViewController = require('../../../Controllers/views/employee/dashboard');
+const employeeController = require('../../../Controllers/employee/employee-profile');
+
 const appRoute = express.Router();
-const {
-  employerDashboard,
-} = require('../../../Controllers/views/employer/dashboard');
-
-appRoute.get('/', (req, res) => {
-  res.render('index', { variable: 'Hello Guys' });
-});
-
-appRoute.get('/employee-dashboard', employeeController.getEmployeeDash);
-appRoute.get('/employee-messages', employeeController.getEmployeeMessages);
-appRoute.get('/employee-profile', employeeController.getEmployeeProfile);
-appRoute.get('/employee-profile/:id', employeeController.getEmployeeProfile);
-appRoute.get('/employee-addTeam', employeeController.getEmployeeAddTeam);
-appRoute.get('/employee-support', employeeController.getEmployeeSupport);
-appRoute.get('/employee-settings', employeeController.getEmployeeSettings);
-appRoute.get('/employee-employers', employeeController.getEmployeeEmployers);
+// Dashboard Route
 appRoute.get(
-  '/employee-profileCreation',
-  employeeController.getEmployeeProfileCreation,
+  '/employee/dashboard/:employee_id',
+  employeeController.getDashboard,
 );
+// Portfolio Page
+// appRoute.get(
+//   '/employee/portfolio',
+//   employeeViewController.getEmployeePortfolio,
+// );
+// Get Employee Messages
+appRoute.get('/employee/messages', employeeViewController.getEmployeeMessages);
+// Create Profile
+appRoute.get(
+  '/employee/profile',
+  employeeViewController.getEmployeeProfileCreation,
+);
+// Get Profile By Username -- No Page, use AXIOS then render data
+appRoute.get('/employee/:username', employeeController.getProfileByUsername);
+// Employee Support
+appRoute.get('/employee/support', employeeViewController.getEmployeeSupport);
+// Employee Settings
+appRoute.get('/employee/settings', employeeViewController.getEmployeeSettings);
+// Employee's Employers
+appRoute.get(
+  '/employee/employers',
+  employeeViewController.getEmployeeEmployers,
+);
+
 module.exports = appRoute;

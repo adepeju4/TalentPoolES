@@ -51,7 +51,9 @@ border-radius: 5px;
 border: 1px solid #b5b5b5;
 padding: 25px;
 }
-
+.form-control input .invalid{
+  border-color: red;
+}
 input::placeholder {
 font-size: 16px;
 line-height: 24px;
@@ -63,14 +65,10 @@ line-height: 50px;
 }
 
 #signup-btn{
-    background: #ffffff;
-    /* width: 572px;
-    height: 68px; */
-   border: 2px solid #00AEFF;
-   color: #00AEFF;
-   font-weight: bolder;
-    box-sizing: border-box;
-    border-radius: 5px;
+  color: #ffffff;
+  border: 1px solid #00AEFF;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
  #signup-btn:visited {
@@ -179,3 +177,4 @@ hr {
   color: #1F2430;
   border-bottom: 4px solid #084482;
 }
+

@@ -1,9 +1,16 @@
+/* eslint-disable no-console */
 /* eslint-disable max-len */
 /* eslint-disable comma-dangle */
 const express = require('express');
+
 const { uuid } = require('uuidv4');
+const cloudinary = require('cloudinary').v2;
+const multer = require('multer');
 const { authorize } = require('../../Middleware/index');
 const Role = require('../../Middleware/role');
+
+const upload = multer({ dest: `${__dirname}../../public/employeeimages` });
+
 const { EmployeeProfile } = require('../../Utils/validators/employee-profile');
 const { getEmployees } = require('../../Controllers/employee/employee-export');
 
@@ -17,12 +24,14 @@ const attributes = [
   'id',
   'first_name',
   'last_name',
+  'username',
+  'location',
+  'track',
   'phone_no',
-  'picture_url',
+  'image',
   'gender',
   'hng_id',
-  'age',
-  'avaliability',
+  'availability',
   'dob',
   'employee_cv',
   'views',
@@ -33,6 +42,22 @@ const attributes = [
   'verification_status',
 ];
 
+let image;
+
+const uploadImageFunction = async (req, res) => {
+  await cloudinary.uploader.upload(
+    req.files.image.tempFilePath,
+    (error, result) => {
+      if (result) {
+        image = result.secure_url;
+        return image;
+      }
+      return errorResMsg(res, 400, 'Image Upload Failed!, Kindly retry');
+    },
+  );
+  return image;
+};
+
 // CREATE A PROFILE
 router.post(
   '/profile',
@@ -40,24 +65,41 @@ router.post(
   EmployeeProfile.validateProfile,
   async (req, res) => {
     const employeeId = uuid();
+    const imageUrl = await uploadImageFunction(req, res);
+    console.log('url to image', imageUrl);
+
     const {
-      firstName, lastName, userType, hngId, age, phoneNo, pictureUrl, avaliability, dateOfBirth, employeeCv, userId
+      firstName,
+      lastName,
+      userType,
+      hngId,
+      userName,
+      location,
+      track,
+      phoneNo,
+      availability,
+      dateOfBirth,
+      employeeCv,
+      userId,
     } = req.body;
     const newBody = {
       first_name: firstName,
       last_name: lastName,
       user_type: userType,
       phone_no: phoneNo,
-      picture_url: pictureUrl,
       hng_id: hngId,
-      age,
-      avaliability,
+      username: userName,
+      image: imageUrl,
+      location,
+      track,
+      availability,
       dob: dateOfBirth,
       employee_id: employeeId,
       views: '0',
       employee_cv: employeeCv,
-      user_id: userId
+      user_id: userId,
     };
+
     try {
       // eslint-disable-next-line camelcase
       const { user_id } = newBody;
@@ -91,54 +133,95 @@ router.post(
 
 // GET AN EMPLOYEE PROFILE
 // eslint-disable-next-line consistent-return
-router.get(
-  '/profile/:employee_id',
-  async (req, res) => {
-    try {
-      const { employee_id: employeeId } = req.params;
+router.get('/profile/:employee_id', async (req, res) => {
+  try {
+    const { employee_id: employeeId } = req.params;
 
-      const query = await models.Employee.findOne({
-        where: { employee_id: employeeId },
-        attributes,
-      });
+    const query = await models.Employee.findOne({
+      where: { employee_id: employeeId },
+      attributes,
+    });
 
-      const skillQuery = await models.Skill.findAll({
-        where: { employee_id: employeeId }
-      });
+    const skillQuery = await models.Skill.findAll({
+      where: { employee_id: employeeId },
+    });
 
-      const portfolioQuery = await models.Portfolio.findAll({
-        where: { employee_id: employeeId }
-      });
+    const portfolioQuery = await models.Portfolio.findAll({
+      where: { employee_id: employeeId },
+    });
 
-      const employee = await query;
-      const skills = await skillQuery;
-      const portfolios = await portfolioQuery;
+    const employee = await query;
+    const skills = await skillQuery;
+    const portfolios = await portfolioQuery;
 
-      const data = { employee, skills, portfolios };
+    const data = { employee, skills, portfolios };
 
-      if (!employee) {
-        return errorResMsg(res, 404, 'Profile not found');
-      }
-
-      return successResMsg(res, 200, data);
-    } catch (err) {
-      return errorResMsg(res, 500, err.message);
+    if (!employee) {
+      return errorResMsg(res, 404, 'Profile not found');
     }
-  },
-);
+
+    return successResMsg(res, 200, data);
+  } catch (err) {
+    return errorResMsg(res, 500, err.message);
+  }
+});
+
+// GET AN EMPLOYEE PROFILE BY USERNAME
+// eslint-disable-next-line consistent-return
+router.get('/:username', async (req, res) => {
+  try {
+    const { username } = req.params;
+
+    const query = await models.Employee.findOne({
+      where: { username },
+      attributes,
+    });
+
+    // eslint-disable-next-line camelcase
+    const { employee_id } = await query;
+
+    const skillQuery = await models.Skill.findAll({
+      where: { employee_id },
+    });
+
+    const portfolioQuery = await models.Portfolio.findAll({
+      where: { employee_id },
+    });
+
+    const employee = await query;
+    const skills = await skillQuery;
+    const portfolios = await portfolioQuery;
+
+    const data = { employee, skills, portfolios };
+
+    if (!employee) {
+      return errorResMsg(res, 404, 'Profile not found');
+    }
+
+    return successResMsg(res, 200, data);
+  } catch (err) {
+    return errorResMsg(res, 500, err.message);
+  }
+});
 
 // UPDATE AN EMPLOYEE PROFILE
 // eslint-disable-next-line consistent-return
 router.patch(
   '/profile/:employee_id',
   authorize(Role.Employee),
-  EmployeeProfile.updateProfile,
   async (req, res) => {
     try {
       if (!(req.body.employee_id || req.body.user_id)) {
         const { employee_id: employeeId } = req.params;
         // Update Profile
-        await models.Employee.update(req.body, {
+        let reqBody = req.body;
+        if (req.files) {
+          const imageUrl = await uploadImageFunction(req, res);
+          reqBody = { image: imageUrl, ...req.body };
+          console.log(reqBody);
+        }
+
+        await models.Employee.update(reqBody, {
           where: { employee_id: employeeId },
           plain: true,
         });
@@ -164,6 +247,8 @@ router.patch(
         'Bad Request! Please, try again with accepted entries!!!',
       );
     } catch (err) {
+      console.log(err);
+
       return errorResMsg(res, 500, err.message);
     }
   },
