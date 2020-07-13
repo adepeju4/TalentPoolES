@@ -14,12 +14,12 @@ const {
   resendVerificationLink,
   updatePassword,
   superAdminLogin,
-} = require('../controllers/auth');
+} = require('../Controllers/auth');
 
 const {
   create,
   verifyEmail,
-} = require('../controllers/employee/employee-signup');
+} = require('../Controllers/employee/employee-signup');
 const { post } = require('./views/employee/auth');
 
 const router = express.Router();

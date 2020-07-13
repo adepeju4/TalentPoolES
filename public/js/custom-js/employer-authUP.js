@@ -1,8 +1,8 @@
 const token = JSON.parse(localStorage.getItem('tpAuth'));
 console.log(token);
-if (!token) {
-	location.href = '/';
-}
+// if (!token) {
+// 	location.href = '/';
+// }
 (function () {
 	'use strict';
 	const response = JSON.parse(atob(token.token.split('.')[1]));

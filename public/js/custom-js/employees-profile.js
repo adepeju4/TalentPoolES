@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', getUser);
+document.addEventListener("DOMContentLoaded", getUser);
 
 function getUser() {
-  const auth = localStorage.getItem('tpAuth');
-  const BASE_URL = '/v1';
+  const auth = localStorage.getItem("tpAuth");
+  const BASE_URL = "https://api.lancers.app/v1";
   let userToken = null;
   let user_id = null;
 
@@ -12,8 +12,8 @@ function getUser() {
     user_id = f.userTypeId;
     // console.log(userToken)
   } else {
-    alert('Authentication Error! Redirecting....');
-    window.location.href = '/';
+    alert("Authentication Error! Redirecting....");
+    window.location.href = "/";
     return;
   }
 
@@ -22,8 +22,8 @@ function getUser() {
   axios.interceptors.request.use((config) => {
     //   console.log("Token Here : ", userToken);
     if (!userToken) {
-      alert('Authentication Error! Redirecting....');
-      window.location.href = '/';
+      alert("Authentication Error! Redirecting....");
+      window.location.href = "/";
       return;
     }
     config.headers.common.Authorization = `Bearer ${userToken}`;
@@ -33,34 +33,34 @@ function getUser() {
 
   const getProfile = async () => {
     if (!userToken || !user_id) {
-      alert('Authentication Error! Redirecting....');
+      alert("Authentication Error! Redirecting....");
       return;
     }
 
     let res = await axios
       .get(`${BASE_URL}/employee/profile/${user_id}`)
       .then((res) => {
-        console.log(res);
-        let data = res.data.data.employee;
-        console.log(data.first_name);
-        console.log(user_id);
+        console.log(res)
+        let  data  = res.data.data.employee;
+        console.log(data.first_name)
+console.log(user_id)
         if (
-          window.location.pathname == '/employee-profile' ||
-          window.location.pathname == '/employee-dashboard' ||
-          window.location.pathname == '/employee-employers' ||
-          window.location.pathname == '/employee-settings'
+          window.location.pathname == "/employee-profile" ||
+          window.location.pathname == "/employee-dashboard" ||
+          window.location.pathname == "/employee-employers" ||
+          window.location.pathname == "/employee-settings"
         ) {
-          let fullName = document.querySelector('#full-name');
-          let email = document.querySelector('#employee-email');
-          let employeeimage = document.querySelector('#employee-img');
-          let employeeCv = document.querySelector('#employee-cv');
-          let internId = document.querySelector('#intern-id');
-          let phone = document.querySelector('#phone');
-          let availability = document.querySelector('#availability');
-          let displayName = document.querySelector('#employee-name');
+          let fullName = document.querySelector("#full-name");
+          let email = document.querySelector("#employee-email");
+          let employeeimage = document.querySelector("#employee-img");
+          let employeeCv = document.querySelector("#employee-cv");
+          let internId = document.querySelector("#intern-id");
+          let phone = document.querySelector("#phone");
+          let availability = document.querySelector("#availability");
+          let displayName = document.querySelector("#employee-name");
 
-          displayName.innerHTML = data.first_name + ' ' + data.last_name;
-          fullName.innerHTML = data.first_name + ' ' + data.last_name;
+          displayName.innerHTML = data.first_name + " " + data.last_name;
+          fullName.innerHTML = data.first_name + " " + data.last_name;
           phone.innerHTML = data.phone_no;
           // firstName.innerHTML = res.data.data.first_name;
           internId.innerHTML = data.hng_id;
@@ -68,16 +68,16 @@ function getUser() {
           employeeimage.src = data.picture_url;
           employeeCv.href = data.employee_cv;
 
-          if (!employeeCv.href || employeeCv.href === '') {
-            document.getElementById('cv-message').innerHTML =
-              'File not uploaded yet';
+          if (!employeeCv.href || employeeCv.href === "") {
+            document.getElementById("cv-message").innerHTML =
+              "File not uploaded yet";
           }
         }
 
         return res;
       })
       .catch((error) => {
-        console.log('Error : ', error);
+        console.log("Error : ", error);
       });
   };
 
@@ -85,7 +85,7 @@ function getUser() {
 
   const getSkills = async () => {
     if (!userToken || !user_id) {
-      alert('Authentication Error! Redirecting....');
+      alert("Authentication Error! Redirecting....");
       return;
     }
 
@@ -94,13 +94,13 @@ function getUser() {
       .then((res) => {
         let { data } = res.data;
         if (data.length == 0) {
-          document.getElementById('skill-message').innerHTML =
-            'You have not added your skills';
+          document.getElementById("skill-message").innerHTML =
+            "You have not added your skills";
         } else {
         }
       })
       .catch((error) => {
-        console.log('Error : ', error);
+        console.log("Error : ", error);
       });
   };
 

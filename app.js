@@ -21,87 +21,87 @@ dotenv.config();
 const morgan = require('morgan');
 const db = require('./Models');
 const { seedSuperAdmin } = require('./seed');
-const googleAuth = require('./routes/googleAuth'); // require google auth route to test endpoint
+const googleAuth = require('./Routes/googleAuth'); // require google auth route to test endpoint
 
 require('./config/passport.setup');
 const errorHandler = require('./Utils/error-handler');
 
 // IMPORT EMPLOYEE PROFILE ROUTER
-const employeeProfileRouter = require('./routes/employee/employee-profile');
+const employeeProfileRouter = require('./Routes/employee/employee-profile');
 // IMPORT EMPLOYEE HELP ROUTE
-const employeeHelpRoute = require('./routes/employee/employee-help');
+const employeeHelpRoute = require('./Routes/employee/employee-help');
 // IMPORT EMPLOYEE PORTFOLIO ROUTE
-const employeePortfolioRoute = require('./routes/employee/employee-portfolio');
+const employeePortfolioRoute = require('./Routes/employee/employee-portfolio');
 // IMPORT EMPLOYEE SKILLS ROUTE
-const employeeSkillsRoutes = require('./routes/employee/employee-skills');
+const employeeSkillsRoutes = require('./Routes/employee/employee-skills');
 // IMPORT EMPLOYEE SEARCH ROUTE
-const employeeSearchRoutes = require('./routes/employee/employee-search');
-const auth = require('./routes/auth');
+const employeeSearchRoutes = require('./Routes/employee/employee-search');
+const auth = require('./Routes/auth');
 // employer route
-const employerRoute = require('./routes/employerRoute/employer-route');
+const employerRoute = require('./Routes/employerRoute/employer-route');
 // IMPORT EMPLOYEE SEARCH ROUTE
-const employerUpgradeRoute = require('./routes/employer/employer-upgrade');
+const employerUpgradeRoute = require('./Routes/employer/employer-upgrade');
 // IMPORT TEAM ROUTES
-const teamRoutes = require('./routes/team');
+const teamRoutes = require('./Routes/team');
 // IMPORT ADMIN MANAGEMENT ROUTE
-const adminManagementRoute = require('./routes/super-admin/manage-admin');
+const adminManagementRoute = require('./Routes/super-admin/manage-admin');
 // import route for company
-const companyRouter = require('./routes/company/company');
+const companyRouter = require('./Routes/company/company');
 // IMPORT FAQ ROUTES
-const faqRoutes = require('./routes/faq');
-const faqGeneralRoutes = require('./routes/faq-all');
-const chatRoute = require('./routes/chat');
+const faqRoutes = require('./Routes/faq');
+const faqGeneralRoutes = require('./Routes/faq-all');
+const chatRoute = require('./Routes/chat');
 
-const packageRoutes = require('./routes/employer/employer-package');
+const packageRoutes = require('./Routes/employer/employer-package');
 
 // IMPORT ADMIN OPERATION ROUTE
-const adminHelpRoute = require('./routes/admin/admin-help');
+const adminHelpRoute = require('./Routes/admin/admin-help');
 
 // IMPORT ADMIN ROUTES
-// const adminRoute = require('./routes/admin');
-const adminBaseFunction = require('./routes/admin/users');
-// const adminViewAllEmployees = require('./routes/admin/ViewAllEmployees');
+// const adminRoute = require('./Routes/admin');
+const adminBaseFunction = require('./Routes/admin/users');
+// const adminViewAllEmployees = require('./Routes/admin/ViewAllEmployees');
 
 // IMPORT REVIEWS
-const employerReviews = require('./routes/employee/employee-review');
+const employerReviews = require('./Routes/employee/employee-review');
 
 // IMPORT ADMIN EXPORT DATA AS CSV OPERATION
-const adminExportEmployer = require('./routes/admin/export-employer');
-const adminExportEmployee = require('./routes/admin/export-verified-employee');
-const adminVerifyEmployer = require('./routes/admin/verify-employer');
-const adminVerifyEmployee = require('./routes/admin/verify-employee');
+const adminExportEmployer = require('./Routes/admin/export-employer');
+const adminExportEmployee = require('./Routes/admin/export-verified-employee');
+const adminVerifyEmployer = require('./Routes/admin/verify-employer');
+const adminVerifyEmployee = require('./Routes/admin/verify-employee');
 
 // IMPORT ALL GET EMPLOYERS AND EMPLOYEES ROUTE --ADMIN
-const listAll = require('./routes/list/list-all');
+const listAll = require('./Routes/list/list-all');
 
 // IMPORT TRANSACTION ROUTES
-const employerTransaction = require('./routes/employer/employer-transaction');
+const employerTransaction = require('./Routes/employer/employer-transaction');
 
 // IMPORT GET VERFIED EMPLOYEES ROUTES
-const getAllEmployees = require('./routes/employer/get-employees');
+const getAllEmployees = require('./Routes/employer/get-employees');
 
 // IMPORT EMPLOYER DASHBOARD
 const employerDashboard = require('./Routes/employer/employer-dashboard');
 
 // IMPORT THE VIEWS ROUTES
-const appRoute = require('./routes/views');
-const adminDashRoute = require('./routes/views/admin/dashboard');
-const employeeAuthRoute = require('./routes/views/employee/auth');
-const employeeDashboardRoute = require('./routes/views/employee/dashboard');
-const employerAuthRoute = require('./routes/views/employer/auth');
-const employerDashboardRoute = require('./routes/views/employer/dashboard');
-const topTalentsRoute = require('./routes/views/employee/topTalents');
-const testimonialsRoute = require('./routes/views/employer/testimonials');
-const directoryRoute = require('./routes/views');
-const passwordRoute = require('./routes/views/password/index');
-const paymentRoute = require('./routes/views/payment/index');
-const adminAuthRoute = require('./routes/views/admin/auth');
-const employerMetrics = require('./routes/views/employer/metrics');
-const employerRecommendation = require('./routes/views/employer/recommendation');
-const verifyModal = require('./routes/views/admin/verifyModal');
+const appRoute = require('./Routes/views');
+const adminDashRoute = require('./Routes/views/admin/dashboard');
+const employeeAuthRoute = require('./Routes/views/employee/auth');
+const employeeDashboardRoute = require('./Routes/views/employee/dashboard');
+const employerAuthRoute = require('./Routes/views/employer/auth');
+const employerDashboardRoute = require('./Routes/views/employer/dashboard');
+const topTalentsRoute = require('./Routes/views/employee/topTalents');
+const testimonialsRoute = require('./Routes/views/employer/testimonials');
+const directoryRoute = require('./Routes/views');
+const passwordRoute = require('./Routes/views/password/index');
+const paymentRoute = require('./Routes/views/payment/index');
+const adminAuthRoute = require('./Routes/views/admin/auth');
+const employerMetrics = require('./Routes/views/employer/metrics');
+const employerRecommendation = require('./Routes/views/employer/recommendation');
+const verifyModal = require('./Routes/views/admin/verifyModal');
+
 // IMPORT SUPPORT ROUTE
 const supportRoute = require('./routes/support');
-
 
 const app = express();
 
@@ -227,8 +227,11 @@ app.use('/v1/admin', adminManagementRoute); // super admin
 
 // packages
 app.use('/v1/package', packageRoutes);
+
 // user support
-app.use('/users', supportRoute);
+app.use('v1/users', supportRoute);
+
+
 // global error handler
 app.use(errorHandler);
 

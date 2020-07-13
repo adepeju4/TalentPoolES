@@ -36,7 +36,7 @@ forgotPasswordForm.addEventListener('submit', (e) => {
   const email = forgotPasswordForm.querySelector('input').value;
 
   axios
-    .post('/v1/auth/forgot-password', {
+    .post('https://api.lancers.app/v1/auth/forgot-password', {
       email: email,
     })
     .then((res) => responseHandler(res))
