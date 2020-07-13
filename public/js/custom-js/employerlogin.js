@@ -130,7 +130,7 @@ function errorHandler(err) {
 
 // Function to send user data to API
 async function sendData(userData) {
-  const url = "https://api.lancers.app/v1/auth/employer-login";
+  const url = "/v1/auth/employer-login";
 
   try {
     const res = axios({
