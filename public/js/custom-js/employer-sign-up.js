@@ -1,24 +1,24 @@
-const individualForm = document.getElementById("individualForm"),
-  firstName = document.getElementById("firstName"),
-  lastName = document.getElementById("lastName"),
-  email = document.getElementById("email"),
-  password = document.getElementById("password"),
-  confirmPassword = document.getElementById("confirmPassword"),
-  phoneNo = document.getElementById("phoneNo"),
-  submitBtn = document.getElementById("submitBtn");
+/* eslint-disable no-undef */
+const individualForm = document.getElementById('individualForm');
+const firstName = document.getElementById('firstName');
+const lastName = document.getElementById('lastName');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const confirmPassword = document.getElementById('confirmPassword');
+const phoneNo = document.getElementById('phoneNo');
+const submitBtn = document.getElementById('submitBtn');
 
-const orgForm = document.getElementById("orgForm"),
-  orgName = document.getElementById("orgName"),
-  orgEmail = document.getElementById("orgEmail"),
-  orgPassword = document.getElementById("orgPassword"),
-  confirmOrgPassword = document.getElementById("confirmOrgPassword"),
-  orgSubmitBtn = document.getElementById("orgSubmitBtn"),
-  // employerType = document.getElementById("employerType"),
-  alert = document.getElementById("alert"),
-  alertMessage = document.getElementById("alertMessage");
+const orgForm = document.getElementById('orgForm');
+const orgName = document.getElementById('orgName');
+const orgEmail = document.getElementById('orgEmail');
+const orgPassword = document.getElementById('orgPassword');
+const confirmOrgPassword = document.getElementById('confirmOrgPassword');
+const orgSubmitBtn = document.getElementById('orgSubmitBtn');
+// employerType = document.getElementById("employerType"),
+const alert = document.getElementById('alert');
+const alertMessage = document.getElementById('alertMessage');
 
-//Define github and google variable for individual and organization
-
+// Define github and google variable for individual and organization
 
 // object for storing validation status (variable)
 let validated = {};
@@ -26,36 +26,36 @@ let validated = {};
 // show alert
 function showAlert(message) {
   alertMessage.innerText = message;
-  alert.classList.remove("d-none");
+  alert.classList.remove('d-none');
   setTimeout(() => {
-    alert.classList.add("d-none");
+    alert.classList.add('d-none');
   }, 6000);
 }
 
 // Show input error message
 function showError(input, message) {
   const parent = input.parentElement;
-  input.classList.add("is-invalid");
-  let error = parent.querySelector("div");
-  error.className = "invalid-feedback";
-  error.innerText = input.value !== "" ? message : "";
+  input.classList.add('is-invalid');
+  let error = parent.querySelector('div');
+  error.className = 'invalid-feedback';
+  error.innerText = input.value !== '' ? message : '';
   validated[input.id] = false;
 }
 
 // clear error message
 function clearError(input) {
   const parent = input.parentElement;
-  input.classList.remove("is-invalid");
-  input.classList.remove("is-valid");
-  const error = parent.querySelector("div");
-  error.innerText = "";
+  input.classList.remove('is-invalid');
+  input.classList.remove('is-valid');
+  const error = parent.querySelector('div');
+  error.innerText = '';
 }
 
 function showRequired(input, message) {
   const parent = input.parentElement;
-  const error = parent.querySelector("div");
-  input.classList.add("is-invalid");
-  error.className = "invalid-feedback";
+  const error = parent.querySelector('div');
+  input.classList.add('is-invalid');
+  error.className = 'invalid-feedback';
   error.innerText = message;
   validated[input.id] = false;
 }
@@ -63,8 +63,8 @@ function showRequired(input, message) {
 // Show success outline
 function showSuccess(input) {
   const parent = input.parentElement;
-  input.classList.remove("is-invalid");
-  input.classList.add("is-valid");
+  input.classList.remove('is-invalid');
+  input.classList.add('is-valid');
   validated[input.id] = true;
 }
 
@@ -75,7 +75,7 @@ function checkEmail(input) {
   if (re.test(input.value.trim())) {
     showSuccess(input);
   } else if (input.value.length > 0) {
-    showError(input, "Email is not valid.");
+    showError(input, 'Email is not valid.');
   }
 }
 
@@ -85,8 +85,8 @@ function checkName(input) {
 
   if (re.test(input.value)) {
     checkLength(input, 2);
-  } else if (input.value !== "") {
-    showError(input, "Please enter a valid name");
+  } else if (input.value !== '') {
+    showError(input, 'Please enter a valid name');
   } else {
     clearError(input);
   }
@@ -99,22 +99,22 @@ function checkPhone(input) {
   const length = input.value.length;
   if (length > 10 && length < 16) {
     if (!regex.test(input.value.trim())) {
-      showError(input, "Please enter a valid phone number");
+      showError(input, 'Please enter a valid phone number');
       // showError(input, "Phone number must begin with 0");
     } else {
       showSuccess(input);
     }
   } else if (/\D/.test(input.value.trim())) {
-    showError(input, "Phone number must only contain digits");
+    showError(input, 'Phone number must only contain digits');
   } else {
-    showError(input, "Phone number must be 11 to 15 digits");
+    showError(input, 'Phone number must be 11 to 15 digits');
   }
 }
 
 // Check Required fields
 function checkRequired(inputArr) {
   inputArr.forEach(function (input) {
-    if (input.value.trim() === "") {
+    if (input.value.trim() === '') {
       showRequired(input, `${getFieldName(input)} is required`);
     }
   });
@@ -128,12 +128,12 @@ function checkLength(input, min, max = 30) {
   if (input.value.length < min) {
     showError(
       input,
-      `${getFieldName(input)} must have at least ${min} characters`
+      `${getFieldName(input)} must have at least ${min} characters`,
     );
   } else if (input.value.length > max) {
     showError(
       input,
-      `${getFieldName(input)} must have less than ${max + 1} characters`
+      `${getFieldName(input)} must have less than ${max + 1} characters`,
     );
   } else {
     showSuccess(input);
@@ -144,22 +144,22 @@ function checkLength(input, min, max = 30) {
 function getFieldName(input) {
   const fieldName = input.id.charAt(0).toUpperCase().concat(input.id.slice(1));
   switch (fieldName) {
-    case "LastName":
-      return "Last Name";
-    case "FirstName":
-      return "First Name";
-    case "ConfirmPassword":
-      return "Password Confirmation";
-    case "PhoneNo":
-      return "Phone Number";
-    case "OrgName":
-      return "Organization Name";
-    case "OrgEmail":
-      return "Organization Email";
-    case "OrgPassword":
-      return "Password";
-    case "ConfirmOrgPassword":
-      return "Password Confirmation";
+    case 'LastName':
+      return 'Last Name';
+    case 'FirstName':
+      return 'First Name';
+    case 'ConfirmPassword':
+      return 'Password Confirmation';
+    case 'PhoneNo':
+      return 'Phone Number';
+    case 'OrgName':
+      return 'Organization Name';
+    case 'OrgEmail':
+      return 'Organization Email';
+    case 'OrgPassword':
+      return 'Password';
+    case 'ConfirmOrgPassword':
+      return 'Password Confirmation';
     default:
       return fieldName;
   }
@@ -176,7 +176,7 @@ function checkPassword(input) {
     if (!regex.test(input.value)) {
       showError(
         input,
-        "Weak Password: password must include a capital letter, a symbol and a number"
+        'Weak Password: password must include a capital letter, a symbol and a number',
       );
     } else if (regex.test(input.value)) {
       showSuccess(input);
@@ -184,7 +184,7 @@ function checkPassword(input) {
   } else {
     showError(
       input,
-      "Password must be at least 8 characters long and include  a number, upper and lowercase letters"
+      'Password must be at least 8 characters long and include  a number, upper and lowercase letters',
     );
   }
 }
@@ -193,7 +193,7 @@ function checkPassword(input) {
 function checkPasswordsMatch(input1, input2) {
   if (input1.value && input2.value) {
     if (input1.value !== input2.value) {
-      showError(input2, "Passwords do not match");
+      showError(input2, 'Passwords do not match');
     } else {
       showSuccess(input2);
     }
@@ -201,7 +201,7 @@ function checkPasswordsMatch(input1, input2) {
 }
 
 // event listeners
-firstName.addEventListener("input", () => {
+firstName.addEventListener('input', () => {
   clearError(firstName);
 
   setTimeout(() => {
@@ -209,7 +209,7 @@ firstName.addEventListener("input", () => {
   }, 1000);
 });
 
-lastName.addEventListener("input", () => {
+lastName.addEventListener('input', () => {
   clearError(lastName);
 
   setTimeout(() => {
@@ -217,9 +217,9 @@ lastName.addEventListener("input", () => {
   }, 1000);
 });
 
-email.addEventListener("input", () => {
+email.addEventListener('input', () => {
   clearError(email);
-  if (email.value !== "") {
+  if (email.value !== '') {
     setTimeout(() => {
       checkEmail(email);
     }, 1000);
@@ -228,10 +228,10 @@ email.addEventListener("input", () => {
   }
 });
 
-phoneNo.addEventListener("input", () => {
+phoneNo.addEventListener('input', () => {
   clearError(phoneNo);
   setTimeout(() => {
-    if (phoneNo.value !== "") {
+    if (phoneNo.value !== '') {
       checkPhone(phoneNo);
     } else {
       clearError(phoneNo);
@@ -239,9 +239,9 @@ phoneNo.addEventListener("input", () => {
   }, 1000);
 });
 
-password.addEventListener("input", () => {
+password.addEventListener('input', () => {
   clearError(password);
-  if (password.value !== "") {
+  if (password.value !== '') {
     setTimeout(() => {
       checkPassword(password);
       checkPasswordsMatch(password, confirmPassword);
@@ -251,9 +251,9 @@ password.addEventListener("input", () => {
   }
 });
 
-confirmPassword.addEventListener("input", () => {
+confirmPassword.addEventListener('input', () => {
   clearError(confirmPassword);
-  if (confirmPassword.value !== "") {
+  if (confirmPassword.value !== '') {
     setTimeout(() => {
       checkPasswordsMatch(password, confirmPassword);
     }, 1000);
@@ -262,24 +262,22 @@ confirmPassword.addEventListener("input", () => {
   }
 });
 
-confirmPassword.addEventListener("blur", () => {
+confirmPassword.addEventListener('blur', () => {
   clearError(confirmPassword);
-  if (confirmPassword.value !== "") {
+  if (confirmPassword.value !== '') {
     checkPasswordsMatch(password, confirmPassword);
   } else {
     clearError(confirmPassword);
   }
 });
 
-
-
 // form submissions
 
-individualForm.addEventListener("submit", (e) => {
+individualForm.addEventListener('submit', (e) => {
   e.preventDefault();
   validated = {};
-  alert.classList.add("d-none");
-  alertMessage.innerText = "";
+  alert.classList.add('d-none');
+  alertMessage.innerText = '';
 
   checkName(firstName);
   checkName(lastName);
@@ -298,14 +296,14 @@ individualForm.addEventListener("submit", (e) => {
 
   if (!Object.values(validated).includes(false)) {
     // clear object in localStorage then save unsent data to localStorage
-    localStorage.setItem("talentPool", "");
+    localStorage.setItem('talentPool', '');
     localStorage.setItem(
-      "talentPool",
+      'talentPool',
       JSON.stringify({
         firstName: firstName.value.trim(),
         lastName: lastName.value.trim(),
         phoneNo: phoneNo.value.trim(),
-      })
+      }),
     );
 
     const formData = {
@@ -314,80 +312,81 @@ individualForm.addEventListener("submit", (e) => {
     };
 
     const signupEmployer = () => {
-      let email = document.getElementById("email").value
-      let password = document.getElementById("password").value
+      let email = document.getElementById('email').value;
+      let password = document.getElementById('password').value;
       axios({
         method: 'POST',
-        url: 'https://api.lancers.app/v1/auth/employer-signup',
+        url: '/v1/auth/employer-signup',
         data: {
           email: email,
-          password: password
-        }
+          password: password,
+        },
       })
-      .then((res) => {
-        document.getElementById("submitBtn").innerText = 'Sign Up'
-        let ok = 'success'
-        if(res.data.status === ok) {
-          $('#exampleModal').modal();
-        } else {
-          document.getElementById("submitBtn").innerText = 'Sign Up';
-          showAlert(res.error)
-        }
-      })
-      .catch((err) => {
-          if(err.response.status === 403) {
+        .then((res) => {
+          document.getElementById('submitBtn').innerText = 'Sign Up';
+          let ok = 'success';
+          if (res.data.status === ok) {
+            $('#exampleModal').modal();
+          } else {
+            document.getElementById('submitBtn').innerText = 'Sign Up';
+            showAlert(res.error);
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 403) {
             // console.log('responded with error', err.response.status)
-            document.getElementById("submitBtn").innerText = 'Sign Up'
-            showAlert('Email already exist!')
-          } else if(err.response.status === 400) {
-            if(email === '') {
-              document.getElementById("submitBtn").innerText = 'Sign Up'
-              showAlert('Email cannot be empty')
+            document.getElementById('submitBtn').innerText = 'Sign Up';
+            showAlert('Email already exist!');
+          } else if (err.response.status === 400) {
+            if (email === '') {
+              document.getElementById('submitBtn').innerText = 'Sign Up';
+              showAlert('Email cannot be empty');
             } else {
-            document.getElementById("submitBtn").innerText = 'Sign Up'
-            // showAlert('Cannot have duplicate unique fields!')
+              document.getElementById('submitBtn').innerText = 'Sign Up';
+              // showAlert('Cannot have duplicate unique fields!')
             }
-          } else if(err.response.status === 500) {
-            document.getElementById("submitBtn").innerText = 'Sign Up'
-            showAlert('Oops! Something went wrong. Please try again.')
-          } else if(err.request) {
+          } else if (err.response.status === 500) {
+            console.log(err);
+            document.getElementById('submitBtn').innerText = 'Sign Up';
+            showAlert('Oops! Something went wrong. Please try again.');
+          } else if (err.request) {
             // console.log('issue with request')
           } else {
-            showAlert(err.message)
-            console.log('Error', err.message)
+            showAlert(err.message);
+            console.log('Error', err.message);
           }
-      })
+        });
     };
 
     // check for agreement to terms
     // add button loader
-    if (document.getElementById("termsPolicy").checked) {
+    if (document.getElementById('termsPolicy').checked) {
       submitBtn.disabled = true;
       submitBtn.innerHTML =
         '<span class="spinner-border spinner-border" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span>';
       setTimeout(() => {
-        if (alertMessage.innerText === "") {
+        if (alertMessage.innerText === '') {
           // showAlert(
           //   "Sign Up failed, please check your internet and try again."
           // );
         }
-        submitBtn.innerText = "Sign Up";
+        submitBtn.innerText = 'Sign Up';
         submitBtn.disabled = false;
       }, 20000);
 
       // submit form
       signupEmployer(formData);
     } else {
-      showAlert("Please accept the Terms and Conditions to proceed.");
+      showAlert('Please accept the Terms and Conditions to proceed.');
     }
   }
 });
 
-orgForm.addEventListener("submit", (e) => {
+orgForm.addEventListener('submit', (e) => {
   e.preventDefault();
   validated = {};
-  alert.classList.add("d-none");
-  alertMessage.innerText = "";
+  alert.classList.add('d-none');
+  alertMessage.innerText = '';
 
   checkName(orgName);
   checkEmail(orgEmail);
@@ -396,10 +395,10 @@ orgForm.addEventListener("submit", (e) => {
   checkRequired([orgName, orgEmail, orgPassword, confirmOrgPassword]);
 
   if (!Object.values(validated).includes(false)) {
-    localStorage.setItem("talentPool", "");
+    localStorage.setItem('talentPool', '');
     localStorage.setItem(
-      "talentPool",
-      JSON.stringify({ orgName: orgName.value.trim() })
+      'talentPool',
+      JSON.stringify({ orgName: orgName.value.trim() }),
     );
 
     const formData = {
@@ -408,125 +407,116 @@ orgForm.addEventListener("submit", (e) => {
     };
 
     const signupOrgEmployer = async () => {
-      let orgEmail = document.getElementById("orgEmail").value
-      let orgPassword = document.getElementById("orgPassword").value
+      let orgEmail = document.getElementById('orgEmail').value;
+      let orgPassword = document.getElementById('orgPassword').value;
       axios({
         method: 'POST',
-        url: 'https://api.lancers.app/v1/auth/employer-signup',
+        url: '/v1/auth/employer-signup',
         data: {
           email: orgEmail,
-          password: orgPassword
-        }
+          password: orgPassword,
+        },
       })
-      .then((res) => {
-        document.getElementById("orgSubmitBtn").innerText = 'Sign Up'
-        let ok = 'success'
-        if(res.data.status === ok) {
-          $('#exampleModal').modal();
-        } else {
-          document.getElementById("orgSubmitBtn").innerText = 'Sign Up';
-          showAlert(res.error)
-        }
-      })
-      .catch((err) => {
-          if(err.response.status === 403) {
+        .then((res) => {
+          document.getElementById('orgSubmitBtn').innerText = 'Sign Up';
+          let ok = 'success';
+          if (res.data.status === ok) {
+            $('#exampleModal').modal();
+          } else {
+            document.getElementById('orgSubmitBtn').innerText = 'Sign Up';
+            showAlert(res.error);
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 403) {
             // console.log('responded with error', err.response.status)
-            document.getElementById("orgSubmitBtn").innerText = 'Sign Up'
-            showAlert('Email already exist!')
-          } else if(err.response.status === 400) {
-            if(email === '') {
-              document.getElementById("orgSubmitBtn").innerText = 'Sign Up'
-              showAlert('Email cannot be empty')
+            document.getElementById('orgSubmitBtn').innerText = 'Sign Up';
+            showAlert('Email already exist!');
+          } else if (err.response.status === 400) {
+            if (email === '') {
+              document.getElementById('orgSubmitBtn').innerText = 'Sign Up';
+              showAlert('Email cannot be empty');
             } else {
-            document.getElementById("orgSubmitBtn").innerText = 'Sign Up'
-            // showAlert('Cannot have duplicate unique fields!')
+              document.getElementById('orgSubmitBtn').innerText = 'Sign Up';
+              // showAlert('Cannot have duplicate unique fields!')
             }
-          } else if(err.response.status === 500) {
-            document.getElementById("orgSubmitBtn").innerText = 'Sign Up'
-            showAlert('Oops! Something went wrong. Please try again.')
-          } else if(err.request) {
+          } else if (err.response.status === 500) {
+            document.getElementById('orgSubmitBtn').innerText = 'Sign Up';
+            showAlert('Oops! Something went wrong. Please try again.');
+          } else if (err.request) {
             // console.log('issue with request')
           } else {
-            showAlert(err.message)
-            console.log('Error', err.message)
+            showAlert(err.message);
+            console.log('Error', err.message);
           }
-      })
+        });
     };
 
     // check for agreement to terms
     // add button loader
-    if (document.getElementById("orgTerms").checked) {
+    if (document.getElementById('orgTerms').checked) {
       orgSubmitBtn.disabled = true;
       orgSubmitBtn.innerHTML =
         '<span class="spinner-border spinner-border" role="status" aria-hidden="true"></span><span class="sr-only">Loading...</span>';
       setTimeout(() => {
-        if (alertMessage.innerText === "") {
+        if (alertMessage.innerText === '') {
           // showAlert(
           //   "Sign Up failed, please check your internet and try again."
           // );
         }
-        orgSubmitBtn.innerText = "Sign Up";
+        orgSubmitBtn.innerText = 'Sign Up';
         orgSubmitBtn.disabled = false;
       }, 20000);
 
       // submit form
       signupOrgEmployer(formData);
     } else {
-      showAlert("Please accept the Terms and Conditions to proceed.");
+      showAlert('Please accept the Terms and Conditions to proceed.');
     }
   }
 });
 
+// Social auth implementation
+// githubSubmit.addEventListener('click', (e) => {
+//   const signupEmployerGithub = async () => {
+//     const API_URL = '/v1/auth/github';
 
-//Social auth implementation
-githubSubmit.addEventListener("click", (e) => {
+//     const res = await fetch(API_URL, {
+//       method: 'GET',
+//       //mode: "no-cors",
+//       //body: JSON.stringify(formData),
+//       headers: {
+//         'Content-type': 'application/json; charset=UTF-8',
+//         'User-Agent': 'Developers Lancers',
+//       },
+//       redirect: 'follow',
+//     });
 
-  const signupEmployerGithub = async () => {
-    const API_URL = "https://api.lancers.app/v1/auth/github";
+//     const data = await res.json();
+//     console.log(data);
+// if (data) {
+//   document.getElementById("githubID").innerText = "Sign up with GitHub";
+//   document.getElementById("githubID").disabled = false;
+// }
+// try {
+//   if (data.status === "success") {
+//     $("#exampleModal").modal();
+//   } else if (data.status === "error") {
+//     const message =
+//       data.error === "Someone has already registered this email"
+//         ? "Email already exists"
+//         : data.error === "Phone number already exist"
+//           ? "Phone number already exists"
+//           : data.error;
+//     showAlert(message);
+//   }
+// } catch (error) {
+//   showAlert(error);
+// }
+// };
 
-    const res = await fetch(API_URL, {
-      method: "GET",
-      //mode: "no-cors",
-      //body: JSON.stringify(formData),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        "User-Agent": "Developers Lancers",
-      },
-      redirect: "follow",
-    });
-
-    const data = await res.json();
-    console.log(data)
-    // if (data) {
-    //   document.getElementById("githubID").innerText = "Sign up with GitHub";
-    //   document.getElementById("githubID").disabled = false;
-    // }
-    // try {
-    //   if (data.status === "success") {
-    //     $("#exampleModal").modal();
-    //   } else if (data.status === "error") {
-    //     const message =
-    //       data.error === "Someone has already registered this email"
-    //         ? "Email already exists"
-    //         : data.error === "Phone number already exist"
-    //           ? "Phone number already exists"
-    //           : data.error;
-    //     showAlert(message);
-    //   }
-    // } catch (error) {
-    //   showAlert(error);
-    // }
-  };
-
-
-  signupEmployerGithub();
-});
-googleSubmit.addEventListener("click", (e) => {
-
-});
-githubSubmitOrg.addEventListener("click", (e) => {
-
-});
-googleSubmitOrg.addEventListener("click", (e) => {
-
-});
+// signupEmployerGithub();
+// });
+// googleSubmit.addEventListener('click', (e) => {});
+// githubSubmitOrg.addEventListener('click', (e) => {});
+// googleSubmitOrg.addEventListener('click', (e) => {});

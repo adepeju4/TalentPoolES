@@ -305,7 +305,7 @@
                 token: token
             }
             console.log(userData)
-            axios.post('https://api.lancers.app/v1/auth/google', userData)
+            axios.post('/v1/auth/google', userData)
                 .then(data => {
                     let decodedData = JSON.parse(atob(data.data.data.token.split('.')[1]))
                     const userData = {

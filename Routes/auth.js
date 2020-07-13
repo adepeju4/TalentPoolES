@@ -11,12 +11,12 @@ const {
   resendVerificationLink,
   updatePassword,
   superAdminLogin,
-} = require('../Controllers/auth');
+} = require('../controllers/auth');
 
 const {
   create,
   verifyEmail,
-} = require('../Controllers/employee/employee-signup');
+} = require('../controllers/employee/employee-signup');
 
 const router = express.Router();
 router.post('/employee-signup', UserValidation.validateUser, create);
@@ -24,11 +24,7 @@ router.post('/employer-signup', UserValidation.validateUser, registerEmployer);
 router.post('/admin-login', UserValidation.validateLogin, userLogin);
 router.post('/employer-login', UserValidation.validateLogin, userLogin);
 router.post('/employee-login', UserValidation.validateLogin, userLogin);
-router.post(
-  '/forgot-password',
-  UserValidation.resendVerificationLink,
-  forgotPassword,
-);
+router.post('/forgot-password', forgotPassword);
 router.post('/superadmin-login', UserValidation.validateLogin, superAdminLogin);
 router.put(
   '/reset-password/:resettoken',

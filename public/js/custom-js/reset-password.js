@@ -9,7 +9,7 @@ resetPassword.addEventListener('submit', async (e) => {
   let newPassword = document.getElementById('password').value;
   let confirmPassword = document.getElementById('confirmPassword').value; // Compare passwords
   if (newPassword === confirmPassword) {
-    const url = `https://api.lancers.app/v1/auth/reset-password/${resetToken}`;
+    const url = `/v1/auth/reset-password/${resetToken}`;
     try {
       const res = await axios.put(
         url,
@@ -18,7 +18,7 @@ resetPassword.addEventListener('submit', async (e) => {
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
           },
-        }
+        },
       );
 
       if (res.data.status === 'success') {

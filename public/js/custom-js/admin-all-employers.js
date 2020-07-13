@@ -1,28 +1,27 @@
 $(document).ready(function () {
-
-  const token = localStorage.getItem("tpAuth");
+  const token = localStorage.getItem('tpAuth');
   // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluNkBnbWFpbC5jb20iLCJ1c2VySWQiOiJiZWVjYThiYi01NzJiLTRiNzgtYjE0ZS1jOGY2Yjk4ODcwOTYiLCJ1c2VyUm9sZSI6IlJPTC1BRE1JTiIsInVzZXJUeXBlSWQiOm51bGwsImlhdCI6MTU5NDMyNTE0MSwiZXhwIjoxNTk0NDExNTQxfQ.T6LUrZMsedVVk0Az_FluYppQsXwmaUoxpBJ5cbWDKSU";
 
   var individuals_array = [];
   var company_array = [];
 
   axios
-    .get("https://api.lancers.app/v1/employer/all", {
+    .get('/v1/employer/all', {
       headers: {
-        Authorization: "Bearer " + token,
+        Authorization: 'Bearer ' + token,
       },
     })
-    .then(({data}) => {
+    .then(({ data }) => {
       data.data.data.forEach((data) => {
-        if (data.employer_type.toLowerCase() == "individual") {
+        if (data.employer_type.toLowerCase() == 'individual') {
           individuals_array.push(data.employer_type);
         }
 
-        if (data.employer_type.toLowerCase() == "company") {
+        if (data.employer_type.toLowerCase() == 'company') {
           company_array.push(data.employer_type);
         }
 
-        document.querySelector("#table-body-data").innerHTML += `
+        document.querySelector('#table-body-data').innerHTML += `
         <tr>
         <td
         id="employer_id"
@@ -46,7 +45,7 @@ $(document).ready(function () {
           id="employer_name"
           >${data.employer_name}
           <p class="sub-text" id="employer_date_joined">
-            ${data.createdAt.split("T")[0]}
+            ${data.createdAt.split('T')[0]}
           </p></span>
       </td>
       <td class="align-middle talent-text-muted hide_content"
@@ -58,7 +57,7 @@ $(document).ready(function () {
                     class="align-middle talent-text-muted hide_content"
                     id="employer_date_joined2"
                   >
-                  ${data.createdAt.split("T")[0]}
+                  ${data.createdAt.split('T')[0]}
                   </td>
                   <td class="align-middle">
                     <button class="btn talent-btn-dark" id="employer_verified">
@@ -89,11 +88,11 @@ $(document).ready(function () {
                 </tr>
         `;
       });
-      $("#individuals_count").html(individuals_array.length)
-      $("#company_count").html(company_array.length)
+      $('#individuals_count').html(individuals_array.length);
+      $('#company_count').html(company_array.length);
     })
     .catch((err) => {
-      console.log(err)
-      throw new Error(err)
+      console.log(err);
+      throw new Error(err);
     });
 });

@@ -16,13 +16,12 @@ const sequelize = new Sequelize(
     host: process.env.TALENT_POOL_DB_HOST,
     dialect: process.env.TALENT_POOL_DB_DIALECT,
     logging: false,
-  }
+  },
 );
-
 fs.readdirSync(__dirname)
   .filter(
     (file) =>
-      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
+      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js',
   )
   .forEach((file) => {
     const model = sequelize.import(path.join(__dirname, file));

@@ -1,107 +1,107 @@
-const editProfileForm = document.querySelector("#edit-profile");
-const firstName = document.querySelector("#first-name");
-const lastName = document.querySelector("#last-name");
-const email = document.querySelector("#email");
+const editProfileForm = document.querySelector('#edit-profile');
+const firstName = document.querySelector('#first-name');
+const lastName = document.querySelector('#last-name');
+const email = document.querySelector('#email');
 // const location = document.querySelector('#location')
 // const track = document.querySelector('#track')
-const cv = document.querySelector("#cv");
-const backend = document.querySelector("backend");
-const frontend = document.querySelector("frontend");
-const mobile = document.querySelector("mobile");
-const design = document.querySelector("design");
-const addSkillForm = document.querySelector('#add-skills')
+const cv = document.querySelector('#cv');
+const backend = document.querySelector('backend');
+const frontend = document.querySelector('frontend');
+const mobile = document.querySelector('mobile');
+const design = document.querySelector('design');
+const addSkillForm = document.querySelector('#add-skills');
 // const userInformation = JSON.parse(localStorage.getItem("user"));
 
-const userInformation = JSON.parse(localStorage.getItem("tpAuth"));
+const userInformation = JSON.parse(localStorage.getItem('tpAuth'));
 
 const employeename = document.querySelector('.employeename');
 const employeeName = document.querySelector('.employeeName');
 const employeeSkill = document.querySelector('.employeeSkill');
 const employeeLocation = document.querySelector('.employeeLocation');
 const employeeEmail = document.querySelector('.employeeEmail');
-const employeeProfilePhoto = document.querySelector('.employeeProfilePhoto')
+const employeeProfilePhoto = document.querySelector('.employeeProfilePhoto');
 
 if (!userInformation) {
   alert('Error! User Information not found, please sign in again.');
   location.href = '/employee-sign-in';
 }
 
-const errorMessage = document.querySelector("#error-message");
-const successMessage = document.querySelector("#success-message");
+const errorMessage = document.querySelector('#error-message');
+const successMessage = document.querySelector('#success-message');
 
 if (editProfileForm) {
-  editProfileForm.addEventListener("submit", onsubmit);
+  editProfileForm.addEventListener('submit', onsubmit);
 }
 
 function onsubmit(e) {
   e.preventDefault();
 
   if (!firstName.value || !lastName.value || !email.value) {
-    console.log("error");
-    errorMessage.innerHTML = "Please fill all the necessary details";
-    if (errorMessage.style.display == "none") {
-      errorMessage.style.display = "block";
+    console.log('error');
+    errorMessage.innerHTML = 'Please fill all the necessary details';
+    if (errorMessage.style.display == 'none') {
+      errorMessage.style.display = 'block';
     }
     setTimeout(function () {
-      errorMessage.style.display = "none";
+      errorMessage.style.display = 'none';
     }, 2000);
   } else {
-    console.log("yeah");
-    errorMessage.innerHTML = "Your details are being uploaded";
-    if (successMessage.style.display == "none") {
-      successMessage.style.display = "block";
+    console.log('yeah');
+    errorMessage.innerHTML = 'Your details are being uploaded';
+    if (successMessage.style.display == 'none') {
+      successMessage.style.display = 'block';
     }
     setTimeout(function () {
-      $("#staticBackdrop").modal("hide");
-      successMessage.style.display = "none";
+      $('#staticBackdrop').modal('hide');
+      successMessage.style.display = 'none';
     }, 2000);
     // window.location.replace('/employee_profile.html')
   }
 }
 
-function getEmployeeDetails(){
-  let employeeUrl = `https://api.lancers.app/v1/employee/profile/${userInformation.userTypeId}`
+function getEmployeeDetails() {
+  let employeeUrl = `/v1/employee/profile/${userInformation.userTypeId}`;
   axios({
     method: 'GET',
     url: employeeUrl,
     headers: {
-      "Content-Type": "application/json; charset=UTF-8",
+      'Content-Type': 'application/json; charset=UTF-8',
       Authorization: `Bearer ${userInformation.token}`,
-    }
-  }).then(data => {
-    console.log(data.data.data.employee)
-    employeename.innerHTML = data.data.data.employee.first_name
-    employeeName.innerHTML = data.data.data.employee.first_name + data.data.data.employee.last_name
+    },
+  }).then((data) => {
+    console.log(data.data.data.employee);
+    employeename.innerHTML = data.data.data.employee.first_name;
+    employeeName.innerHTML =
+      data.data.data.employee.first_name + data.data.data.employee.last_name;
 
-    if(data.data.data.employee.email === undefined){
-      employeeEmail.innerHTML = 'No email set'
+    if (data.data.data.employee.email === undefined) {
+      employeeEmail.innerHTML = 'No email set';
     } else {
-      employeeEmail.innerHTML = data.data.data.employee.email
-    }
-
-    if(data.data.data.employee.skill === undefined){
-      employeeSkill.innerHTML = 'No skill set'
-    } else {
-      employeeSkill.innerHTML = data.data.data.employee.skill
+      employeeEmail.innerHTML = data.data.data.employee.email;
     }
 
-    if(data.data.data.employee.location === undefined){
-      employeeLocation.innerHTML = 'No location set'
+    if (data.data.data.employee.skill === undefined) {
+      employeeSkill.innerHTML = 'No skill set';
     } else {
-      employeeLocation.innerHTML = data.data.data.employee.location
+      employeeSkill.innerHTML = data.data.data.employee.skill;
     }
-    
-    employeeProfilePhoto.src = data.data.data.employee.picture_url
-    
-  })
+
+    if (data.data.data.employee.location === undefined) {
+      employeeLocation.innerHTML = 'No location set';
+    } else {
+      employeeLocation.innerHTML = data.data.data.employee.location;
+    }
+
+    employeeProfilePhoto.src = data.data.data.employee.picture_url;
+  });
 }
 
-getEmployeeDetails()
+getEmployeeDetails();
 
 Filevalidation = () => {
-  const fi = document.getElementById("file");
-  const size = document.querySelector("#size");
-  const fileMessage = document.querySelector("#file-message");
+  const fi = document.getElementById('file');
+  const size = document.querySelector('#size');
+  const fileMessage = document.querySelector('#file-message');
   // Check if any file is selected.
   if (fi.files.length > 0) {
     for (let i = 0; i <= fi.files.length - 1; i++) {
@@ -110,20 +110,20 @@ Filevalidation = () => {
       // The size of the file.
       if (file >= 2048) {
         fileMessage.innerHTML =
-          "File too Big, please select a file less than 600kb ";
+          'File too Big, please select a file less than 600kb ';
         setTimeout(function () {
-          fileMessage.style.display = "none";
+          fileMessage.style.display = 'none';
         }, 4000);
         // alert("File too Big, please select a file less than 4mb");
       } else if (file < 550) {
         fileMessage.innerHTML =
-          "File too small, please select a file greater than 2mb";
+          'File too small, please select a file greater than 2mb';
         // alert("File too small, please select a file greater than 2mb");
         setTimeout(function () {
-          fileMessage.style.display = "none";
+          fileMessage.style.display = 'none';
         }, 4000);
       } else {
-        document.getElementById("size").innerHTML = "<b>" + file + "</b> KB";
+        document.getElementById('size').innerHTML = '<b>' + file + '</b> KB';
       }
     }
   }
@@ -131,42 +131,47 @@ Filevalidation = () => {
 
 const userInfo = JSON.parse(atob(userInformation.token.split('.')[1]));
 
-addSkillForm.addEventListener("submit", (e) => {
+addSkillForm.addEventListener('submit', (e) => {
   e.preventDefault();
   let skill = addSkillForm.querySelector('input').value;
-  // const skillUrl = `https://api.lancers.app/v1/employee/skill/${userInfo.userTypeId}`;
-  const skillUrl = `https://api.lancers.app/v1/employee/skill`;
+  // const skillUrl = `/v1/employee/skill/${userInfo.userTypeId}`;
+  const skillUrl = `/v1/employee/skill`;
 
   axios({
     method: 'POST',
     url: skillUrl,
     headers: {
-      "Content-Type": "application/json; charset=UTF-8",
+      'Content-Type': 'application/json; charset=UTF-8',
       Authorization: `Bearer ${userInformation.token}`,
     },
-    data: JSON.stringify({"skill_description": skill, employee_id: userInfo.userTypeId})
-  }).then(({ data }) => {
-    if (data.status === 'success') {
-      $('#exampleModal').modal('hide');
-      skill = '';
-      alert('Skill Added');
-      buildList([{skill_description:data.data.skill_description, id: data.data.id}]);
-    } else {
-      alert('Skill not added, please try again.');
-    }
-  
-  }).catch(e => {
-    alert(e.message);
-  });
-})
+    data: JSON.stringify({
+      skill_description: skill,
+      employee_id: userInfo.userTypeId,
+    }),
+  })
+    .then(({ data }) => {
+      if (data.status === 'success') {
+        $('#exampleModal').modal('hide');
+        skill = '';
+        alert('Skill Added');
+        buildList([
+          { skill_description: data.data.skill_description, id: data.data.id },
+        ]);
+      } else {
+        alert('Skill not added, please try again.');
+      }
+    })
+    .catch((e) => {
+      alert(e.message);
+    });
+});
 
 let myArray = [];
 
 function buildList(data) {
-  const list = document.querySelector(".lists");
+  const list = document.querySelector('.lists');
 
   data.forEach((skills) => {
-
     const row = `
       <li>
         <div class="list-item">
@@ -190,25 +195,25 @@ function buildList(data) {
   });
 }
 
-  async function getAllSkillsForIndividuals() {
-    const skillUrl = `https://api.lancers.app/v1/employee/${userInfo.userTypeId}/skill`;
-    try {
-      const { data } = await axios({
-        method: 'GET',
-        url: skillUrl,
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ${userInformation.token}`,
-        },
-      });
-      
-      if (data.status === 'success') {
-        myArray = data.data;
-        buildList(myArray);
-      }
-    } catch (error) {
-      // alert("Opps! An error seems to have occured. Try again later. Thanks!");
+async function getAllSkillsForIndividuals() {
+  const skillUrl = `/v1/employee/${userInfo.userTypeId}/skill`;
+  try {
+    const { data } = await axios({
+      method: 'GET',
+      url: skillUrl,
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${userInformation.token}`,
+      },
+    });
+
+    if (data.status === 'success') {
+      myArray = data.data;
+      buildList(myArray);
     }
+  } catch (error) {
+    // alert("Opps! An error seems to have occured. Try again later. Thanks!");
   }
+}
 
 getAllSkillsForIndividuals();

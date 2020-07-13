@@ -1,77 +1,366 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
-<head>
+  <head>
     <%- include('../Templates/head') %>
-     <!-- BEGIN Pre-requisites -->
-     <script src="https://apis.google.com/js/platform.js" async defer></script>
-     <meta name="google-signin-client_id"
-         content="1044934768285-u3jh3gs8dv4u21uie9o32cbu0gv2erh4.apps.googleusercontent.com">
-     <!-- END Pre-requisites -->
-    <link rel="stylesheet" href="../styles/custom-css/employee-signUp.css">
-    <link rel="stylesheet" href="styles/custom-css/employee-signUp-signIn.css">
-        <!-- BEGIN Pre-requisites -->
-        <script src="https://apis.google.com/js/platform.js" async defer></script>
-        <meta name="google-signin-client_id"
-            content="1044934768285-u3jh3gs8dv4u21uie9o32cbu0gv2erh4.apps.googleusercontent.com">
-        <!-- END Pre-requisites -->
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
-</head>
+    <!-- BEGIN Pre-requisites -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta
+      name="google-signin-client_id"
+      content="1044934768285-u3jh3gs8dv4u21uie9o32cbu0gv2erh4.apps.googleusercontent.com"
+    />
+    <!-- END Pre-requisites -->
+    <link rel="stylesheet" href="../styles/custom-css/employee-signUp.css" />
+    <link
+      rel="stylesheet"
+      href="styles/custom-css/employee-signUp-signIn.css"
+    />
+    <!-- BEGIN Pre-requisites -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta
+      name="google-signin-client_id"
+      content="1044934768285-u3jh3gs8dv4u21uie9o32cbu0gv2erh4.apps.googleusercontent.com"
+    />
+    <!-- END Pre-requisites -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
 
-<body>
-  <!-- NAV-BAR -->
-  <%- include('../Templates/header') %>
+  <body>
+    <!-- NAV-BAR -->
+    <%- include('../Templates/header') %>
 
-  <main class="container-fluid">
-    <div class="row">
-        <div class="col-lg-5 d-none d-lg-block signUp-img-div" >
-            <!-- <img src="img/employee_signup_image.png" alt="employee sign up image"> -->
+    <main class="container-fluid">
+      <div class="row">
+        <div class="col-lg-5 d-none d-lg-block signUp-img-div">
+          <!-- <img src="img/employee_signup_image.png" alt="employee sign up image"> -->
         </div>
 
-        <div class=" col-lg-7 p-lg-5">  
-            <div class="container p-md-0 pl-lg-5 pr-lg-3">
+        <div class="col-lg-7 p-lg-5">
+          <div class="container p-md-0 pl-lg-5 pr-lg-3">
             <div class="py-5">
-                <p class="bigTitle">We make it easy for you to connect with top organizations</p>
-                <p class="smallTitle">Create a profile to join the 1,000+ graduates to get connected with pontential employers.</p>
+              <p class="bigTitle">
+                We make it easy for you to connect with top organizations
+              </p>
+              <p class="smallTitle">
+                Create a profile to join the 1,000+ graduates to get connected
+                with pontential employers.
+              </p>
             </div>
- 
+
             <section>
-                <div class="alert alert-danger d-none" style="padding: 0.5rem 1rem;" id="alert" role="alert">
-                    <p class="my-0" id="alertMessage"></p>
+              <div
+                class="alert alert-danger d-none"
+                style="padding: 0.5rem 1rem;"
+                id="alert"
+                role="alert"
+              >
+                <p class="my-0" id="alertMessage"></p>
+              </div>
+              <div>
+                <div
+                  class="nav signup-nav row mb-4"
+                  id="nav-tab"
+                  role="tablist"
+                >
+                  <a
+                    class="col-6 text-center nav-item nav-link active intern-sign"
+                    id="intern-tab"
+                    data-toggle="tab"
+                    href="#intern"
+                    role="tab"
+                    aria-controls="intern"
+                    aria-selected="true"
+                    >Sign up as HNG Intern</a
+                  >
+                  <a
+                    class="col-6 text-center nav-item nav-link user-sign"
+                    id="new-user-tab"
+                    data-toggle="tab"
+                    href="#new-user"
+                    role="tab"
+                    aria-controls="new-user"
+                    aria-selected="false"
+                    >Sign up as a New User</a
+                  >
+                </div>
+              </div>
+
+              <div class="tab-content" id="nav-tabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="intern"
+                  role="tabpanel"
+                  aria-labelledby="intern-tab"
+                >
+                  <form class="needs-validation" novalidate>
+                    <div class="row">
+                      <div class="col-md mb-3">
+                        <label for="fname">First Name</label>
+                        <div class="input-group">
+                          <input
+                            name="fname"
+                            type="text"
+                            class="form-control w-100"
+                            id="fname"
+                            placeholder="e.g. John"
+                            required
+                          />
+                          <div id="invalid"></div>
+                        </div>
+                      </div>
+                      <div class="col-md mb-3">
+                        <label for="lname">Last Name</label>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control w-100"
+                            id="lname"
+                            placeholder="e.g. Doe"
+                            required
+                          />
+                          <div id="invalidL"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="row">
+                                <div class="col-md mb-3">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
+                                    <div class="invalid-feedback">
+                                        Your valid email address is required.
+                                    </div>
+                                </div>
+                                <div class="col-md mb-3">
+                                    <label for="gradClass">Graduation Class</label>
+                                    <input type="number" class="form-control" id="gradClass" min="2013" max="2020" placeholder="e.g. 2020" required>
+                                    <div class="invalid-feedback">
+                                        Your Graduation Year is required as 4 digits.
+                                    </div>
+                                </div>
+                            </div>  -->
+
+                    <div class="row">
+                      <div class="col-md mb-3">
+                        <label for="email">Email</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="email"
+                          placeholder="example@gmail.com"
+                          required
+                        />
+                        <div id="invalidE"></div>
+                      </div>
+                      <div class="col-md mb-3">
+                        <label for="phone">Phone number</label>
+                        <input
+                          type="phone"
+                          class="form-control"
+                          id="phone"
+                          maxlength="16"
+                          placeholder="e.g. 08023414785"
+                          required
+                        />
+                        <div id="invalidP"></div>
+                      </div>
+                      <!-- <div class="col-md mb-3">
+                                    <label for="gradClass">Graduation Class</label>
+                                    <input type="number" class="form-control" id="gradClass" min="2013" max="2020" placeholder="e.g. 2020" required>
+                                    <div class="invalid-feedback">
+                                        Your Graduation Year is required as 4 digits.
+                                    </div>
+                                </div> -->
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md mb-3">
+                        <label for="password">Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="password"
+                          minlength="8"
+                          placeholder="at least 8 characters"
+                          required
+                        />
+                        <div id="invalidPass"></div>
+                      </div>
+                      <div class="col-md mb-3">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="confirmPassword"
+                          minlength="8"
+                          placeholder="at least 8 characters"
+                          required
+                        />
+                        <div id="invalidPass2"></div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col my-1">
+                        <div class="custom-control custom-checkbox mr-sm-2">
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            id="terms-policy"
+                          />
+                          <label class="custom-control-label" for="terms-policy"
+                            >I agree to the
+                            <a href="#" class="login-link"
+                              >Terms and Conditions</a
+                            ></label
+                          >
+                          <div id="invalidCheck"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="loader"></div>
+                    <div class="row">
+                      <div class="col">
+                        <button
+                          class="btn btn-primary btn-block btn-color py-3 mt-3 mb-4 text-white"
+                          id="signup-btn"
+                          type="submit"
+                          data-toggle=""
+                          data-target="#exampleModal"
+                        >
+                          Sign Up
+                        </button>
+                      </div>
+
+                      <!-- Modal -->
+                      <div
+                        class="modal fade"
+                        id="exampleModal"
+                        tabindex="-1"
+                        role="dialog"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div
+                              class="modal-body d-flex flex-column align-items-center"
+                            >
+                              <div>
+                                <img src="../img/logo.svg" alt="logo" />
+                              </div>
+                              <svg
+                                width="50"
+                                height="49"
+                                viewBox="0 0 50 49"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M5 18.4L25 30.9L45 18.4L25 5.9L5 18.4ZM50 18.4V43.4C50 44.7261 49.4732 45.9979 48.5355 46.9355C47.5979 47.8732 46.3261 48.4 45 48.4H5C3.67392 48.4 2.40215 47.8732 1.46447 46.9355C0.526784 45.9979 0 44.7261 0 43.4V18.4C0 16.575 0.975 15 2.425 14.125L25 0L47.575 14.125C49.025 15 50 16.575 50 18.4Z"
+                                  fill="#337AB7"
+                                />
+                              </svg>
+
+                              <h2>Registration Successful !</h2>
+                              <p class="text-center">
+                                A verification link has been sent to your email
+                                address, kindly check your mail and click to
+                                verify your account.
+                              </p>
+
+                              <button
+                                id="login-btn"
+                                type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                              >
+                                Sign In
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                  <div class="row">
+                    <div class="col-md-5 d-none d-md-block">
+                      <hr />
+                    </div>
+                    <div class="col-md-2">
+                      <p class="text-center">OR</p>
+                    </div>
+                    <div class="col-md-5 d-none d-md-block">
+                      <hr />
+                    </div>
                   </div>
-                <div>
-                    <div class="nav signup-nav row mb-4" id="nav-tab" role="tablist">
-                        <a class="col-6 text-center nav-item nav-link active intern-sign" id="intern-tab" data-toggle="tab" href="#intern" role="tab" aria-controls="intern" aria-selected="true">Sign up as HNG Intern</a>
-                        <a class="col-6 text-center nav-item nav-link user-sign" id="new-user-tab" data-toggle="tab" href="#new-user" role="tab" aria-controls="new-user" aria-selected="false">Sign up as a New User</a>
-                    </div>
+
+                  <div class="row mt-2 justify-content-center">
+                    <!-- <div class="col-md">
+                                <button type="button" class="btn  btn-block  github-btn py-3 my-1"><i
+                                        class="fab fa-github pr-2"></i>Login with Github</button>
+                            </div> -->
+
+                    <div
+                      class="g-signin2"
+                      data-height="50"
+                      data-width="300"
+                      data-theme="dark"
+                      data-user="ROL-EMPLOYEE"
+                      data-longtitle="true"
+                      data-onsuccess="onSignIn"
+                    ></div>
+                  </div>
+
+                  <p class="text-center py-2 mt-3 mb-4">
+                    Already have an account with us?
+                    <a href="/employee-sign-in" class="login-link">Sign In.</a>
+                  </p>
                 </div>
 
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="intern" role="tabpanel" aria-labelledby="intern-tab">
-                        <form class="needs-validation" novalidate>
-                            <div class="row">
-                                <div class="col-md mb-3">
-                                    <label for="fname">First Name</label>
-                                    <div class="input-group">
-                                        <input name="fname" type="text" class="form-control w-100" id="fname" placeholder="e.g. John" required>
-                                        <div id="invalid">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md mb-3">
-                                    <label for="lname">Last Name</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control w-100" id="lname" placeholder="e.g. Doe" required>
-                                        <div id="invalidL">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-        
-                            <!-- <div class="row">
+                <div
+                  class="tab-pane fade"
+                  id="new-user"
+                  role="tabpanel"
+                  aria-labelledby="new-user-tab"
+                >
+                  <form class="needs-validation" novalidate>
+                    <div class="row">
+                      <div class="col-md mb-3">
+                        <label for="fname">First Name</label>
+                        <div class="input-group">
+                          <input
+                            name="fname"
+                            type="text"
+                            class="form-control w-100"
+                            id="fnameV2"
+                            placeholder="e.g. John"
+                            required
+                          />
+                          <div id="invalidV2"></div>
+                        </div>
+                      </div>
+                      <div class="col-md mb-3">
+                        <label for="lname">Last Name</label>
+                        <div class="input-group">
+                          <input
+                            type="text"
+                            class="form-control w-100"
+                            id="lnameV2"
+                            placeholder="e.g. Doe"
+                            required
+                          />
+                          <div id="invalidLV2"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="row">
                                 <div class="col-md mb-3">
                                     <label for="email">Email</label>
                                     <input type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
@@ -88,293 +377,235 @@
                                 </div>
                             </div>  -->
 
-                            <div class="row">
-                                <div class="col-md mb-3">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
-                                    <div id="invalidE">
-                                    </div>
-                                </div>
-                                <div class="col-md mb-3">
-                                    <label for="phone">Phone number</label>
-                                    <input type="phone" class="form-control" id="phone" maxlength="16" placeholder="e.g. 08023414785" required>
-                                    <div id="invalidP">
-                                    </div>
-                                </div>
-                                <!-- <div class="col-md mb-3">
+                    <div class="row">
+                      <div class="col-md mb-3">
+                        <label for="email">Email</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="emailV2"
+                          placeholder="example@gmail.com"
+                          required
+                        />
+                        <div id="invalidEV2"></div>
+                      </div>
+                      <div class="col-md mb-3">
+                        <label for="phone">Phone number</label>
+                        <input
+                          type="phone"
+                          class="form-control"
+                          id="phoneV2"
+                          maxlength="11"
+                          placeholder="e.g. 08023414785"
+                          required
+                        />
+                        <div id="invalidPV2"></div>
+                      </div>
+                      <!-- <div class="col-md mb-3">
                                     <label for="gradClass">Graduation Class</label>
                                     <input type="number" class="form-control" id="gradClass" min="2013" max="2020" placeholder="e.g. 2020" required>
                                     <div class="invalid-feedback">
                                         Your Graduation Year is required as 4 digits.
                                     </div>
                                 </div> -->
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md mb-3">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" minlength="8" placeholder="at least 8 characters" required>
-                                    <div id="invalidPass">
-                                    </div>
-                                </div>
-                                <div class="col-md mb-3">
-                                    <label for="confirmPassword">Confirm Password</label>
-                                    <input type="password" class="form-control" id="confirmPassword" minlength="8" placeholder="at least 8 characters" required>
-                                    <div id="invalidPass2">
-                                    </div>
-                                </div>
-                            </div> 
-        
-                            <div class="row">
-                                <div class="col my-1">
-                                    <div class="custom-control custom-checkbox mr-sm-2" >
-                                        <input type="checkbox" class="custom-control-input" id="terms-policy">
-                                        <label class="custom-control-label" for="terms-policy">I agree to the <a href="#" class="login-link">Terms and Conditions</a></label>
-                                        <div id="invalidCheck">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="loader"></div>
-                            <div class="row">
-                                <div class="col">
-                                    <button class="btn btn-primary btn-block btn-color py-3 mt-3 mb-4 text-white" id="signup-btn" type="submit" data-toggle="" data-target="#exampleModal">Sign Up</button>
-                                </div>
-            
-                                 <!-- Modal -->
-                                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                        <div class="modal-body d-flex flex-column align-items-center">
-                                            <div>
-                                                <img src="../img/logo.svg" alt="logo" />
-                                            </div>
-                                            <svg width="50" height="49" viewBox="0 0 50 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5 18.4L25 30.9L45 18.4L25 5.9L5 18.4ZM50 18.4V43.4C50 44.7261 49.4732 45.9979 48.5355 46.9355C47.5979 47.8732 46.3261 48.4 45 48.4H5C3.67392 48.4 2.40215 47.8732 1.46447 46.9355C0.526784 45.9979 0 44.7261 0 43.4V18.4C0 16.575 0.975 15 2.425 14.125L25 0L47.575 14.125C49.025 15 50 16.575 50 18.4Z" fill="#337AB7"/>
-                                            </svg>
-            
-                                            <h2>Registration Successful !</h2>
-                                            <p class="text-center"> A verification link has been sent to your email address, kindly check your mail and click to verify your account.</p>
-                                                
-                                            <button id="login-btn" type="button" class="btn btn-secondary" data-dismiss="modal">Sign In</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-        
-                        <div class="row">
-                            <div class="col-md-5 d-none d-md-block">
-                                <hr>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center">OR</p>
-                            </div>
-                            <div class="col-md-5 d-none d-md-block">
-                                <hr>
-                            </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md mb-3">
+                        <label for="password">Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="passwordV2"
+                          minlength="8"
+                          placeholder="at least 8 characters"
+                          required
+                        />
+                        <div id="invalidPassV2"></div>
+                      </div>
+                      <div class="col-md mb-3">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input
+                          type="password"
+                          class="form-control"
+                          id="confirmPasswordV2"
+                          minlength="8"
+                          placeholder="at least 8 characters"
+                          required
+                        />
+                        <div id="invalidPass2V2"></div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col my-1">
+                        <div class="custom-control custom-checkbox mr-sm-2">
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            id="terms-policyV2"
+                          />
+                          <label
+                            class="custom-control-label"
+                            for="terms-policyV2"
+                            >I agree to the
+                            <a href="#" class="login-link"
+                              >Terms and Conditions</a
+                            ></label
+                          >
+                          <div id="invalidCheckV2"></div>
                         </div>
-        
-                        <div class="row mt-2 justify-content-center">
-                            <!-- <div class="col-md">
+                      </div>
+                    </div>
+                    <div class="loaderV2"></div>
+                    <div class="row">
+                      <div class="col">
+                        <button
+                          class="btn btn-primary btn-block btn-color py-3 mt-3 mb-4"
+                          id="signup-btnV2"
+                          type="submit"
+                          data-toggle=""
+                          data-target="#exampleModalV2"
+                        >
+                          Sign Up
+                        </button>
+                      </div>
+
+                      <!-- Modal -->
+                      <div
+                        class="modal fade"
+                        id="ModalV2"
+                        tabindex="-1"
+                        role="dialog"
+                        aria-labelledby="exampleModalLabel2"
+                        aria-hidden="true"
+                      >
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div
+                              class="modal-body d-flex flex-column align-items-center"
+                            >
+                              <div>
+                                <img src="../img/logo.svg" alt="logo" />
+                              </div>
+                              <svg
+                                width="50"
+                                height="49"
+                                viewBox="0 0 50 49"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M5 18.4L25 30.9L45 18.4L25 5.9L5 18.4ZM50 18.4V43.4C50 44.7261 49.4732 45.9979 48.5355 46.9355C47.5979 47.8732 46.3261 48.4 45 48.4H5C3.67392 48.4 2.40215 47.8732 1.46447 46.9355C0.526784 45.9979 0 44.7261 0 43.4V18.4C0 16.575 0.975 15 2.425 14.125L25 0L47.575 14.125C49.025 15 50 16.575 50 18.4Z"
+                                  fill="#337AB7"
+                                />
+                              </svg>
+
+                              <h2>Registration Successful !</h2>
+                              <p class="text-center">
+                                A verification link has been sent to your email
+                                address, kindly check your mail and click to
+                                verify your account.
+                              </p>
+
+                              <button
+                                id="login-btnV2"
+                                type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                                action=""
+                              >
+                                Sign In
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                  <div class="row">
+                    <div class="col-md-5 d-none d-md-block">
+                      <hr />
+                    </div>
+                    <div class="col-md-2">
+                      <p class="text-center">OR</p>
+                    </div>
+                    <div class="col-md-5 d-none d-md-block">
+                      <hr />
+                    </div>
+                  </div>
+
+                  <div class="row mt-2 justify-content-center">
+                    <!-- <div class="col-md">
                                 <button type="button" class="btn  btn-block  github-btn py-3 my-1"><i
                                         class="fab fa-github pr-2"></i>Login with Github</button>
                             </div> -->
-                         
 
-                            <div  class="g-signin2" data-height="50" data-width="300" data-theme="dark" data-user="ROL-EMPLOYEE" data-longtitle="true"
-                            data-onsuccess="onSignIn">
-                            </div>
-                        </div>
-        
-                        <p class="text-center py-2 mt-3 mb-4">Already have an account with us? <a href="/employee-sign-in" class="login-link">Sign In.</a></p>
-                    </div>
+                    <div
+                      class="g-signin2"
+                      data-height="50"
+                      data-width="300"
+                      data-theme="dark"
+                      data-user="ROL-EMPLOYEE"
+                      data-longtitle="true"
+                      data-onsuccess="onSignIn"
+                    ></div>
+                  </div>
 
-                    <div class="tab-pane fade" id="new-user" role="tabpanel" aria-labelledby="new-user-tab">
-                        <form class="needs-validation" novalidate>
-                            <div class="row">
-                                <div class="col-md mb-3">
-                                    <label for="fname">First Name</label>
-                                    <div class="input-group">
-                                        <input name="fname" type="text" class="form-control w-100" id="fnameV2" placeholder="e.g. John" required>
-                                        <div id="invalidV2">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md mb-3">
-                                    <label for="lname">Last Name</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control w-100" id="lnameV2" placeholder="e.g. Doe" required>
-                                        <div id="invalidLV2">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-        
-                            <!-- <div class="row">
-                                <div class="col-md mb-3">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
-                                    <div class="invalid-feedback">
-                                        Your valid email address is required.
-                                    </div>
-                                </div>
-                                <div class="col-md mb-3">
-                                    <label for="gradClass">Graduation Class</label>
-                                    <input type="number" class="form-control" id="gradClass" min="2013" max="2020" placeholder="e.g. 2020" required>
-                                    <div class="invalid-feedback">
-                                        Your Graduation Year is required as 4 digits.
-                                    </div>
-                                </div>
-                            </div>  -->
-
-                            <div class="row">
-                                <div class="col-md mb-3">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="emailV2" placeholder="example@gmail.com" required>
-                                    <div id="invalidEV2">
-                                    </div>
-                                </div>
-                                <div class="col-md mb-3">
-                                    <label for="phone">Phone number</label>
-                                    <input type="phone" class="form-control" id="phoneV2" maxlength="11" placeholder="e.g. 08023414785" required>
-                                    <div id="invalidPV2">
-                                    </div>
-                                </div>
-                                <!-- <div class="col-md mb-3">
-                                    <label for="gradClass">Graduation Class</label>
-                                    <input type="number" class="form-control" id="gradClass" min="2013" max="2020" placeholder="e.g. 2020" required>
-                                    <div class="invalid-feedback">
-                                        Your Graduation Year is required as 4 digits.
-                                    </div>
-                                </div> -->
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md mb-3">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="passwordV2" minlength="8" placeholder="at least 8 characters" required>
-                                    <div id="invalidPassV2">
-                                    </div>
-                                </div>
-                                <div class="col-md mb-3">
-                                    <label for="confirmPassword">Confirm Password</label>
-                                    <input type="password" class="form-control" id="confirmPasswordV2" minlength="8" placeholder="at least 8 characters" required>
-                                    <div id="invalidPass2V2">
-                                    </div>
-                                </div>
-                            </div> 
-        
-                            <div class="row">
-                                <div class="col my-1">
-                                    <div class="custom-control custom-checkbox mr-sm-2" >
-                                        <input type="checkbox" class="custom-control-input" id="terms-policyV2">
-                                        <label class="custom-control-label" for="terms-policyV2">I agree to the <a href="#" class="login-link">Terms and Conditions</a></label>
-                                        <div id="invalidCheckV2">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="loaderV2"></div>
-                            <div class="row">
-                                <div class="col">
-                                    <button class="btn btn-primary btn-block btn-color py-3 mt-3 mb-4" id="signup-btnV2" type="submit" data-toggle="" data-target="#exampleModalV2">Sign Up</button>
-                                </div>
-            
-                                 <!-- Modal -->
-                                 <div class="modal fade" id="ModalV2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                        <div class="modal-body d-flex flex-column align-items-center">
-                                            <div>
-                                                <img src="../img/logo.svg" alt="logo" />
-                                            </div>
-                                            <svg width="50" height="49" viewBox="0 0 50 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M5 18.4L25 30.9L45 18.4L25 5.9L5 18.4ZM50 18.4V43.4C50 44.7261 49.4732 45.9979 48.5355 46.9355C47.5979 47.8732 46.3261 48.4 45 48.4H5C3.67392 48.4 2.40215 47.8732 1.46447 46.9355C0.526784 45.9979 0 44.7261 0 43.4V18.4C0 16.575 0.975 15 2.425 14.125L25 0L47.575 14.125C49.025 15 50 16.575 50 18.4Z" fill="#337AB7"/>
-                                            </svg>
-            
-                                            <h2>Registration Successful !</h2>
-                                            <p class="text-center"> A verification link has been sent to your email address, kindly check your mail and click to verify your account.</p>
-                                                
-                                            <button id="login-btnV2" type="button" class="btn btn-secondary" data-dismiss="modal" action="">Sign In</button>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-
-                        <div class="row">
-                            <div class="col-md-5 d-none d-md-block">
-                                <hr>
-                            </div>
-                            <div class="col-md-2">
-                                <p class="text-center">OR</p>
-                            </div>
-                            <div class="col-md-5 d-none d-md-block">
-                                <hr>
-                            </div>
-                        </div>
-        
-                        <div class="row mt-2 justify-content-center">
-                            <!-- <div class="col-md">
-                                <button type="button" class="btn  btn-block  github-btn py-3 my-1"><i
-                                        class="fab fa-github pr-2"></i>Login with Github</button>
-                            </div> -->
-                         
-
-                            <div  class="g-signin2" data-height="50" data-width="300" data-theme="dark" data-user="ROL-EMPLOYEE" data-longtitle="true"
-                            data-onsuccess="onSignIn">
-                        </div>
-                        </div>
-                       
-        
-                        <p class="text-center py-2 mt-3 mb-4">Already have an account with us? <a href="/employee-sign-in" class="login-link">Sign In.</a></p>
-                    </div>
+                  <p class="text-center py-2 mt-3 mb-4">
+                    Already have an account with us?
+                    <a href="/employee-sign-in" class="login-link">Sign In.</a>
+                  </p>
                 </div>
+              </div>
             </section>
+          </div>
         </div>
-    </div>
-    </div>
-</main>
+      </div>
+    </main>
 
-<script>
-    async function onSignIn(googleUser) {
+    <script>
+      async function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
         const role_id = document.querySelector('.g-signin2').dataset.user;
-        var token = googleUser.getAuthResponse().id_token
+        var token = googleUser.getAuthResponse().id_token;
         var auth2 = gapi.auth2.getAuthInstance();
         auth2.disconnect();
         const userData = {
-            role_id,
-            token: token
-        }
-        axios.post('https://api.lancers.app/v1/auth/google', userData)
-            .then(data => {
-                let decodedData = JSON.parse(atob(data.data.data.token.split('.')[1]))
-                const userData = {
-                    ...decodedData,
-                    token: data.data.data.token
-                }
-                localStorage.setItem("tpAuth", JSON.stringify(userData));
-                if (decodedData.userTypeId == null) {
-                    window.location.replace('/employee-profileCreation')
-                } else {
-                    window.location.replace('/employee-dashboard')
-                }
-            }).catch(function (error) {
-                console.log(error);
-                window.location.replace('/')
-            });
-    }
-    
-  </script>
+          role_id,
+          token: token,
+        };
+        axios
+          .post('/v1/auth/google', userData)
+          .then((data) => {
+            let decodedData = JSON.parse(
+              atob(data.data.data.token.split('.')[1]),
+            );
+            const userData = {
+              ...decodedData,
+              token: data.data.data.token,
+            };
+            localStorage.setItem('tpAuth', JSON.stringify(userData));
+            if (decodedData.userTypeId == null) {
+              window.location.replace('/employee-profileCreation');
+            } else {
+              window.location.replace('/employee-dashboard');
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+            window.location.replace('/');
+          });
+      }
+    </script>
 
-<%- include('../Templates/footer') %>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
-<script type="module" src="js/custom-js/employee-signUp.js"></script>
-<script src="https://kit.fontawesome.com/5f006efe51.js" crossorigin="anonymous"></script>
-
-</body>
+    <%- include('../Templates/footer') %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script type="module" src="js/custom-js/employee-signUp.js"></script>
+    <script
+      src="https://kit.fontawesome.com/5f006efe51.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

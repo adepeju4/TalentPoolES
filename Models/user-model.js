@@ -73,6 +73,31 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
+      login_notif: {
+        type: DataTypes.ENUM,
+        values: ['0', '1'],
+        allowNull: false,
+        defaultValue: '1',
+      },
+      profile_notif: {
+        type: DataTypes.ENUM,
+        values: ['0', '1'],
+        allowNull: false,
+        defaultValue: '1',
+      },
+      verification_notif: {
+        type: DataTypes.ENUM,
+        values: ['0', '1'],
+        allowNull: false,
+        defaultValue: '1',
+      },
+      newsletter_notif: {
+        type: DataTypes.ENUM,
+        values: ['0', '1'],
+        allowNull: false,
+        defaultValue: '1',
+      },
+
       resetPasswordToken: DataTypes.STRING,
       resetPasswordExpire: 'BIGINT',
       // deleted_at: {

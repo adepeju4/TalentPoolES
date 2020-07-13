@@ -1,37 +1,37 @@
 //starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
-  "use strict";
+  'use strict';
 
   window.addEventListener(
-    "load",
+    'load',
     function () {
       // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName("needs-validation");
+      var forms = document.getElementsByClassName('needs-validation');
 
       // Loop over them and prevent submission
       Array.prototype.filter.call(forms, function (form) {
         form.addEventListener(
-          "submit",
+          'submit',
           function (event) {
             if (form.checkValidity() === false) {
               event.preventDefault();
               event.stopPropagation();
             }
-            form.classList.add("was-validated");
+            form.classList.add('was-validated');
           },
-          false
+          false,
         );
       });
     },
-    false
+    false,
   );
 })();
 
 // Function to show alert message
 function showMessage(message, alertType) {
-  const alert = document.createElement("div");
-  alert.id = "parentdiv";
-  const parent = document.querySelector("#parent");
+  const alert = document.createElement('div');
+  alert.id = 'parentdiv';
+  const parent = document.querySelector('#parent');
 
   alert.innerHTML = `
    <div class="alert ${alertType}" role="alert" id="error">
@@ -44,13 +44,13 @@ function showMessage(message, alertType) {
 
 // Function to remove alert message
 function removeMessage() {
-  let error = document.getElementById("parentdiv");
+  let error = document.getElementById('parentdiv');
   error.remove();
 }
 
 // loads button while http respnse hasn't been recieved
 function loadButton() {
-  const buttonDiv = document.querySelector("#button-div");
+  const buttonDiv = document.querySelector('#button-div');
   buttonDiv.innerHTML = `
 	<button class="btn btn-primary btn-color w-100 py-3 m-2" type="button" disabled>
 		<span class="spinner-border spinner-border" role="status" aria-hidden="true"></span>
@@ -61,7 +61,7 @@ function loadButton() {
 
 // Function to revert back to sign in button upon recieving http response
 function revertButton() {
-  const buttonDiv = document.querySelector("#button-div");
+  const buttonDiv = document.querySelector('#button-div');
   buttonDiv.innerHTML = `
    <button class="btn btn-primary btn-block btn-color py-3 mt-3 mb-4" id="signup-btn" type="submit">Sign In</button>
    `;
@@ -71,31 +71,31 @@ function revertButton() {
 function responseHandler(res) {
   revertButton();
 
-  if (res.status === "error") {
-    showMessage(res.error, "alert-danger");
+  if (res.status === 'error') {
+    showMessage(res.error, 'alert-danger');
   }
 
-  if (res.status === "success") {
-    showMessage("Sign in successful. Re-directing...", "alert-success");
+  if (res.status === 'success') {
+    showMessage('Sign in successful. Re-directing...', 'alert-success');
     const value = {
       token: res.data.token,
       userId: res.data.user,
     };
-    localStorage.setItem("tpAuth", JSON.stringify(value));
+    localStorage.setItem('tpAuth', JSON.stringify(value));
 
     // Decoding token
-    const response = JSON.parse(atob(value.token.split(".")[1]));
+    const response = JSON.parse(atob(value.token.split('.')[1]));
 
     // Redirecting
     if (!response.userTypeId) {
       // Redirect to correct profile creation page
       if (/admin/gi.test(response.userRole)) {
-        showMessage("Redirecting to Admin Dashboard", "alert-success");
-        window.location.assign("/admin-dashboard");
+        showMessage('Redirecting to Admin Dashboard', 'alert-success');
+        window.location.assign('/admin-dashboard');
       } else if (/employer/gi.test(response.userRole)) {
-        window.location.assign("/employer-type");
+        window.location.assign('/employer-type');
       } else {
-        window.location.assign("/employee-profileCreation");
+        window.location.assign('/employee-profileCreation');
       }
     } else {
       // Add userTypeId to to tpAuth in localStorage
@@ -105,13 +105,13 @@ function responseHandler(res) {
         userTypeId: response.userTypeId,
         userRole: response.userRole,
       };
-      localStorage.setItem("tpAuth", JSON.stringify(newValue));
+      localStorage.setItem('tpAuth', JSON.stringify(newValue));
       if (/employee/gi.test(newValue.userRole)) {
-        window.location.assign("/employee-dashboard");
+        window.location.assign('/employee-dashboard');
         // console.log("employee; ", /employee/gi.test(newValue.userRole));
       } else if (/employer/gi.test(newValue.userRole)) {
-        showMessage("Redirecting to Employer Dashboard", "alert-success");
-        window.location.assign("/employer-dashboard");
+        showMessage('Redirecting to Employer Dashboard', 'alert-success');
+        window.location.assign('/employer-dashboard');
         // console.log("employer or admin; ", newValue.userRole, /employee/gi.test(newValue.userRole));
       }
     }
@@ -122,20 +122,20 @@ function errorHandler(err) {
   revertButton();
   // console.log(err);
   // showMessage("Sign In failed. Please try again", "alert-danger");
-  showMessage(err.error, "alert-danger");
+  showMessage(err.error, 'alert-danger');
 }
 
 // Function to send user data to API
 async function sendData(userData) {
-  const url = "https://api.lancers.app/v1/auth/employee-login";
+  const url = '/v1/auth/employee-login';
 
   try {
     const res = axios({
-      method: "post",
+      method: 'post',
       url: url,
       data: userData,
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
     });
     return res;
@@ -145,11 +145,11 @@ async function sendData(userData) {
 }
 
 // Perform action on form submission
-form.addEventListener("submit", (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
 
-  const email = document.querySelector("#email"),
-    password = document.querySelector("#password");
+  const email = document.querySelector('#email'),
+    password = document.querySelector('#password');
 
   if (form.checkValidity() === true) {
     loadButton();
