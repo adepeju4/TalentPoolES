@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <%- include('../Templates/head') %>
-    <link rel="stylesheet" href="../styles/custom-css/employer-sign-in.css" />
+    <link rel="stylesheet" href="../styles/custom-css/employer-sign-in.css">
     <!-- BEGIN Pre-requisites -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta
-      name="google-signin-client_id"
-      content="1044934768285-u3jh3gs8dv4u21uie9o32cbu0gv2erh4.apps.googleusercontent.com"
-    />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <meta name="google-signin-client_id"
+        content="1044934768285-u3jh3gs8dv4u21uie9o32cbu0gv2erh4.apps.googleusercontent.com">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- END Pre-requisites -->
-  </head>
+</head>
 
-  <body>
+<body>
     <%- include('../Templates/header') %>
 
     <main class="container-fluid content-container">
@@ -96,93 +95,17 @@
                         </div>
                     </form>
 
-            <form
-              class="needs-validation"
-              method="POST"
-              action="/"
-              novalidate
-              id="form"
-            >
-              <div class="col-md mb-3 px-0">
-                <label for="email">Email</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  placeholder="example@gmail.com"
-                  required
-                />
-                <div class="invalid-feedback">
-                  Your valid email address is required.
-                </div>
-              </div>
-
-              <div class="col-md mb-3 px-0">
-                <label for="password">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  minlength="8"
-                  placeholder="at least 8 characters"
-                  required
-                />
-                <div class="invalid-feedback" style="width: 100%;">
-                  Your have not entered a correct password.
-                </div>
-              </div>
-
-              <div class="row px-3">
-                <div class="col my-1 px-0">
-                  <div class="custom-control custom-checkbox mr-sm-2">
-                    <input
-                      type="checkbox"
-                      class="custom-control-input"
-                      id="remember-me"
-                    />
-                    <label
-                      class="custom-control-label terms-policy"
-                      for="remember-me"
-                      >Remember me</label
-                    >
-                  </div>
-                </div>
-                <div class="col text-right px-0">
-                  <p>
-                    <a href="./recover-password" class="login-link"
-                      >Forgot Password?</a
-                    >
-                  </p>
-                </div>
-              </div>
-
-              <div class="row">
-                <div
-                  class="col d-flex align-items-center justify-content-center"
-                  id="button-div"
-                >
-                  <button
-                    class="btn btn-primary btn-block btn-color py-3 mt-3 mb-4"
-                    id="signup-btn"
-                    type="submit"
-                  >
-                    Sign In
-                  </button>
-                </div>
-              </div>
-            </form>
-
-            <div class="row">
-              <div class="col-md-5 d-none d-md-block">
-                <hr />
-              </div>
-              <div class="col-md-2">
-                <p class="text-center">OR</p>
-              </div>
-              <div class="col-md-5 d-none d-md-block">
-                <hr />
-              </div>
-            </div>
+                    <div class="row">
+                        <div class="col-md-5 d-none d-md-block">
+                            <hr>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="text-center">OR</p>
+                        </div>
+                        <div class="col-md-5 d-none d-md-block">
+                            <hr>
+                        </div>
+                    </div>
 
                     <div class="row mt-2 justify-content-center">
                         <div class="col-md">
@@ -209,24 +132,10 @@
     
                     <p class="text-center py-2">Don't have an account with us? <a href="/employer-sign-up"
 
-              <div
-                class="g-signin2"
-                data-height="50"
-                data-width="300"
-                data-theme="dark"
-                data-user="ROL-EMPLOYER"
-                data-longtitle="true"
-                data-onsuccess="onSignIn"
-              ></div>
+                            class="login-link">Sign Up.</a></p>
+                </div>
             </div>
-
-            <p class="text-center py-2">
-              Don't have an account with us?
-              <a href="/employee-sign-up" class="login-link">Sign Up.</a>
-            </p>
-          </div>
         </div>
-      </div>
     </main>
 
     <%- include('../Templates/footer') %>
@@ -239,14 +148,8 @@
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.disconnect();
             const userData = {
-              ...decodedData,
-              token: data.data.data.token,
-            };
-            localStorage.setItem('tpAuth', JSON.stringify(userData));
-            if (decodedData.userTypeId == null) {
-              window.location.replace('/employer-create-profile');
-            } else {
-              window.location.replace('/employee-dashboard');
+                role_id,
+                token: token
             }
             axios.post('https://api.lancers.app/v1/auth/google', userData)
                 .then(data => {
