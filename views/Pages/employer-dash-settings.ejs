@@ -4,10 +4,9 @@
 <head>
 
   <%- include('../Templates/dashboard-head') %>
-
+  <link rel="stylesheet" href="../styles/custom-css/employer-settings-modal.css">
   <link rel="stylesheet" href="../styles/custom-css/employer-dash-settings.css" />
   <script src="../js/custom-js/employer-authUP.js"></script>
-  <script src="../js/custom-js/axios.min.js"></script>
 </head>
 
 <body>
@@ -130,12 +129,12 @@
                       </div>
                       <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                         data-parent="#accordionExample">
-                        <div class="card-body general-btn">
+                        <div class="card-body general-btn" type="button" data-toggle="modal" data-target="#update-profile">
                           Update your Profile
                         </div>
                       </div>
                     </div>
-                    <div class="card border-left-0 border-right-0">
+                    <!-- <div class="card border-left-0 border-right-0">
                       <div class="card-header bg-white border-bottom-0 px-0" id="headingTwo">
                         <h2 class="mb-0">
                           <button id="account-btn" class="general-btn btn btn-block text-left collapsed px-0"
@@ -152,7 +151,7 @@
                           Update your Account Preferences
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="card border-left-0 border-right-0">
                       <div class="card-header bg-white border-bottom-0 px-0" id="headingThree">
                         <h2 class="mb-0">
@@ -166,12 +165,13 @@
                       </div>
                       <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
                         data-parent="#accordionExample">
-                        <div class="card-body general-btn">
+                        <div class="card-body general-btn" type="button" data-toggle="modal" data-target="#update-password">
                           Update your Login & Security
                         </div>
+
                       </div>
                     </div>
-                    <div class="card border-left-0 border-right-0 mb-5">
+                    <!-- <div class="card border-left-0 border-right-0 mb-5">
                       <div class="card-header bg-white border-bottom-0 px-0" id="headingThree">
                         <h2 class="mb-0">
                           <button id="accessibility-btn" class="general-btn btn btn-block text-left collapsed px-0"
@@ -188,7 +188,7 @@
                           Update your Accessibility
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                   <div
                     class="save-changes d-flex justify-content-lg-end align-items-end justify-content-center mt-5 mb-3">
@@ -204,14 +204,7 @@
                     <span class="hr">Appearance</span>
                   </h4>
                   <p class="mb-2">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                    sint occaecat cupidatat non proident, sunt in culpa qui
-                    officia deserunt mollit anim id est laborum.
+                    Set the display to fit your taste
                   </p>
                 </div>
 
@@ -319,9 +312,9 @@
                   </h4>
                   <div class="row">
                     <div class="col-12 col-md-12 col-lg-9 contact-us-container">
-                      <form id="contact-us" class="needs-validation" novalidate>
+                      <form action="#" class="needs-validation" novalidate>
                         <div class="input-group input-group-lg contact-us-input">
-                          <input type="text" id="cu-name" class="form-control input" required aria-label="Large"
+                          <input type="text" class="form-control input" required aria-label="Large"
                             placeholder="Your Name*" style="font-size: 16px;" />
                           <div class="valid-feedback">
                             good !
@@ -331,7 +324,7 @@
                           </div>
                         </div>
                         <div class="input-group input-group-lg contact-us-input">
-                          <input type="email" id="cu-email" class="form-control" required aria-label="Large" placeholder="Your Email*"
+                          <input type="email" class="form-control" required aria-label="Large" placeholder="Your Email*"
                             style="font-size: 16px;" />
                           <div class="valid-feedback">
                             good !
@@ -341,7 +334,7 @@
                           </div>
                         </div>
                         <div class="input-group input-group-lg contact-us-input">
-                          <input type="text" id="cu-subject" class="form-control" required aria-label="Large" placeholder="Subject..."
+                          <input type="text" class="form-control" required aria-label="Large" placeholder="Subject..."
                             style="font-size: 16px;" />
                           <div class="valid-feedback">
                             good !
@@ -352,7 +345,7 @@
                         </div>
                         <div class="input-group contact-us-input">
                           <label for="textarea" style="display: none;"></label>
-                          <textarea id="cu-textarea" rows="4" class="form-control" required
+                          <textarea id="textarea" rows="4" class="form-control" required
                             placeholder="Your Message..."></textarea>
                           <div class="valid-feedback">
                             good !
@@ -506,23 +499,23 @@
                       </h4>
                       <form>
                         <div class="form-group">
-                          <input type="text" id="ra-name" class="form-control border-primary"
+                          <input type="text" class="form-control border-primary" id="employer-name"
                             placeholder="Your Name*" />
                         </div>
                         <div class="form-group">
-                          <input type="email" id="ra-email" class="form-control border-primary"
+                          <input type="email" class="form-control border-primary" id="employer-email"
                             placeholder="Your Email*" />
                         </div>
                         <div class="form-group">
-                          <input type="text" id="ra-subject" class="form-control border-primary"
+                          <input type="text" class="form-control border-primary" id="report-abuse-msg-subject"
                             placeholder="Subject..." />
                         </div>
                         <div class="form-group">
-                          <textarea id="ra-textarea" class="form-control border-primary" id="report-abuse-msg" rows="3"
+                          <textarea class="form-control border-primary" id="report-abuse-msg" rows="3"
                             placeholder="Your Message..."></textarea>
                         </div>
                         <div class="form-group d-flex justify-content-center mt-4">
-                          <button style="background: #084482;" class="btn text-white" id="report-abuse" type="submit">
+                          <button style="background: #084482;" class="btn text-white" type="submit">
                             Send Message
                           </button>
                         </div>
@@ -537,6 +530,10 @@
       </div>
     </div>
   </div>
+
+ 
+  <%- include('./employer-change-password') %>
+  <%- include('./update-profile-modal') %>
 
   <!-- Optional JavaScript -->
   <script>
@@ -571,11 +568,11 @@
     });
   </script>
   <script src="../js/custom-js/side-nav.js"></script>
-  <script src="../js/custom-js/employer-settings.js"></script>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="../js/bootstrap-js/popper.js"></script>
   <script src="../js/bootstrap-js/jquery.js"></script>
   <script src="../js/bootstrap-js/bootstrap.js"></script>
+  <script src="/js/custom-js/employer-change-password.js"></script>
 </body>
 
 </html>
