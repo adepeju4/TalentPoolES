@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <%- include('../Templates/head') %>
-    <link rel="stylesheet" href="styles/custom-css/employee-signUp-signIn.css">
+    <link rel="stylesheet" href="/styles/custom-css/employee-signUp-signIn.css">
     <!-- BEGIN Pre-requisites -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id"
@@ -31,7 +31,7 @@
                     <div role="alert" class="alert alert-danger user-message user-message--error"><%= errorMessage %></div>
                 <% } %>
 
-                <form class="needs-validation" novalidate id="form" action="/employee-sign-in" method="POST">
+                <form class="needs-validation" novalidate id="form" action="/employee/login" method="POST">
 
                     <div class="col-md mb-3 px-0">
                         <label for="email">Email</label>

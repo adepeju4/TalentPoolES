@@ -9,8 +9,8 @@
      <meta name="google-signin-client_id"
          content="1044934768285-u3jh3gs8dv4u21uie9o32cbu0gv2erh4.apps.googleusercontent.com">
      <!-- END Pre-requisites -->
-    <link rel="stylesheet" href="../styles/custom-css/employee-signUp.css">
-    <link rel="stylesheet" href="styles/custom-css/employee-signUp-signIn.css">
+    <link rel="stylesheet" href="/styles/custom-css/employee-signUp.css">
+    <link rel="stylesheet" href="/styles/custom-css/employee-signUp-signIn.css">
         <!-- BEGIN Pre-requisites -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         <meta name="google-signin-client_id"
@@ -65,7 +65,7 @@
                       </div>
                       <% } } %>
                     <div class="tab-pane fade show active" id="intern" role="tabpanel" aria-labelledby="intern-tab">
-                        <form class="needs-validation" action="v1/auth/employee-signup" method="POST" novalidate>
+                        <form class="needs-validation" action="/employee/register" method="POST" novalidate>
                             <div class="row">
                                 <input type="hidden" name="_csrf" value="<%- csrfToken %>">
                                 <div class="col-md mb-3">

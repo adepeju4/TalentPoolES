@@ -6,11 +6,12 @@
 
     <body>
         <!-- NAV-BAR -->
-        <%- include('../Templates/employeeHeaderLogin', { route: '/employee-dashboard' }) %>
+        <%- include('../Templates/employeeHeaderLogin', { route: '/employee/dashboard' }) %>
         <!-- Navbar ends here -->
 
         <main>
-            <form id="employeeProfileCreation">
+            <form id="employeeProfileCreation" action="/employee/profile/create" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="mt-5">
                     <div class="container text-center">
                         <h5 class="heading-color ">Let’s get started with a few details about you </h5>
@@ -73,11 +74,11 @@
                         <div class="row mt-5 mobile-margin-fix1">
                             <div class="col-sm-6 col-lg-6 form-group">
                                 <label for="employeeFirstName">First Name</label>
-                                <input type="text" class="form-control em-input" id="employeeFirstName" placeholder="Timi">
+                                <input type="text" class="form-control em-input" id="employeeFirstName" name="firstName" placeholder="Timi">
                             </div>
                             <div class="col-sm-6 col-lg-6 form-group">
                                 <label for="employeeLastName">Last Name</label>
-                                <input type="text" class="form-control em-input" id="employeeLastName" placeholder="Tom">
+                                <input type="text" class="form-control em-input" id="employeeLastName" name="lastName" placeholder="Tom">
                             </div>
     
                         </div>
@@ -91,22 +92,22 @@
                             </div>
                             <div class="col-sm-6 col-lg-6 form-group">
                                 <label for="hngId">HNG ID</label>
-                                <input type="text" class="form-control em-input" id="hngId" value="None" placeholder="HNG ID" disabled>
+                                <input type="text" class="form-control em-input" id="hngId" name="hngId" value="None" placeholder="HNG ID" disabled>
                             </div>
                         </div>
                     </div>
     
                     <div class="row mt-5 mobile-margin-fix1">
-                        <div class="col-sm-6 col-lg-6 form-group">
+                        <!-- <div class="col-sm-6 col-lg-6 form-group">
                             <label for="employeeAge">Age</label>
                             <input type="number" class="form-control em-input" id="employeeAge" placeholder="Age">
-                        </div>
+                        </div> -->
                         <div class="col-sm-6 col-lg-6 form-group">
                             <label for="employeeAvailability">Availability</label>
-                            <select class="form-control em-input select" name="employeeAvailability" id="employeeAvailability">
+                            <select class="form-control em-input select" name="availability" id="employeeAvailability">
                                 <option value="Not-Available">Not-Available</option>
-                                <option value="on-site">On-site</option>
-                                <option value="remote">Remote</option>
+                                <option value="On-site">On-site</option>
+                                <option value="Remote">Remote</option>
                             </select>
                         </div>
                     </div>
@@ -114,17 +115,17 @@
                     <div class="row mt-5 mobile-margin-fix1">
                         <div class="col-sm-6 col-lg-6 form-group">
                             <label for="employeeDOB">DOB</label>
-                            <input type="date" class="form-control em-input" id="employeeDOB" placeholder="DOB">
+                            <input type="date" class="form-control em-input" id="employeeDOB" name="dateOfBirth" placeholder="DOB">
                         </div>
                         <div class="col-sm-6 col-lg-6 form-group">
                             <label for="employeeCV">Hosted CV Link</label>
-                            <input type="text" class="form-control em-input" id="employeeCV" placeholder="CV">
+                            <input type="text" class="form-control em-input" id="employeeCV" name="employeeCv" placeholder="CV">
                         </div>
                     </div>
 
                     <div class="col-sm-12 col-lg-6 form-group">
                         <label for="employeePhone">Phone Number</label>
-                        <input type="number" class="form-control em-input" id="employeePhone" placeholder="09022222222">
+                        <input type="number" class="form-control em-input" id="employeePhone" name="phoneNo" placeholder="09022222222">
                     </div>
     
                 </div>
@@ -143,9 +144,9 @@
             <div class="container-fluid custom-container">
                 <div class="row top justify-content-between">
                     <div class="col-md-3">
-                        <a href="../index.html">
+                        <a href="/index.html">
                             <div class="py-3">
-                                <img src="../../img/talentpool footer logo.svg" alt="talent pool logo">
+                                <img src="/img/talentpool footer logo.svg" alt="talent pool logo">
                             </div>
                         </a>
                         <p class="py-2">
@@ -214,9 +215,9 @@
             
 
         </script>
-        <script src="../js/bootstrap-js/jquery.js"></script>
-        <script src="../js/bootstrap-js/popper.js"></script>
-        <script src="../js/bootstrap-js/bootstrap.js"></script>
-        <script src="../js/custom-js/employee-profile-creation.js"></script>
+        <script src="/js/bootstrap-js/jquery.js"></script>
+        <script src="/js/bootstrap-js/popper.js"></script>
+        <script src="/js/bootstrap-js/bootstrap.js"></script>
+        <script src="/js/custom-js/employee-profile-creation.js"></script>
     </body>
 </html>

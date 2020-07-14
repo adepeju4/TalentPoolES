@@ -43,9 +43,12 @@ const uploadImageFunction = async (req, res) => {
     (error, result) => {
       if (result) {
         image = result.secure_url;
+        console.log(image);
         return image;
       }
-      return errorResMsg(res, 400, 'Image Upload Failed!, Kindly retry');
+      // return errorResMsg(res, 400, 'Image Upload Failed!, Kindly retry');
+      req.flash('error', 'Image Upload Failed!, Kindly retry');
+      return res.redirect('/employee/profile/create');
     },
   );
   return image;
@@ -55,7 +58,8 @@ const uploadImageFunction = async (req, res) => {
 exports.createProfile = async (req, res) => {
   const employeeId = uuid();
   const imageUrl = await uploadImageFunction(req, res);
-  console.log('url to image', imageUrl);
+  const { userId } = req.session;
+  console.log('session', req.session);
 
   const {
     firstName,
@@ -69,7 +73,6 @@ exports.createProfile = async (req, res) => {
     availability,
     dateOfBirth,
     employeeCv,
-    userId,
   } = req.body;
   const newBody = {
     first_name: firstName,
@@ -86,19 +89,21 @@ exports.createProfile = async (req, res) => {
     employee_id: employeeId,
     views: '0',
     employee_cv: employeeCv,
-    user_id: userId,
+    user_id: userId
   };
 
   try {
     // eslint-disable-next-line camelcase
-    const { user_id } = newBody;
-    const userQuery = await models.User.findOne({ where: { user_id } });
+    // const { user_id: } = req.session;
+    const userQuery = await models.User.findOne({ where: { user_id: userId } });
     if (!userQuery) {
-      return errorResMsg(res, 400, 'Invalid user id');
+      // return errorResMsg(res, 400, 'Invalid user id');
+      req.flash('error', 'Invalid user id');
+      return res.redirect('/employee/profile/create');
     }
 
     // Check if user has a PROFILE
-    const query = await models.Employee.findOne({ where: { user_id } });
+    const query = await models.Employee.findOne({ where: { user_id: userId } });
 
     const userProfile = await query;
     // Check if profile does not already exist
@@ -106,16 +111,22 @@ exports.createProfile = async (req, res) => {
       // Create new profile
       const data = await models.Employee.create(newBody);
 
-      return successResMsg(res, 201, data);
+      // return successResMsg(res, 201, data);
+      req.flash('success', 'Profile Created Succesfully!');
+      return res.redirect(`/employee/dashboard/${data.employee_id}`);
     }
     // Check if profile already exist
-    return errorResMsg(
-      res,
-      400,
-      'User already has a profile. Please, update existing profile',
-    );
+    // return errorResMsg(
+    //   res,
+    //   400,
+    //   'User already has a profile. Please, update existing profile',
+    // );
+    req.flash('error', 'User already has a profile. Please, update existing profile');
+    return res.redirect('/employee/profile/create');
   } catch (err) {
-    return errorResMsg(res, 500, err.message);
+    // return errorResMsg(res, 500, err.message);
+    req.flash('error', err.message);
+    return res.redirect('/employee/profile/create');
   }
 };
 

@@ -104,7 +104,7 @@ exports.registerEmployer = (req, res) => {
   })();
 };
 
-exports.postEmployeeLogin = (req, res, next) => {
+exports.postEmployeeLogin = async (req, res, next) => {
   const { email } = req.body;
   const { password } = req.body;
 
@@ -122,7 +122,7 @@ exports.postEmployeeLogin = (req, res, next) => {
     });
   }
 
-  model.User.findOne({ where: { email }, role_id: 'ROL-EMPLOYEE' })
+  await model.User.findOne({ where: { email }, role_id: 'ROL-EMPLOYEE' })
     .then((user) => {
       if (!user) {
         return res.status(422).render('Pages/employee-sign-in', {
