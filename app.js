@@ -83,6 +83,9 @@ const getAllEmployees = require('./Routes/employer/get-employees');
 // IMPORT EMPLOYER DASHBOARD
 const employerDashboard = require('./Routes/employer/employer-dashboard');
 
+// IMPORT EMPLOYER SETTINGS ROUTE
+const employerSettings = require('./routes/employer/employer-settings');
+
 // IMPORT THE VIEWS ROUTES
 const appRoute = require('./Routes/views');
 const adminDashRoute = require('./Routes/views/admin/dashboard');
@@ -100,8 +103,6 @@ const employerMetrics = require('./Routes/views/employer/metrics');
 const employerRecommendation = require('./Routes/views/employer/recommendation');
 const verifyModal = require('./Routes/views/admin/verifyModal');
 
-// IMPORT SUPPORT ROUTE
-const supportRoute = require('./routes/support');
 
 const app = express();
 
@@ -160,14 +161,14 @@ app.use(
 // passportjs initialization
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(csrfProtection);
-app.use((req, res, next) => {
-  const token = req.csrfToken();
-  // console.log(token);
-  res.cookie('csrf-token', token);
-  res.locals.csrfToken = req.csrfToken();
-  next();
-});
+// app.use(csrfProtection);
+// app.use((req, res, next) => {
+//   const token = req.csrfToken();
+//   // console.log(token);
+//   res.cookie('csrf-token', token);
+//   res.locals.csrfToken = req.csrfToken();
+//   next();
+// });
 // express body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -196,6 +197,7 @@ app.use('/v1/employer', employerUpgradeRoute);
 app.use('/v1/employer', employerReviews);
 app.use('/v1/employer', employerTransaction);
 app.use('/v1/employer', employerDashboard);
+app.use('/v1/employer', employerSettings);
 
 // Employers get all verified employees
 app.use('/v1/employer', getAllEmployees);
@@ -227,10 +229,6 @@ app.use('/v1/admin', adminManagementRoute); // super admin
 
 // packages
 app.use('/v1/package', packageRoutes);
-
-// user support
-app.use('v1/users', supportRoute);
-
 
 // global error handler
 app.use(errorHandler);
