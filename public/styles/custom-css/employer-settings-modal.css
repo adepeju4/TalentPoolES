@@ -1,0 +1,243 @@
+.modal-box {
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin-top: 5rem;
+    margin-right: 43%;
+
+}
+
+.content-wrapper {
+    min-width: 900px;
+    min-height: 500px;
+    background: #FFFFFF;
+    box-shadow: 2px 8px 20px rgba(181, 181, 181, 0.2);
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 40px;
+
+}
+
+
+.content-wrapper .title-text {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 36px;
+    align-items: center;
+    color: #353A45;
+}
+
+.content-wrapper .close-btn1 {
+    display: none;
+}
+
+.content-wrapper .companyNameLabel,
+.tagLabel,
+.emailLabel,
+.locationLabel,
+.industryTypeLabel,
+.companyLogoLabel {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    /* identical to box height */
+    color: #1F2430;
+    padding: 10px 0;
+}
+
+.content-wrapper input {
+    width: 336px;
+    height: 56px;
+    border: 2px solid #B5B5B5;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.content-wrapper .custom-file label.custom-file-label {
+    width: 336px;
+    height: 56px;
+    border: 2px solid #B5B5B5;
+    border-radius: 5px;
+    padding-top: 15px;
+
+}
+
+.content-wrapper label.custom-file-label::after {
+    background: #00AEFF;
+    color: white;
+    margin-right: 10px;
+    margin-top: 10px;
+    width: 120px;
+    height: 31px;
+    border-radius: 5px;
+    text-align: center;
+
+}
+
+
+
+.content-wrapper .browse-div {
+    width: 336px;
+    height: 56px;
+    border: 2px solid #B5B5B5;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    position: relative;
+
+}
+
+.content-wrapper .browse-div button {
+    width: 120px;
+    height: 40px;
+    background: #00AEFF;
+    border: 1px solid #00AEFF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    position: absolute;
+    top: 7px;
+    right: 15px;
+    font-size: 16px;
+    text-align: center;
+    padding: 5px;
+}
+
+.content-wrapper .browse-div p {
+    line-height: 1px;
+    padding: 0;
+    color: #62666E;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+    align-items: center;
+
+}
+
+
+.content-wrapper .browse-div .logoFormat {
+    width: 71px;
+    height: 24px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px;
+    /* identical to box height */
+
+    color: rgba(178, 178, 178, 0.58);
+}
+
+
+/* Decription card */
+.desc-card-header>h3 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    color: #353A45;
+}
+
+.company-card,
+.social-card,
+.desc-card>p {
+    font-size: 16px;
+    line-height: 24px;
+    color: #4C5059;
+}
+
+.fa-plus {
+    cursor: pointer;
+    color: #084482;
+    font-size: 20px;
+    padding: .2rem;
+}
+
+/* social Accounts Card */
+.account {
+    border-top: 1px solid #E7EAEC;
+}
+
+.plus-social {
+    cursor: pointer;
+}
+
+.account>span {
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.account>.pen-modif {
+    visibility: hidden;
+}
+
+.account:hover .pen-modif {
+    visibility: visible;
+}
+
+.fa-hashnode,
+.fab {
+    color: #00AEFF;
+}
+
+/* Company infos card */
+.company-title,
+.company-info {
+    border-bottom: 1px solid #E7EAEC;
+}
+
+@media only screen and (max-width: 990px) {
+    .modal-box {
+        margin: 0 0;
+
+    }
+
+    .content-wrapper {
+        padding: 0;
+        /* min-width: 100%; */
+    }
+
+    .content-wrapper input {
+        width: 30%;
+        height: 50px;
+        border: 2px solid #B5B5B5;
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    .content-wrapper .custom-file label.custom-file-label {
+        width: 30%;
+        height: 56px;
+        border: 2px solid #B5B5B5;
+        border-radius: 5px;
+        padding-top: 15px;
+
+    }
+
+    /* .content-wrapper .browseCheck>p {
+        font-size: 4vw;
+    } */
+
+    .mobileContainer {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-around;
+    }
+
+
+    .mobileFooter {
+        margin: 0 0;
+        width: 100%;
+        padding-right: 384px;
+    }
+
+    .close-btn {
+        /* Vector */
+        position: absolute;
+        right: 40px;
+        top: 2%;
+        font-size: 23px;
+        color: #00AEFF;
+
+    }
+}

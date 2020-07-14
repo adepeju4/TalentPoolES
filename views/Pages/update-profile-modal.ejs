@@ -1,0 +1,79 @@
+<div class="modal fade" id="update-profile" tabindex="-1" role="dialog" aria-labelledby="update-profile"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-box ">
+    <div class="modal-content content-wrapper">
+      <div class="modal-header ">
+        <h5 class="modal-title title-text" id="modal-header">Update Profile</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="close-btn1" aria-hidden="true">&times;</span>
+          <svg class="close-btn" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M23.6673 2.68301L21.3173 0.333008L12.0007 9.64968L2.68398 0.333008L0.333984 2.68301L9.65065 11.9997L0.333984 21.3163L2.68398 23.6663L12.0007 14.3497L21.3173 23.6663L23.6673 21.3163L14.3507 11.9997L23.6673 2.68301Z"
+              fill="#00AEFF" />
+          </svg>
+
+        </button>
+      </div>
+      <div class="modal-body myModal-body">
+        <div class="container">
+
+          <div class="d-flex justify-content-around mobileContainer">
+            <div class=" col1 colMobile">
+              <label class="companyNameLabel" for="">Company Name</label><br>
+              <input type="text" name="" placeholder="Genesis" id="">
+
+            </div>
+            <div class="col2">
+              <label for="" class="tagLabel">Tag Line</label><br>
+              <input type="text" placeholder="Anosike">
+            </div>
+
+          </div>
+
+          <div class="d-flex justify-content-around mobileContainer">
+            <div class=" col3">
+              <label for="" class="emailLabel">Email Address</label><br>
+              <input type="email" placeholder="anosikegenesis@gmail.com">
+
+            </div>
+            <div class=" col4">
+              <label for="" class="locationLabel">Location</label><br>
+              <input type="text" placeholder="Ibadan, Nigeria">
+            </div>
+
+          </div>
+
+          <div class="d-flex justify-content-around mobileContainer">
+            <div class="browseCheck">
+              <label for="" class="companyLogoLabel">Company Logo</label>
+              <div class="input-group">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="inputGroupFile04"
+                    aria-describedby="inputGroupFileAddon04">
+                  <label class="custom-file-label" for="inputGroupFile04">Logo.png</label>
+                </div>
+
+              </div>
+              <br>
+              <p>Recommended dimension: 200 <span>&#xd7;</span> 200px <br>
+                Maximum file size: 500Kb <br> </p>
+
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+
+      <div class="modal-footer  d-flex justify-content-around mobileFooter">
+
+        <button type="button" class="btn mx-auto " onclick="saveProfile()">Save Profile</button>
+      </div>
+    </div>
+  </div>
+</div>
