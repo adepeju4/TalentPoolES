@@ -45,7 +45,7 @@
                       </div>
                     </div>
                   </a>
-                  <a class="nav-item nav-link col-md-12 col-sm-4 col-4 bg-transparent-custom" id="nav-appearance-tab"
+                  <!-- <a class="nav-item nav-link col-md-12 col-sm-4 col-4 bg-transparent-custom" id="nav-appearance-tab"
                     data-toggle="tab" href="#nav-appearance" role="tab" aria-controls="nav-appearance"
                     aria-selected="false">
                     <div class="navbar-detail row no-gutters">
@@ -56,7 +56,7 @@
                         <span class="">Appearance</span>
                       </div>
                     </div>
-                  </a>
+                  </a> -->
                   <a class="nav-item nav-link col-md-12 col-sm-4 col-4 bg-transparent-custom" id="nav-notification-tab"
                     data-toggle="tab" href="#nav-notification" role="tab" aria-controls="nav-notification"
                     aria-selected="true">
@@ -310,6 +310,8 @@
                   <h4 class="mb-4 font-size-1em">
                     <span class="hr">Contact Us</span>
                   </h4>
+                  <form id="contactUs" method="POST" enctype="multipart/form-data" action="/v1/employer/support">
+                    <input type=“hidden” name=“type” value=“contactUs” />
                   <div class="row">
                     <div class="col-12 col-md-12 col-lg-9 contact-us-container">
                       <form action="#" class="needs-validation" novalidate>
@@ -362,6 +364,7 @@
                       </form>
                     </div>
                   </div>
+                </form>
                   <script>
                     // Example starter JavaScript for disabling form submissions if there are invalid fields
                     (function () {
@@ -497,7 +500,8 @@
                       <h4 class="mb-4 font-size-1em">
                         <span class="hr">Report Abuse</span>
                       </h4>
-                      <form>
+                      <form id="reportAbuse" method="POST" enctype="multipart/form-data" action="/v1/employer/support">
+                        <input type=“hidden” name=“type” value=“reportAbuse” />
                         <div class="form-group">
                           <input type="text" class="form-control border-primary" id="employer-name"
                             placeholder="Your Name*" />
@@ -539,33 +543,33 @@
   <script>
     const profileBtn = document.querySelector("#profile-btn");
     const loginBtn = document.querySelector("#login-btn");
-    const accountBtn = document.querySelector("#account-btn");
-    const accessibilityBtn = document.querySelector("#accessibility-btn");
+    // const accountBtn = document.querySelector("#account-btn");
+    // const accessibilityBtn = document.querySelector("#accessibility-btn");
 
     profileBtn.addEventListener("click", function (e) {
       e.target.querySelector(".fa").classList.toggle("open");
       loginBtn.querySelector(".fa").classList.remove("open");
-      accountBtn.querySelector(".fa").classList.remove("open");
-      accessibilityBtn.querySelector(".fa").classList.remove("open");
+      // accountBtn.querySelector(".fa").classList.remove("open");
+      // accessibilityBtn.querySelector(".fa").classList.remove("open");
     });
     loginBtn.addEventListener("click", function (e) {
       e.target.querySelector(".fa").classList.toggle("open");
       profileBtn.querySelector(".fa").classList.remove("open");
-      accountBtn.querySelector(".fa").classList.remove("open");
-      accessibilityBtn.querySelector(".fa").classList.remove("open");
+      // accountBtn.querySelector(".fa").classList.remove("open");
+      // accessibilityBtn.querySelector(".fa").classList.remove("open");
     });
-    accountBtn.addEventListener("click", function (e) {
-      e.target.querySelector(".fa").classList.toggle("open");
-      loginBtn.querySelector(".fa").classList.remove("open");
-      profileBtn.querySelector(".fa").classList.remove("open");
-      accessibilityBtn.querySelector(".fa").classList.remove("open");
-    });
-    accessibilityBtn.addEventListener("click", function (e) {
-      e.target.querySelector(".fa").classList.toggle("open");
-      loginBtn.querySelector(".fa").classList.remove("open");
-      accountBtn.querySelector(".fa").classList.remove("open");
-      profileBtn.querySelector(".fa").classList.remove("open");
-    });
+    // accountBtn.addEventListener("click", function (e) {
+    //   e.target.querySelector(".fa").classList.toggle("open");
+    //   loginBtn.querySelector(".fa").classList.remove("open");
+    //   profileBtn.querySelector(".fa").classList.remove("open");
+    //   accessibilityBtn.querySelector(".fa").classList.remove("open");
+    // });
+    // accessibilityBtn.addEventListener("click", function (e) {
+    //   e.target.querySelector(".fa").classList.toggle("open");
+    //   loginBtn.querySelector(".fa").classList.remove("open");
+    //   accountBtn.querySelector(".fa").classList.remove("open");
+    //   profileBtn.querySelector(".fa").classList.remove("open");
+    // });
   </script>
   <script src="../js/custom-js/side-nav.js"></script>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
