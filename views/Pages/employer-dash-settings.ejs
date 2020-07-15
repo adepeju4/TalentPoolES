@@ -311,13 +311,13 @@
                     <span class="hr">Contact Us</span>
                   </h4>
                   <form id="contactUs" method="POST" enctype="multipart/form-data" action="/v1/employer/support">
-                    <input type=“hidden” name=“type” value=“contactUs” />
+                    <input type="hidden" name="type" value="contactUs" />
                   <div class="row">
                     <div class="col-12 col-md-12 col-lg-9 contact-us-container">
                       <form action="#" class="needs-validation" novalidate>
                         <div class="input-group input-group-lg contact-us-input">
                           <input type="text" class="form-control input" required aria-label="Large"
-                            placeholder="Your Name*" style="font-size: 16px;" />
+                            placeholder="Your Name*" style="font-size: 16px;" name="name" />
                           <div class="valid-feedback">
                             good !
                           </div>
@@ -326,7 +326,7 @@
                           </div>
                         </div>
                         <div class="input-group input-group-lg contact-us-input">
-                          <input type="email" class="form-control" required aria-label="Large" placeholder="Your Email*"
+                          <input type="email" class="form-control" required aria-label="Large" placeholder="Your Email*" name="email"
                             style="font-size: 16px;" />
                           <div class="valid-feedback">
                             good !
@@ -337,7 +337,7 @@
                         </div>
                         <div class="input-group input-group-lg contact-us-input">
                           <input type="text" class="form-control" required aria-label="Large" placeholder="Subject..."
-                            style="font-size: 16px;" />
+                            style="font-size: 16px;" name="subject" />
                           <div class="valid-feedback">
                             good !
                           </div>
@@ -348,7 +348,7 @@
                         <div class="input-group contact-us-input">
                           <label for="textarea" style="display: none;"></label>
                           <textarea id="textarea" rows="4" class="form-control" required
-                            placeholder="Your Message..."></textarea>
+                            placeholder="Your Message..." name="message"></textarea>
                           <div class="valid-feedback">
                             good !
                           </div>
@@ -501,22 +501,22 @@
                         <span class="hr">Report Abuse</span>
                       </h4>
                       <form id="reportAbuse" method="POST" enctype="multipart/form-data" action="/v1/employer/support">
-                        <input type=“hidden” name=“type” value=“reportAbuse” />
+                        <input type="hidden" name="type" value="reportAbuse" />
                         <div class="form-group">
                           <input type="text" class="form-control border-primary" id="employer-name"
-                            placeholder="Your Name*" />
+                            placeholder="Your Name*" name="name" />
                         </div>
                         <div class="form-group">
                           <input type="email" class="form-control border-primary" id="employer-email"
-                            placeholder="Your Email*" />
+                            placeholder="Your Email*" name="email"/>
                         </div>
                         <div class="form-group">
                           <input type="text" class="form-control border-primary" id="report-abuse-msg-subject"
-                            placeholder="Subject..." />
+                            placeholder="Subject..." name="subject" />
                         </div>
                         <div class="form-group">
                           <textarea class="form-control border-primary" id="report-abuse-msg" rows="3"
-                            placeholder="Your Message..."></textarea>
+                            placeholder="Your Message..." name="message"></textarea>
                         </div>
                         <div class="form-group d-flex justify-content-center mt-4">
                           <button style="background: #084482;" class="btn text-white" type="submit">
