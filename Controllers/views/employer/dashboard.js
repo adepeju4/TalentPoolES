@@ -70,7 +70,7 @@ getActive.then(getCookie);*/
 
   employerDashboardSettings: (req, res) => {
     res.render('Pages/employer-dash-settings.ejs', {
-      pageName: 'Employer Dashboard - Settings'
+      pageName: 'Employer Dashboard - Settings',
     });
   },
 

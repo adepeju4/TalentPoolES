@@ -3,21 +3,27 @@ const mailer = require('../../Utils/mailer');
 
 exports.createSupport = async (req, res) => {
   try {
+    console.log(req.body, 'hii?')
     await db.Support.create(req.body);
-    await mailer.send({
-      template: '../emails/support',
-      message: {
-        to: req.body.email,
-      },
-      locals: {
-        name: req.body.name,
-        type: req.body.type,
-      },
-    });
-    res.status(200).json('sent');
+    res.status(200).json('successful');
+    try {
+      await mailer.send({
+        template: '../emails/support',
+        message: {
+          to: req.body.email,
+        },
+        locals: {
+          name: req.body.name,
+          type: req.body.type,
+        },
+      });
+    } catch (err) {
+      console.log('error in mailer', err.message || err);
+    }
   } catch (error) {
+    console.log(error, 'something');
     req.flash('error', 'An error occured, please try again');
-    res.status(500).json('error');
+    res.status(400).json(error);
   }
 };
 

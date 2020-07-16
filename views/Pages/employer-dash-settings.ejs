@@ -129,7 +129,8 @@
                       </div>
                       <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                         data-parent="#accordionExample">
-                        <div class="card-body general-btn" type="button" data-toggle="modal" data-target="#update-profile">
+                        <div class="card-body general-btn" type="button" data-toggle="modal"
+                          data-target="#update-profile">
                           Update your Profile
                         </div>
                       </div>
@@ -165,7 +166,8 @@
                       </div>
                       <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
                         data-parent="#accordionExample">
-                        <div class="card-body general-btn" type="button" data-toggle="modal" data-target="#update-password">
+                        <div class="card-body general-btn" type="button" data-toggle="modal"
+                          data-target="#update-password">
                           Update your Login & Security
                         </div>
 
@@ -310,61 +312,67 @@
                   <h4 class="mb-4 font-size-1em">
                     <span class="hr">Contact Us</span>
                   </h4>
-                  <form id="contactUs" method="POST" enctype="multipart/form-data" action="/v1/employer/support">
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                  <div class="row">
-                    <div class="col-12 col-md-12 col-lg-9 contact-us-container">
-                      <form action="#" class="needs-validation" novalidate>
-                        <div class="input-group input-group-lg contact-us-input">
-                          <input type="text" class="form-control input" required aria-label="Large"
-                            placeholder="Your Name*" style="font-size: 16px;" name="name" />
-                          <div class="valid-feedback">
-                            good !
-                          </div>
-                          <div class="invalid-feedback">
-                            Please type your name.
-                          </div>
-                        </div>
-                        <div class="input-group input-group-lg contact-us-input">
-                          <input type="email" class="form-control" required aria-label="Large" placeholder="Your Email*" name="email"
-                            style="font-size: 16px;" />
-                          <div class="valid-feedback">
-                            good !
-                          </div>
-                          <div class="invalid-feedback">
-                            Please type your email.
-                          </div>
-                        </div>
-                        <div class="input-group input-group-lg contact-us-input">
-                          <input type="text" class="form-control" required aria-label="Large" placeholder="Subject..."
-                            style="font-size: 16px;" name="subject" />
-                          <div class="valid-feedback">
-                            good !
-                          </div>
-                          <div class="invalid-feedback">
-                            Please type the subject.
-                          </div>
-                        </div>
-                        <div class="input-group contact-us-input">
-                          <label for="textarea" style="display: none;"></label>
-                          <textarea id="textarea" rows="4" class="form-control" required
-                            placeholder="Your Message..." name="message"></textarea>
-                          <div class="valid-feedback">
-                            good !
-                          </div>
-                          <div class="invalid-feedback">
-                            Please type in a message.
-                          </div>
-                        </div>
-                        <div class="d-flex justify-content-center contact-us-input">
-                          <button type="submit" class="btn btn-lg">
-                            Send Message
-                          </button>
-                        </div>
-                      </form>
+                  <form id="contactUs" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="alert text-center" style="display:none"></div>
+                      </div>
                     </div>
-                  </div>
-                </form>
+                      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                      <input type="hidden" name="type" value="contact">
+                      <div class="row">
+                        <div class="col-12 col-md-12 col-lg-9 contact-us-container">
+                          <form action="#" class="needs-validation" novalidate>
+                            <div class="input-group input-group-lg contact-us-input">
+                              <input type="text" class="form-control input" required aria-label="Large"
+                                placeholder="Your Name*" style="font-size: 16px;" name="name" />
+                              <div class="valid-feedback">
+                                good !
+                              </div>
+                              <div class="invalid-feedback">
+                                Please type your name.
+                              </div>
+                            </div>
+                            <div class="input-group input-group-lg contact-us-input">
+                              <input type="email" class="form-control" required aria-label="Large"
+                                placeholder="Your Email*" name="email" style="font-size: 16px;" />
+                              <div class="valid-feedback">
+                                good !
+                              </div>
+                              <div class="invalid-feedback">
+                                Please type your email.
+                              </div>
+                            </div>
+                            <div class="input-group input-group-lg contact-us-input">
+                              <input type="text" class="form-control" required aria-label="Large"
+                                placeholder="Subject..." style="font-size: 16px;" name="subject" />
+                              <div class="valid-feedback">
+                                good !
+                              </div>
+                              <div class="invalid-feedback">
+                                Please type the subject.
+                              </div>
+                            </div>
+                            <div class="input-group contact-us-input">
+                              <label for="textarea" style="display: none;"></label>
+                              <textarea id="textarea" rows="4" class="form-control" required
+                                placeholder="Your Message..." name="message"></textarea>
+                              <div class="valid-feedback">
+                                good !
+                              </div>
+                              <div class="invalid-feedback">
+                                Please type in a message.
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-center contact-us-input">
+                              <button type="submit" class="btn btn-lg">
+                                Send Message
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                  </form>
                   <script>
                     // Example starter JavaScript for disabling form submissions if there are invalid fields
                     (function () {
@@ -500,15 +508,21 @@
                       <h4 class="mb-4 font-size-1em">
                         <span class="hr">Report Abuse</span>
                       </h4>
-                      <form id="reportAbuse" method="POST" enctype="multipart/form-data" action="/v1/employer/support">
+                      <form id="reportAbuse" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                        <input type="hidden" name="type" value="abuse">
+                        <div class="row">
+                          <div class="col-12">
+                            <div class="alert text-center" style="display:none"></div>
+                          </div>
+                        </div>
                         <div class="form-group">
                           <input type="text" class="form-control border-primary" id="employer-name"
                             placeholder="Your Name*" name="name" />
                         </div>
                         <div class="form-group">
                           <input type="email" class="form-control border-primary" id="employer-email"
-                            placeholder="Your Email*" name="email"/>
+                            placeholder="Your Email*" name="email" />
                         </div>
                         <div class="form-group">
                           <input type="text" class="form-control border-primary" id="report-abuse-msg-subject"
@@ -535,12 +549,13 @@
     </div>
   </div>
 
- 
+
   <%- include('./employer-change-password') %>
-  <%- include('./update-profile-modal') %>
+  <%- include('./employer-settings-update-profile') %>
 
   <!-- Optional JavaScript -->
   <script>
+    const _csrfToken = '<%= csrfToken %>';
     const profileBtn = document.querySelector("#profile-btn");
     const loginBtn = document.querySelector("#login-btn");
     // const accountBtn = document.querySelector("#account-btn");
@@ -570,7 +585,7 @@
     //   accountBtn.querySelector(".fa").classList.remove("open");
     //   profileBtn.querySelector(".fa").classList.remove("open");
     // });
-    </script>
+  </script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/js/custom-js/side-nav.js"></script>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -578,6 +593,7 @@
   <script src="/js/bootstrap-js/jquery.js"></script>
   <script src="/js/bootstrap-js/bootstrap.js"></script>
   <script src="/js/custom-js/employer-change-password.js"></script>
+  <script src="/js/custom-js/employer-dash-settings.js"></script>
 </body>
 
 </html>

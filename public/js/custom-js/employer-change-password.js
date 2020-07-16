@@ -62,29 +62,46 @@ window.addEventListener('load', () => {
     'submit',
     // eslint-disable-next-line func-names
     async function (event) {
+      document.getElementById('error-message').style.display = 'none';
       event.stopPropagation();
       event.preventDefault();
       if (form.checkValidity() !== false) {
         if (user) {
-          console.log('------', user)
-          const { userId } = JSON.parse(user);
-          console.log('-jjjjj', userId)
+          const { userId, token } = JSON.parse(user);
           try {
             const response = await axios.put(`/v1/auth/update-password/${userId}`, {
-              oldPassword: this.oldPassword,
-              newPassword: this.newPassword,
+              oldPassword: this.oldPassword.value,
+              newPassword: this.newPassword.value,
+            }, {
+              headers: {
+                'CSRF-Token': _csrfToken,
+                Authorization: `Bearer ${token}`,
+              },
             });
             // eslint-disable-next-line no-alert
-            alert(response.data.message);
+            document.getElementById('error-message').innerHTML = response.data.data.message;
+            document.getElementById('error-message').classList.add('alert-success');
+            document.getElementById('error-message').classList.remove('alert-danger');
+            document.getElementById('error-message').style.display = 'block';
+            this.classList.remove('was-validated');
+            this.reset();
             return;
           } catch (err) {
-            console.log('/////', err)
+            // console.log(err);
             // eslint-disable-next-line no-alert
-            alert(err.data);
+            let errorMessage = 'Something went wrong';
+            if (err.response && err.response.data) {
+              errorMessage = err.response.data.message || err.response.data.error;
+            }
+            document.getElementById('error-message').innerHTML = errorMessage;
+            document.getElementById('error-message').classList.remove('alert-success');
+            document.getElementById('error-message').classList.add('alert-danger');
+            document.getElementById('error-message').style.display = 'block';
+            // alert(err.response ? err.response.data && err.response.data.message || 'something went wrong' : 'Something went wrong');
           }
         }
       }
-      
+
       form.classList.add('was-validated');
     },
     false,
