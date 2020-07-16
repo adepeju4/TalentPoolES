@@ -311,7 +311,7 @@
                     <span class="hr">Contact Us</span>
                   </h4>
                   <form id="contactUs" method="POST" enctype="multipart/form-data" action="/v1/employer/support">
-                    <input type="hidden" name="type" value="contactUs" />
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                   <div class="row">
                     <div class="col-12 col-md-12 col-lg-9 contact-us-container">
                       <form action="#" class="needs-validation" novalidate>
@@ -501,7 +501,7 @@
                         <span class="hr">Report Abuse</span>
                       </h4>
                       <form id="reportAbuse" method="POST" enctype="multipart/form-data" action="/v1/employer/support">
-                        <input type="hidden" name="type" value="reportAbuse" />
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <div class="form-group">
                           <input type="text" class="form-control border-primary" id="employer-name"
                             placeholder="Your Name*" name="name" />
