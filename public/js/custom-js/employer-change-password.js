@@ -56,13 +56,37 @@ window.addEventListener('load', () => {
       this.confirmPassword.setCustomValidity('');
     }
   });
-  // eslint-disable-next-line func-names
-  form.addEventListener('submit', function (event) {
-    // console.log('this', this.oldPassword);
-    if (form.checkValidity() === false || this.newPassword.value !== this.confirmPassword.value) {
+  const user = localStorage.getItem('tpAuth');
+
+  form.addEventListener(
+    'submit',
+    // eslint-disable-next-line func-names
+    async function (event) {
       event.stopPropagation();
       event.preventDefault();
-    }
-    form.classList.add('was-validated');
-  }, false);
+      if (form.checkValidity() !== false) {
+        if (user) {
+          console.log('------', user)
+          const { userId } = JSON.parse(user);
+          console.log('-jjjjj', userId)
+          try {
+            const response = await axios.put(`/v1/auth/update-password/${userId}`, {
+              oldPassword: this.oldPassword,
+              newPassword: this.newPassword,
+            });
+            // eslint-disable-next-line no-alert
+            alert(response.data.message);
+            return;
+          } catch (err) {
+            console.log('/////', err)
+            // eslint-disable-next-line no-alert
+            alert(err.data);
+          }
+        }
+      }
+      
+      form.classList.add('was-validated');
+    },
+    false,
+  );
 }, false);
